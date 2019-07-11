@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Twin Music Programming</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+
+    <script src="./libraries/tone/Tone.js"></script>
+    <script src="./Tonejs-Instruments.js"></script>
+    <script src="./generator.js"></script>
+
+    <style>
+        body {
+            background-color: #ffaaaa;
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+
+<h1>TWIN Müzik Programlama</h1>
+
+<p>
+    <button onclick="showCode()">JS Kodu Göster</button>
+    <button onclick="runCode()">Çalıştır</button>
+</p>
+
+<script>
+    function showCode() {
+        console.log(code);
+    }
+
+    function runCode() {
+        try {
+            eval(code);
+        } catch (e) {
+            alert(e);
+        }
+    }
+</script>
+
+</body>
+</html>

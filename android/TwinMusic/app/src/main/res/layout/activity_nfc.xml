@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/startbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="START"/>
+
+    <Button
+        android:id="@+id/startloopbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LOOP"/>
+
+    <Button
+        android:id="@+id/pianobutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PIANO"/>
+
+    <Button
+        android:id="@+id/lowfreq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LOW_FREQ"/>
+
+    <Button
+        android:id="@+id/medfreq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MED_FREQ"/>
+
+    <Button
+        android:id="@+id/highfreq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HIGH_FREQ"/>
+
+    <Button
+        android:id="@+id/addnoteA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD NOTE A"/>
+
+
+    <Button
+        android:id="@+id/addnoteD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD NOTE D"/>
+
+    <Button
+        android:id="@+id/runbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RUN"/>
+
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

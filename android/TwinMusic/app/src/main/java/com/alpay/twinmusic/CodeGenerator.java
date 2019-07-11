@@ -1,5 +1,8 @@
 package com.alpay.twinmusic;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class CodeGenerator {
 
     public enum Notes {
@@ -10,21 +13,29 @@ public class CodeGenerator {
     private static boolean sampleSelected = false;
 
     private static String code = "";
-    private static String loopcode = "";
-    private static String insideSampleCode = "";
     private static int octave = 4;
     private static String selectedSound = "piano";
+    private static ArrayList<String> notes = new ArrayList<>();
 
-    public static final String start_synth = "var synth = new Tone.Synth().toMaster();\n";
-    public static final String start_loop = "const loop = new Tone.Loop(function(time) { %s }, '4n').start(0); Tone.Transport.start();\n";
-    private static final String add_note = "synth.triggerAttackRelease('%s%d', '8n', %s);\n";
-    private static final String add_note_with_sample = "instruments['" + selectedSound + "'].triggerAttack('%s%d', '8n', %s);";
-    private static String select_sample = "var instruments = SampleLibrary.load({ instruments: ['" + selectedSound + "'] });  Tone.Buffer.on('load', function() { instruments['" + selectedSound + "'].toMaster(); %s });";
+    private static final String synth_code = "var synth = new Tone.Synth().toMaster();" +
+            "function playInterval(notes) { var interval = new Tone.Sequence(function(time, note){ synth.triggerAttackRelease(note, 1); }, notes, '4n'); interval.loop = %s; interval.start(0); Tone.Transport.start('+0.2');}" +
+            "function triggerSynth(time){ synth.triggerAttackRelease('8n', time) } playInterval(%s);";
+    private static final String sample_code = "var instruments = SampleLibrary.load({instruments: ['%s']}); Tone.Buffer.on('load', function () { instruments['%s'].toMaster(); var interval = new Tone.Sequence(function (time, note) { instruments['%s'].triggerAttackRelease(note, 1); }, %s, '4n'); interval.loop = %s; interval.start(0); Tone.Transport.start('+0.1'); });";
 
     public static String getCode() {
-        loopcode = (loopcode.length() > 0) ? String.format(start_loop, loopcode) : "%s";
-        insideSampleCode = (insideSampleCode.length() > 0) ? String.format(select_sample, insideSampleCode) : "";
-        return code + String.format(loopcode, insideSampleCode);
+        clearCode();
+        if (sampleSelected) {
+            for (int i = 0; i < notes.size(); i++) {
+                notes.set(i, String.format(notes.get(i), octave));
+            }
+            code += String.format(sample_code, selectedSound, selectedSound, selectedSound, Arrays.toString(notes.toArray()), inLoop);
+        }else{
+            for (int i = 0; i < notes.size(); i++) {
+                notes.set(i, String.format(notes.get(i), octave));
+            }
+            code += String.format(synth_code, inLoop, Arrays.toString(notes.toArray()));
+        }
+        return code;
     }
 
     public static void changeOctave(int oct) {
@@ -35,30 +46,13 @@ public class CodeGenerator {
         return sampleSelected;
     }
 
-    private static void addNewCodeBlock(String text) {
-        if (inLoop) {
-            if (sampleSelected) {
-                insideSampleCode += text;
-            }
-            loopcode += text;
-        } else {
-            if (sampleSelected) {
-                insideSampleCode += text;
-            }
-            code += text;
-        }
-    }
 
     public static void startSynth() {
-        if (code.length() == 0) {
-            addNewCodeBlock(start_synth);
-        }
+        notes = new ArrayList<>();
     }
 
     public static void clearCode() {
-        loopcode = "";
         code = "";
-        insideSampleCode = "";
     }
 
     public static void deleteLastPart() {
@@ -66,10 +60,6 @@ public class CodeGenerator {
             int lastLineIndex = code.lastIndexOf('\n');
             code = code.substring(0, lastLineIndex);
         }
-    }
-
-    public static void exitLoop() {
-        inLoop = false;
     }
 
     public static void startLoop() {
@@ -84,25 +74,25 @@ public class CodeGenerator {
     public static void addNoteWithSample(Notes note) {
         switch (note) {
             case A:
-                addNewCodeBlock(String.format(add_note_with_sample, "A", octave, ""));
+                notes.add("'A%d'");
                 break;
             case B:
-                addNewCodeBlock(String.format(add_note_with_sample, "B", octave, ""));
+                notes.add("'B%d'");
                 break;
             case C:
-                addNewCodeBlock(String.format(add_note_with_sample, "C", octave, ""));
+                notes.add("'C%d'");
                 break;
             case D:
-                addNewCodeBlock(String.format(add_note_with_sample, "D", octave, ""));
+                notes.add("'D%d'");
                 break;
             case E:
-                addNewCodeBlock(String.format(add_note_with_sample, "E", octave, ""));
+                notes.add("'E%d'");
                 break;
             case F:
-                addNewCodeBlock(String.format(add_note_with_sample, "F", octave, ""));
+                notes.add("'F%d'");
                 break;
             case G:
-                addNewCodeBlock(String.format(add_note_with_sample, "G", octave, ""));
+                notes.add("'G%d'");
                 break;
             default:
                 break;
@@ -113,25 +103,25 @@ public class CodeGenerator {
         if (inLoop) {
             switch (note) {
                 case A:
-                    addNewCodeBlock(String.format(add_note, "A", octave, "time"));
+                    notes.add("'A%d'");
                     break;
                 case B:
-                    addNewCodeBlock(String.format(add_note, "B", octave, "time"));
+                    notes.add("'B%d'");
                     break;
                 case C:
-                    addNewCodeBlock(String.format(add_note, "C", octave, "time"));
+                    notes.add("'C%d'");
                     break;
                 case D:
-                    addNewCodeBlock(String.format(add_note, "D", octave, "time"));
+                    notes.add("'D%d'");
                     break;
                 case E:
-                    addNewCodeBlock(String.format(add_note, "E", octave, "time"));
+                    notes.add("'E%d'");
                     break;
                 case F:
-                    addNewCodeBlock(String.format(add_note, "F", octave, "time"));
+                    notes.add("'F%d'");
                     break;
                 case G:
-                    addNewCodeBlock(String.format(add_note, "G", octave, "time"));
+                    notes.add("'G%d'");
                     break;
                 default:
                     break;
@@ -139,25 +129,25 @@ public class CodeGenerator {
         } else {
             switch (note) {
                 case A:
-                    addNewCodeBlock(String.format(add_note, "A", octave, ""));
+                    notes.add("'A%d'");
                     break;
                 case B:
-                    addNewCodeBlock(String.format(add_note, "B", octave, ""));
+                    notes.add("'B%d'");
                     break;
                 case C:
-                    addNewCodeBlock(String.format(add_note, "C", octave, ""));
+                    notes.add("'C%d'");
                     break;
                 case D:
-                    addNewCodeBlock(String.format(add_note, "D", octave, ""));
+                    notes.add("'D%d'");
                     break;
                 case E:
-                    addNewCodeBlock(String.format(add_note, "E", octave, ""));
+                    notes.add("'E%d'");
                     break;
                 case F:
-                    addNewCodeBlock(String.format(add_note, "F", octave, ""));
+                    notes.add("'F%d'");
                     break;
                 case G:
-                    addNewCodeBlock(String.format(add_note, "G", octave, ""));
+                    notes.add("'G%d'");
                     break;
                 default:
                     break;

@@ -122,7 +122,7 @@ public class NFCActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (CodeGenerator.isSampleSelected())
-                    CodeGenerator.addNoteWithSample(CodeGenerator.Notes.A);
+                    CodeGenerator.addNoteWithSample(CodeGenerator.Notes.D);
                 else
                     CodeGenerator.addNote(CodeGenerator.Notes.D);
             }

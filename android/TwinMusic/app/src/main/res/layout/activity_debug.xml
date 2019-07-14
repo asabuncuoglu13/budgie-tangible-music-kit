@@ -44,6 +44,12 @@
                 android:layout_height="wrap_content"
                 android:text="CELLO" />
 
+            <Button
+                android:id="@+id/addbeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BEAT KICK" />
+
 
             <Button
                 android:id="@+id/lowfreq"
@@ -89,6 +95,12 @@
                 android:text="ADD NOTE D" />
 
             <Button
+                android:id="@+id/addnotenull"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NULL NOTE" />
+
+            <Button
                 android:id="@+id/sineButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -105,6 +117,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="SPEAK"/>
+
+            <TextView
+                android:id="@+id/info_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:textSize="30dp" />
 
             <WebView
                 android:id="@+id/webview"

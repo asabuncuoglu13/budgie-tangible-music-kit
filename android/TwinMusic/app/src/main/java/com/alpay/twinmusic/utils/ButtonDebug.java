@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.alpay.twinmusic.CodeGenerator;
+import com.alpay.twinmusic.test.CodeGenerator;
 import com.alpay.twinmusic.InfoActivity;
 import com.alpay.twinmusic.NFCTag;
 import com.alpay.twinmusic.R;
@@ -34,6 +34,8 @@ public class ButtonDebug {
         Button sineButton = activity.findViewById(R.id.sineButton);
         Button squareButton = activity.findViewById(R.id.squareButton);
         Button speakButton = activity.findViewById(R.id.speakButton);
+        Button nullNoteButton = activity.findViewById(R.id.addnotenull);
+        Button addBeatButton = activity.findViewById(R.id.addbeat);
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +72,13 @@ public class ButtonDebug {
             }
         });
 
+        addBeatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CodeGenerator.addBeat();
+            }
+        });
+
         addNoteAButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,6 +104,13 @@ public class ButtonDebug {
             @Override
             public void onClick(View v) {
                 CodeGenerator.addNote(CodeGenerator.Notes.D);
+            }
+        });
+
+        nullNoteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CodeGenerator.addNote(CodeGenerator.Notes.N);
             }
         });
 

@@ -1,4 +1,4 @@
-package com.alpay.twinmusic;
+package com.alpay.twinmusic.test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,12 +19,21 @@ public class CodeGenerator {
     private static int octave = 4;
     private static String selectedSound = "piano";
     private static String selectedWave = "sine";
+    private static String duration = "4n";
     private static ArrayList<String> notes = new ArrayList<>();
 
     private static final String synth_options = "{ 'oscillator' : { 'type' : '%s' }, 'envelope' : { 'attack' : 0.1, 'decay': 0.1, 'sustain': 0.9, 'release': 1 } }";
-    private static final String synth_code = "var synth = new Tone.Synth("+ synth_options +").toMaster();" +
-            "function playInterval(notes) { var interval = new Tone.Sequence(function(time, note){ synth.triggerAttackRelease(note, 1); }, notes, '8n'); interval.loop = %s; interval.start(0); Tone.Transport.start('+0.1');}" +
-            "function triggerSynth(time){ synth.triggerAttackRelease('8n', time) } playInterval(%s);";
+    private static final String synth_code = "var synth = new Tone.Synth(" + synth_options + ").toMaster();" +
+            "var music = %s;" +
+            "function playMusic(){\n" +
+            "    var part = new Tone.Part(function(time, note){\n" +
+            "        console.log(note);\n" +
+            "        synth.triggerAttackRelease(note.note, note.duration, time);\n" +
+            "    }, music).start(0);\n" +
+            "   Tone.Transport.loop = %s;" +
+            "    Tone.Transport.start('+0.1');\n" +
+            "}" +
+            "playMusic(music)";
     private static final String sample_code = "var instruments = SampleLibrary.load({instruments: ['%s']}); Tone.Buffer.on('load', function () { instruments['%s'].toMaster(); var interval = new Tone.Sequence(function (time, note) { instruments['%s'].triggerAttackRelease(note, 1); }, %s, '4n'); interval.loop = %s; interval.start(0); Tone.Transport.start('+0.1'); });";
     private static final String add_beat = "var kick = new Tone.MembraneSynth();\n" +
             "var kickdistortion = new Tone.Distortion(8);\n" +
@@ -45,14 +54,14 @@ public class CodeGenerator {
         clearCode();
         if (sampleSelected) {
             for (int i = 0; i < notes.size(); i++) {
-                notes.set(i, String.format(notes.get(i), octave));
+                notes.set(i, String.format(notes.get(i), i * 0.5, octave, duration));
             }
             code += String.format(sample_code, selectedSound, selectedSound, selectedSound, Arrays.toString(notes.toArray()), inLoop);
         }else{
             for (int i = 0; i < notes.size(); i++) {
-                notes.set(i, String.format(notes.get(i), octave));
+                notes.set(i, String.format(notes.get(i), i * 0.5, octave, duration));
             }
-            code += String.format(synth_code, selectedWave, inLoop, Arrays.toString(notes.toArray()));
+            code += String.format(synth_code, selectedWave, Arrays.toString(notes.toArray()), inLoop);
         }
         if (beatAdded){
             code += beatCode;
@@ -125,25 +134,25 @@ public class CodeGenerator {
     public static void addNote(Notes note) {
         switch (note) {
             case A:
-                notes.add("'A%d'");
+                notes.add("{ time : %f, note : 'A%d', dur : '%s'}");
                 break;
             case B:
-                notes.add("'B%d'");
+                notes.add("{ time : %f, note : 'B%d', dur : '%s'}");
                 break;
             case C:
-                notes.add("'C%d'");
+                notes.add("{ time : %f, note : 'C%d', dur : '%s'}");
                 break;
             case D:
-                notes.add("'D%d'");
+                notes.add("{ time : %f, note : 'D%d', dur : '%s'}");
                 break;
             case E:
-                notes.add("'E%d'");
+                notes.add("{ time : %f, note : 'E%d', dur : '%s'}");
                 break;
             case F:
-                notes.add("'F%d'");
+                notes.add("{ time : %f, note : 'F%d', dur : '%s'}");
                 break;
             case G:
-                notes.add("'G%d'");
+                notes.add("{ time : %f, note : 'G%d', dur : '%s'}");
                 break;
             case N:
                 notes.add("null");
@@ -154,3 +163,4 @@ public class CodeGenerator {
     }
 
 }
+

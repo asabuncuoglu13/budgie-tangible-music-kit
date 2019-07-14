@@ -1,32 +1,14 @@
 <resources>
     <string name="app_name">Twin Müzik</string>
+    <string name="coding_area">Kodlama Alanı</string>
+    <string name="info_area">Bilgi Alanı</string>
 
     <!-- error messages -->
     <string name="connectivity_error_message">Aktif bir internet bağlantısına ihtiyacın var</string>
-    <string name="video_error">Video oynatılırken hata oluştu</string>
-    <string name="progress_title">Video Yükleniyor</string>
-    <string name="progress_content">İçerik alınıyor ...</string>
     <string name="nfc_wrong_mime_error">Okutmaya çalıştığın objede bir hata olduğunu algılıyorum.</string>
 
     <!-- warning messages -->
     <string name="no_nfc_warning">Maalesef cihazın NFC desteklemediği için bu aktiviteyi yapamayacaksın.</string>
     <string name="nfc_disabled_warning">Bu aktiviteye başlamak için NFC özelliğini aktifleştirmen gerek.</string>
-
-    <!-- nfc -->
-    <string name="nfc_guide_text">Yeni görevi görmek için telefonun arkasındaki NFC simgesini objeye yaklaştır</string>
-    <string name="nfc_motherboard_text">Anakart, bilgisayar ekipmanlarını birbirine bağlayan kocaman bir devredir.</string>
-    <string name="nfc_processor_text">İşlemci bilgisayarın yapığı çoğu hesaplama ve işlemlerin gerçekleştiği yerdir</string>
-    <string name="nfc_harddrive_text">Hard disk bilgilerin uzun süre saklandığı yerdir</string>
-
-    <!-- qr reader - camera -->
-    <string name="no_barcode_captured">Hiçbir barkod göremedim</string>
-    <string name="low_storage_error">Hafıza çok dolu, bir şeyleri silmen gerekli</string>
-    <string name="no_camera_permission">Barkodu görebilmek için kamera izni gerekiyor</string>
-    <string name="no_camera">Cihazınızda kamera yok</string>
-    <string name="ok">OK</string>
-
-    <!-- tools -->
-    <string name="tools_nfc">NFC Okuyucu</string>
-    <string name="tools_qr">QR Okuyucu</string>
 
 </resources>

@@ -1,32 +1,14 @@
 <resources>
     <string name="app_name">Twin Music</string>
+    <string name="coding_area">Coding Area</string>
+    <string name="info_area">Info Area</string>
 
     <!-- error messages -->
     <string name="connectivity_error_message">You need an active internet connection</string>
-    <string name="video_error">There was an error while playing video</string>
-    <string name="progress_title">Video Content is Loading</string>
-    <string name="progress_content">Retrieving data ...</string>
     <string name="nfc_wrong_mime_error">I feel like, there is an error about the object</string>
 
     <!-- warning messages -->
     <string name="no_nfc_warning">Unfortunately, your device does not support NFC, we will skip this activity.</string>
     <string name="nfc_disabled_warning">You need to enable NFC to start this activity.</string>
-
-    <!-- nfc -->
-    <string name="nfc_guide_text">Tap to object to see the new mission</string>
-    <string name="nfc_motherboard_text">Motherboard is a huge circuit that connects the parts of the computer</string>
-    <string name="nfc_processor_text">Processor performs the most of the computing tasks of a the computer</string>
-    <string name="nfc_harddrive_text">Hard disk drives provides long-term data storage</string>
-
-    <!-- qr reader - camera -->
-    <string name="no_barcode_captured">No barcode could be captured</string>
-    <string name="low_storage_error">Low storage, please delete from internal memory</string>
-    <string name="no_camera_permission">You need to allow camera to read barcode</string>
-    <string name="no_camera">Your device have no camera</string>
-    <string name="ok">OK</string>
-
-    <!-- tools -->
-    <string name="tools_nfc">NFC Reader</string>
-    <string name="tools_qr">QR Reader</string>
 
 </resources>

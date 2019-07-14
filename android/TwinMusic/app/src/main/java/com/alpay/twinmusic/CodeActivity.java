@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -38,7 +39,8 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nfc);
+        //setContentView(R.layout.activity_code);
+        setContentView(R.layout.activity_debug);
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
         prepareWebView();
         buttonDebug.setButtons();
@@ -97,6 +99,7 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
                 Toast.makeText(CodeActivity.this, "JS Run Success", Toast.LENGTH_SHORT).show();
             }
         });
+        webView.reload();
     }
 
     private void handleIntent(Intent intent) {
@@ -160,6 +163,8 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
         @Override
         protected void onPostExecute(String result) {
             if (result != null) {
+                TextView textView = findViewById(R.id.info_text);
+                textView.setText(result);
                 if (result.contentEquals(NFCTag.START)) {
                     CodeGenerator.startSynth();
                 } else if (result.contentEquals(NFCTag.LOOP)) {
@@ -192,6 +197,8 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
                     CodeGenerator.addNote(CodeGenerator.Notes.F);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_G)) {
                     CodeGenerator.addNote(CodeGenerator.Notes.G);
+                }  else if (result.contentEquals(NFCTag.ADD_NOTE_NULL)) {
+                    CodeGenerator.addNote(CodeGenerator.Notes.N);
                 } else if (result.contentEquals(NFCTag.RUN)) {
                     evalCode(CodeGenerator.getCode());
                 } else if (result.contentEquals(NFCTag.SPEAK)) {

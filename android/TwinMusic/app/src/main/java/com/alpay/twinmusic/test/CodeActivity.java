@@ -1,4 +1,4 @@
-package com.alpay.twinmusic;
+package com.alpay.twinmusic.test;
 
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -14,9 +14,16 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
+import android.webkit.ValueCallback;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alpay.twinmusic.InfoActivity;
+import com.alpay.twinmusic.NFCTag;
+import com.alpay.twinmusic.R;
+import com.alpay.twinmusic.utils.ButtonDebug;
 import com.alpay.twinmusic.utils.Utils;
 import com.squareup.seismic.ShakeDetector;
 
@@ -24,22 +31,25 @@ import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
 
-public class InfoActivity extends AppCompatActivity implements ShakeDetector.Listener {
+public class CodeActivity extends AppCompatActivity implements ShakeDetector.Listener {
 
     public static final String MIME_TEXT_PLAIN = "text/plain";
     private NfcAdapter mNfcAdapter;
-    private AppCompatActivity appCompatActivity;
+    private WebView webView;
+    private ButtonDebug buttonDebug = new ButtonDebug(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_info);
+        //setContentView(R.layout.activity_code);
+        setContentView(R.layout.activity_debug);
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
-        appCompatActivity = this;
-        Speak.initSounds(this);
+        prepareWebView();
+        buttonDebug.setButtons();
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         ShakeDetector sd = new ShakeDetector(this);
         sd.start(sensorManager);
+
         if (mNfcAdapter == null) {
             Utils.showToast(this, R.string.no_nfc_warning, Toast.LENGTH_LONG);
             finish();
@@ -75,6 +85,24 @@ public class InfoActivity extends AppCompatActivity implements ShakeDetector.Lis
         handleIntent(intent);
     }
 
+
+    private void prepareWebView() {
+        webView = findViewById(R.id.webview);
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setMediaPlaybackRequiresUserGesture(false);
+        webView.loadUrl("file:///android_asset/index.html");
+    }
+
+    public void evalCode(String code) {
+        webView.evaluateJavascript(code, new ValueCallback<String>() {
+            @Override
+            public void onReceiveValue(String value) {
+                Toast.makeText(CodeActivity.this, "JS Run Success", Toast.LENGTH_SHORT).show();
+            }
+        });
+        webView.reload();
+    }
 
     private void handleIntent(Intent intent) {
         String action = intent.getAction();
@@ -140,41 +168,43 @@ public class InfoActivity extends AppCompatActivity implements ShakeDetector.Lis
                 TextView textView = findViewById(R.id.info_text);
                 textView.setText(result);
                 if (result.contentEquals(NFCTag.START)) {
-                   Speak.playSound(appCompatActivity, Speak.START);
+                    CodeGenerator.startSynth();
                 } else if (result.contentEquals(NFCTag.LOOP)) {
-                    Speak.playSound(appCompatActivity, Speak.LOOP);
+                    CodeGenerator.startLoop();
                 } else if (result.contentEquals(NFCTag.CLEAR_ALL)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
+                    CodeGenerator.clearCode();
                 } else if (result.contentEquals(NFCTag.LOW_FREQ)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
+                    CodeGenerator.changeOctave(2);
                 } else if (result.contentEquals(NFCTag.MEDIUM_FREQ)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
+                    CodeGenerator.changeOctave(3);
                 } else if (result.contentEquals(NFCTag.HIGH_FREQ)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
+                    CodeGenerator.changeOctave(4);
                 } else if (result.contentEquals(NFCTag.PIANO_SOUND)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
+                    CodeGenerator.selectSample(NFCTag.PIANO_SOUND);
                 } else if (result.contentEquals(NFCTag.CELLO_SOUND)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
+                    CodeGenerator.selectSample(NFCTag.CELLO_SOUND);
                 } else if (result.contentEquals(NFCTag.HARMONIUM_SOUND)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
+                    CodeGenerator.selectSample(NFCTag.HARMONIUM_SOUND);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_A)) {
-                    Speak.playSound(appCompatActivity, Speak.ADD_NOTE_A);
+                    CodeGenerator.addNote(CodeGenerator.Notes.A);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_B)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
+                    CodeGenerator.addNote(CodeGenerator.Notes.B);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_C)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
+                    CodeGenerator.addNote(CodeGenerator.Notes.C);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_D)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
+                    CodeGenerator.addNote(CodeGenerator.Notes.D);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_E)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
+                    CodeGenerator.addNote(CodeGenerator.Notes.E);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_F)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
+                    CodeGenerator.addNote(CodeGenerator.Notes.F);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_G)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
+                    CodeGenerator.addNote(CodeGenerator.Notes.G);
+                }  else if (result.contentEquals(NFCTag.ADD_NOTE_NULL)) {
+                    CodeGenerator.addNote(CodeGenerator.Notes.N);
                 } else if (result.contentEquals(NFCTag.RUN)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
-                }  else if (result.contentEquals(NFCTag.CODE)) {
-                    appCompatActivity.onBackPressed();
+                    evalCode(CodeGenerator.getCode());
+                } else if (result.contentEquals(NFCTag.SPEAK)) {
+                    launchSpeak();
                 } else {
                     //TODO: error handling
                 }
@@ -206,8 +236,18 @@ public class InfoActivity extends AppCompatActivity implements ShakeDetector.Lis
         adapter.disableForegroundDispatch(activity);
     }
 
+    public void launchSpeak(){
+        Intent intent = new Intent(this, InfoActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public void hearShake() {
+        if (CodeGenerator.isPaused()) {
+            evalCode(CodeGenerator.resume());
+        } else {
+            evalCode(CodeGenerator.pause());
+        }
         Toast.makeText(this, "Shake detected.", Toast.LENGTH_SHORT).show();
     }
 }

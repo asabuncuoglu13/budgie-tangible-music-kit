@@ -22,19 +22,26 @@ public class CodeGenerator {
     private static String duration = "4n";
     private static ArrayList<String> notes = new ArrayList<>();
 
-    private static final String synth_options = "{ 'oscillator' : { 'type' : '%s' }, 'envelope' : { 'attack' : 0.1, 'decay': 0.1, 'sustain': 0.9, 'release': 1 } }";
+    private static final String synth_options = "{ 'oscillator' : { 'type' : '%s' }, " +
+            "'envelope' : { 'attack' : 0.1, 'decay': 0.1, 'sustain': 0.9, 'release': 1 } }";
     private static final String synth_code = "var synth = new Tone.Synth(" + synth_options + ").toMaster();" +
             "var music = %s;" +
             "function playMusic(){\n" +
             "    var part = new Tone.Part(function(time, note){\n" +
-            "        console.log(note);\n" +
             "        synth.triggerAttackRelease(note.note, note.duration, time);\n" +
             "    }, music).start(0);\n" +
             "   Tone.Transport.loop = %s;" +
             "    Tone.Transport.start('+0.1');\n" +
             "}" +
             "playMusic(music)";
-    private static final String sample_code = "var instruments = SampleLibrary.load({instruments: ['%s']}); Tone.Buffer.on('load', function () { instruments['%s'].toMaster(); var interval = new Tone.Sequence(function (time, note) { instruments['%s'].triggerAttackRelease(note, 1); }, %s, '4n'); interval.loop = %s; interval.start(0); Tone.Transport.start('+0.1'); });";
+    private static final String sample_code = "var instruments = SampleLibrary.load({instruments: ['%s']});\n" +
+            "Tone.Buffer.on('load', function () {\n" +
+            "instruments['%s'].toMaster(); " +
+            "var interval = new Tone.Sequence(function (time, note) {\n" +
+            "instruments['%s'].triggerAttackRelease(note, 1); }, %s, '4n'); " +
+            "interval.loop = %s; " +
+            "interval.start(0); " +
+            "Tone.Transport.start('+0.1'); });";
     private static final String add_beat = "var kick = new Tone.MembraneSynth();\n" +
             "var kickdistortion = new Tone.Distortion(8);\n" +
             "var kickdelay = new Tone.PingPongDelay({\n" +

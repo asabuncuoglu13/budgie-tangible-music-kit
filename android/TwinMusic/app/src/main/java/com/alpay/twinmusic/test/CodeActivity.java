@@ -101,7 +101,6 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
                 Toast.makeText(CodeActivity.this, "JS Run Success", Toast.LENGTH_SHORT).show();
             }
         });
-        webView.reload();
     }
 
     private void handleIntent(Intent intent) {

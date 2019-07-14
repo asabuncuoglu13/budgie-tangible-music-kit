@@ -19,13 +19,34 @@ public class CodeGenerator {
     private static int octave = 4;
     private static String selectedSound = "piano";
     private static String selectedWave = "sine";
+    private static String duration = "4n";
     private static ArrayList<String> notes = new ArrayList<>();
 
-    private static final String synth_options = "{ 'oscillator' : { 'type' : '%s' }, 'envelope' : { 'attack' : 0.1, 'decay': 0.1, 'sustain': 0.9, 'release': 1 } }";
-    private static final String synth_code = "var synth = new Tone.Synth("+ synth_options +").toMaster();" +
-            "function playInterval(notes) { var interval = new Tone.Sequence(function(time, note){ synth.triggerAttackRelease(note, 1); }, notes, '8n'); interval.loop = %s; interval.start(0); Tone.Transport.start('+0.1');}" +
-            "function triggerSynth(time){ synth.triggerAttackRelease('8n', time) } playInterval(%s);";
-    private static final String sample_code = "var instruments = SampleLibrary.load({instruments: ['%s']}); Tone.Buffer.on('load', function () { instruments['%s'].toMaster(); var interval = new Tone.Sequence(function (time, note) { instruments['%s'].triggerAttackRelease(note, 1); }, %s, '4n'); interval.loop = %s; interval.start(0); Tone.Transport.start('+0.1'); });";
+    private static final String synth_options = "{ 'oscillator' : { 'type' : '%s' }, " +
+            "'envelope' : { 'attack' : 0.1, 'decay': 0.1, 'sustain': 0.9, 'release': 1 } }";
+    private static final String synth_code = "var synth = new Tone.Synth("+ synth_options +").toMaster();\n" +
+            "function playInterval(notes) { \n" +
+            "   var interval = new Tone.Sequence(function(time, note){ \n" +
+            "       synth.triggerAttackRelease(note.note, note.duration, time); \n" +
+            "   }, notes, '4n'); \n" +
+            "   interval.loop = %s;\n" +
+            "   interval.start(0);\n " +
+            "   Tone.Transport.start('+0.2');\n" +
+            "}\n" +
+            "function triggerSynth(time, note){ \n" +
+            "   synth.triggerAttackRelease(note.note, note.duration, time); \n" +
+            "} \n" +
+            "playInterval(%s);\n";
+    private static final String sample_code = "var instruments = SampleLibrary.load({instruments: ['%s']});\n" +
+            "Tone.Buffer.on('load', function () { \n" +
+            "   instruments['%s'].toMaster(); \n" +
+            "   var interval = new Tone.Sequence(function (time, note) { \n" +
+            "       instruments['%s'].triggerAttackRelease(note, 1); \n" +
+            "   }, %s, '4n'); \n" +
+            "   interval.loop = %s; \n" +
+            "   interval.start(0); \n" +
+            "   Tone.Transport.start('+0.2'); \n" +
+            "});";
     private static final String add_beat = "var kick = new Tone.MembraneSynth();\n" +
             "var kickdistortion = new Tone.Distortion(8);\n" +
             "var kickdelay = new Tone.PingPongDelay({\n" +
@@ -39,19 +60,14 @@ public class CodeGenerator {
             "var kickloop = new Tone.Loop(function(time) {\n" +
             "  kick.triggerAttackRelease('C1', '8n', time);\n" +
             "}, '4n').start();";
+
     private static final String pause_play = "Tone.Transport.pause();\n";
 
     public static String getCode() {
         clearCode();
         if (sampleSelected) {
-            for (int i = 0; i < notes.size(); i++) {
-                notes.set(i, String.format(notes.get(i), octave));
-            }
             code += String.format(sample_code, selectedSound, selectedSound, selectedSound, Arrays.toString(notes.toArray()), inLoop);
         }else{
-            for (int i = 0; i < notes.size(); i++) {
-                notes.set(i, String.format(notes.get(i), octave));
-            }
             code += String.format(synth_code, selectedWave, inLoop, Arrays.toString(notes.toArray()));
         }
         if (beatAdded){
@@ -122,28 +138,59 @@ public class CodeGenerator {
         selectedWave = wave;
     }
 
+    /*public static void addNote(Notes note) {
+        switch (note) {
+            case A:
+                notes.add(String.format("'A%d'", octave));
+                break;
+            case B:
+                notes.add(String.format("'B%d'", octave));
+                break;
+            case C:
+                notes.add(String.format("'C%d'", octave));
+                break;
+            case D:
+                notes.add(String.format("'D%d'", octave));
+                break;
+            case E:
+                notes.add(String.format("'E%d'", octave));
+                break;
+            case F:
+                notes.add(String.format("'F%d'", octave));
+                break;
+            case G:
+                notes.add(String.format("'G%d'", octave));
+                break;
+            case N:
+                notes.add("null");
+                break;
+            default:
+                break;
+        }
+    }*/
+
     public static void addNote(Notes note) {
         switch (note) {
             case A:
-                notes.add("'A%d'");
+                notes.add(String.format("{ time : %f, note : 'A%d', dur : '%s'}", notes.size() * 0.5, octave, duration));
                 break;
             case B:
-                notes.add("'B%d'");
+                notes.add(String.format("{ time : %f, note : 'B%d', dur : '%s'}", notes.size() * 0.5, octave, duration));
                 break;
             case C:
-                notes.add("'C%d'");
+                notes.add(String.format("{ time : %f, note : 'C%d', dur : '%s'}", notes.size() * 0.5, octave, duration));
                 break;
             case D:
-                notes.add("'D%d'");
+                notes.add(String.format("{ time : %f, note : 'D%d', dur : '%s'}", notes.size() * 0.5, octave, duration));
                 break;
             case E:
-                notes.add("'E%d'");
+                notes.add(String.format("{ time : %f, note : 'E%d', dur : '%s'}", notes.size() * 0.5, octave, duration));
                 break;
             case F:
-                notes.add("'F%d'");
+                notes.add(String.format("{ time : %f, note : 'F%d', dur : '%s'}", notes.size() * 0.5, octave, duration));
                 break;
             case G:
-                notes.add("'G%d'");
+                notes.add(String.format("{ time : %f, note : 'G%d', dur : '%s'}", notes.size() * 0.5, octave, duration));
                 break;
             case N:
                 notes.add("null");

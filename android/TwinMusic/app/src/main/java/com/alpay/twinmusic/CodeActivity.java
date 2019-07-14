@@ -177,11 +177,15 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
                 } else if (result.contentEquals(NFCTag.HIGH_FREQ)) {
                     CodeGenerator.changeOctave(4);
                 } else if (result.contentEquals(NFCTag.PIANO_SOUND)) {
-                    CodeGenerator.selectSample(NFCTag.PIANO_SOUND);
+                    CodeGenerator.selectSample("piano");
                 } else if (result.contentEquals(NFCTag.CELLO_SOUND)) {
-                    CodeGenerator.selectSample(NFCTag.CELLO_SOUND);
+                    CodeGenerator.selectSample("cello");
                 } else if (result.contentEquals(NFCTag.HARMONIUM_SOUND)) {
-                    CodeGenerator.selectSample(NFCTag.HARMONIUM_SOUND);
+                    CodeGenerator.selectSample("harmonium");
+                } else if (result.contentEquals(NFCTag.SINE_WAVE)) {
+                    CodeGenerator.selectSynthWave("sine");
+                } else if (result.contentEquals(NFCTag.SQUARE_WAVE)) {
+                    CodeGenerator.selectSynthWave("square");
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_A)) {
                     CodeGenerator.addNote(CodeGenerator.Notes.A);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_B)) {
@@ -196,12 +200,18 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
                     CodeGenerator.addNote(CodeGenerator.Notes.F);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_G)) {
                     CodeGenerator.addNote(CodeGenerator.Notes.G);
-                }  else if (result.contentEquals(NFCTag.ADD_NOTE_NULL)) {
+                } else if (result.contentEquals(NFCTag.ADD_NOTE_NULL)) {
                     CodeGenerator.addNote(CodeGenerator.Notes.N);
+                } else if (result.contentEquals(NFCTag.SHORT_NOTE)) {
+                    CodeGenerator.shortNote();
+                } else if (result.contentEquals(NFCTag.LONG_NOTE)) {
+                    CodeGenerator.longNote();
                 } else if (result.contentEquals(NFCTag.RUN)) {
                     evalCode(CodeGenerator.getCode());
                 } else if (result.contentEquals(NFCTag.SPEAK)) {
                     launchSpeak();
+                } else if (result.contentEquals(NFCTag.BEAT_MED)) {
+                    CodeGenerator.addBeat();
                 } else {
                     //TODO: error handling
                 }
@@ -245,6 +255,7 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
         } else {
             evalCode(CodeGenerator.pause());
         }
+        webView.reload();
         Toast.makeText(this, "Shake detected.", Toast.LENGTH_SHORT).show();
     }
 }

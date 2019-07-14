@@ -140,14 +140,14 @@ public class ButtonDebug {
         sineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CodeGenerator.selectSynthWave(NFCTag.SINE_WAVE);
+                CodeGenerator.selectSynthWave("sine");
             }
         });
 
         squareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CodeGenerator.selectSynthWave(NFCTag.SQUARE_WAVE);
+                CodeGenerator.selectSynthWave("square");
             }
         });
 

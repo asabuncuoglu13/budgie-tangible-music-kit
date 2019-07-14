@@ -41,7 +41,7 @@ public class CodeGenerator {
             "Tone.Buffer.on('load', function () { \n" +
             "   instruments['%s'].toMaster(); \n" +
             "   var interval = new Tone.Sequence(function (time, note) { \n" +
-            "       instruments['%s'].triggerAttackRelease(note, 1); \n" +
+            "       instruments['%s'].triggerAttackRelease(note.note, note.duration, time); \n" +
             "   }, %s, '4n'); \n" +
             "   interval.loop = %s; \n" +
             "   interval.start(0); \n" +
@@ -64,7 +64,7 @@ public class CodeGenerator {
     private static final String pause_play = "Tone.Transport.pause();\n";
 
     public static String getCode() {
-        clearCode();
+        code = "";
         if (sampleSelected) {
             code += String.format(sample_code, selectedSound, selectedSound, selectedSound, Arrays.toString(notes.toArray()), inLoop);
         }else{
@@ -100,11 +100,12 @@ public class CodeGenerator {
 
 
     public static void startSynth() {
-        notes = new ArrayList<>();
     }
 
     public static void clearCode() {
         code = "";
+        beatCode = "";
+        notes = new ArrayList<>();
     }
 
     public static void deleteLastPart() {
@@ -129,6 +130,15 @@ public class CodeGenerator {
         beatCode = "";
     }
 
+    public static void shortNote(){
+        duration = "8n";
+    }
+
+
+    public static void longNote(){
+        duration = "2n";
+    }
+
     public static void selectSample(String sample) {
         selectedSound = sample;
         sampleSelected = true;
@@ -136,38 +146,8 @@ public class CodeGenerator {
 
     public static void selectSynthWave(String wave){
         selectedWave = wave;
+        sampleSelected = false;
     }
-
-    /*public static void addNote(Notes note) {
-        switch (note) {
-            case A:
-                notes.add(String.format("'A%d'", octave));
-                break;
-            case B:
-                notes.add(String.format("'B%d'", octave));
-                break;
-            case C:
-                notes.add(String.format("'C%d'", octave));
-                break;
-            case D:
-                notes.add(String.format("'D%d'", octave));
-                break;
-            case E:
-                notes.add(String.format("'E%d'", octave));
-                break;
-            case F:
-                notes.add(String.format("'F%d'", octave));
-                break;
-            case G:
-                notes.add(String.format("'G%d'", octave));
-                break;
-            case N:
-                notes.add("null");
-                break;
-            default:
-                break;
-        }
-    }*/
 
     public static void addNote(Notes note) {
         switch (note) {

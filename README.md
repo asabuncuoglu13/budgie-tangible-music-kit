@@ -26,3 +26,7 @@ We would like to see all kinds of contributions from students, teachers, develop
 - Contribute to curriculum: We want to develop a full-year computational thinking application. Our first workshop was the first step of this curriculum.
 - Contribute to design: We conducted some sessions with visually impaired developers and try to understand their interaction with the shapes and mobile phone. But, there might be some other principles which might be adopted to system. We would like to see the contributions of designers and researchers to our project.
 - Contribute to translation: We have English and Turkish resources. Translating the documents will be a great support for us.
+ 
+## License
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.

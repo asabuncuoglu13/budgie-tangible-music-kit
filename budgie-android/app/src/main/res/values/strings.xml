@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Budgie</string>
+    <string name="coding_area">Coding Area</string>
+    <string name="info_area">Info Area</string>
+
+    <!-- error messages -->
+    <string name="connectivity_error_message">You need an active internet connection</string>
+    <string name="nfc_wrong_mime_error">I feel like, there is an error about the object</string>
+
+    <!-- warning messages -->
+    <string name="no_nfc_warning">Unfortunately, your device does not support NFC, we will skip this activity.</string>
+    <string name="nfc_disabled_warning">You need to enable NFC to start this activity.</string>
+
+</resources>

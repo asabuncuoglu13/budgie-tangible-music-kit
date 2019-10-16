@@ -1,13 +1,13 @@
-# Twin Music Blocks
+# Budgie Tangible Music Blocks
 
-We developed **Twin Music Blocks** to teach basics of composing music and programming for children. We developed the system for the students with mixed visual abilities. 
+We developed **Budgie Programming Kit** to teach basics of composing music and programming for children. We developed the system for the students with mixed visual abilities. 
 
 ## Using Music Blocks
 It includes physical blocks to code music with your smartphone. Physical blocks include NFC stickers to be recognized by smartphone. We decided on some pre-defined shapes, you can 3D print, laser cut or use cardbards to replicate these shapes. You can follow the **print and play [work-in-progress]** guide to prepare the tangible blocks.
 
 After preparing the tangible blocks, you can use smartphone application to compose music. To take a detailed look on coding and composing you can use **code and play [work-in-progress]** guide to learn about coding and basics of music theory.
 
-You can find 3D Design Files from link: [Twin Music Blocks - 3D Design Files](https://drive.google.com/drive/folders/1QtAqzIGH1LJofvgtrSxLd6jc1V5ipldE?usp=sharing) 
+You can find 3D Design Files from link: [Tangible Kit - 3D Design Files](https://drive.google.com/drive/folders/1QtAqzIGH1LJofvgtrSxLd6jc1V5ipldE?usp=sharing) 
 
 ## Integrating to the Curriculum
 We want to develop a full curriculum with music and code and propose it to Department of Education. Before, we need to test our design and learning outcomes with workshops.

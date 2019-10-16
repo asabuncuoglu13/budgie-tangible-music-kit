@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Budgie</string>
+    <string name="coding_area">Kodlama Alanı</string>
+    <string name="info_area">Bilgi Alanı</string>
+
+    <!-- error messages -->
+    <string name="connectivity_error_message">Aktif bir internet bağlantısına ihtiyacın var</string>
+    <string name="nfc_wrong_mime_error">Okutmaya çalıştığın objede bir hata olduğunu algılıyorum.</string>
+
+    <!-- warning messages -->
+    <string name="no_nfc_warning">Maalesef cihazın NFC desteklemediği için bu aktiviteyi yapamayacaksın.</string>
+    <string name="nfc_disabled_warning">Bu aktiviteye başlamak için NFC özelliğini aktifleştirmen gerek.</string>
+
+</resources>

@@ -4,34 +4,146 @@
     <meta charset="utf-8">
     <title>Twin Music Programming</title>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
-
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
     <script src="./libraries/tone/Tone.js"></script>
-    <script src="./generator.js"></script>
+    <script src="./libraries/tone/Tone.js"></script>
+    <script src="./libraries/tone/Tonejs-Instruments.js"></script>
+    <script src="./libraries/tone/SimplePlayer.js"></script>
+    <script src="generator.js"></script>
 
     <style>
         body {
-            background-color: #ffaaaa;
-            color: #000000;
+            font-family: 'Abril Fatface', cursive;
+            color: black;
+            font-size: calc(12px + 0.2vw);
+            margin-left: 1vw;
         }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5, 18vw);
+            grid-template-rows: repeat(4, 18vh);
+            grid-row-gap: 1vh;
+            grid-column-gap: 2vw;
+            margin-top: 4vh;
+        }
+
+        .grid .item {
+            border: orangered 2px solid;
+            cursor: pointer;
+        }
+        .grid .item:active{
+            border: orangered 4px solid;
+            cursor: pointer;
+        }
+
+        #start {
+            background: url("./blocks/start.png") no-repeat center;
+        }
+        #loop {
+            background: url("./blocks/loop.png") no-repeat center;
+        }
+        #noteA {
+             background: url("./blocks/a.png") no-repeat center;
+         }
+        #noteB {
+            background: url("./blocks/b.png") no-repeat center;
+        }
+        #noteC {
+            background: url("./blocks/c.png") no-repeat center;
+        }
+        #noteD {
+            background: url("./blocks/d.png") no-repeat center;
+        }
+        #noteE {
+            background: url("./blocks/e.png") no-repeat center;
+        }
+        #noteF {
+            background: url("./blocks/f.png") no-repeat center;
+        }
+        #noteG {
+            background: url("./blocks/g.png") no-repeat center;
+        }
+        #noteN {
+             background: url("./blocks/n.png") no-repeat center;
+        }
+        #lowfreq {
+            background: url("./blocks/lowfreq.png") no-repeat center;
+        }
+        #medfreq {
+            background: url("./blocks/medfreq.png") no-repeat center;
+        }
+        #highfreq {
+            background: url("./blocks/highfreq.png") no-repeat center;
+        }
+        #lowtempo {
+            background: url("./blocks/lowtempo.png") no-repeat center;
+        }
+        #medtempo {
+             background: url("./blocks/medtempo.png") no-repeat center;
+        }
+        #hightempo {
+            background: url("./blocks/hightempo.png") no-repeat center;
+        }
+        #sine {
+            background: url("./blocks/sine.png") no-repeat center;
+        }
+        #square {
+            background: url("./blocks/square.png") no-repeat center;
+        }
+        #info {
+            background: url("./blocks/info.png") no-repeat center;
+        }
+        #run {
+            background: url("./blocks/run.png") no-repeat center;
+        }
+
     </style>
 </head>
 <body>
-
-<h1>TWIN Müzik Programlama</h1>
-
-<p>
-    <button onclick="showCode()">JS Kodu Göster</button>
-    <button onclick="runCode()">Çalıştır</button>
-</p>
-
+<h1>Budgie Müzik Programlama</h1>
+<div class="grid">
+    <div id="start" onclick="startSynth()" class="item"></div>
+    <div id="loop" onclick="startLoop()" class="item"></div>
+    <div id="noteA" onclick="addNote('A')" class="item"></div>
+    <div id="noteB" onclick="addNote('B')"  class="item"></div>
+    <div id="noteC" onclick="addNote('C')"  class="item"></div>
+    <div id="noteD" onclick="addNote('D')"  class="item"></div>
+    <div id="noteE" onclick="addNote('E')"  class="item"></div>
+    <div id="noteF" onclick="addNote('F')"  class="item"></div>
+    <div id="noteG" onclick="addNote('G')"  class="item"></div>
+    <div id="noteN" onclick="addNote('N')"  class="item"></div>
+    <div id="lowfreq" onclick="changeOctave(2)"  class="item"></div>
+    <div id="medfreq" onclick="changeOctave(3)"  class="item"></div>
+    <div id="highfreq" onclick="changeOctave(4)"  class="item"></div>
+    <div id="lowtempo" onclick="changeBPM(80)"  class="item"></div>
+    <div id="medtempo" onclick="changeBPM(120)"  class="item"></div>
+    <div id="hightempo" onclick="changeBPM(160)"  class="item"></div>
+    <div id="sine" onclick="selectSynthWave('sine')"  class="item"></div>
+    <div id="square" onclick="selectSynthWave('square')"  class="item"></div>
+    <div id="run" onclick="runCode()" class="item"></div>
+    <div id="info" onclick="showCode()" class="item"></div>
+</div>
 <script>
+    if (!String.prototype.format) {
+        String.prototype.format = function() {
+            var args = arguments;
+            return this.replace(/{(\d+)}/g, function(match, number) {
+                return typeof args[number] != 'undefined'
+                    ? args[number]
+                    : match
+                    ;
+            });
+        };
+    }
+
     function showCode() {
-        console.log(code);
+        console.log(getCode());
     }
 
     function runCode() {
         try {
-            eval(code);
+            eval(getCode());
         } catch (e) {
             alert(e);
         }

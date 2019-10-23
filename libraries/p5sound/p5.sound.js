@@ -2625,7 +2625,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
     var now = p5sound.audiocontext.currentTime;
     var timeFromNow = timeFromNow || 0;
     var t = now + timeFromNow;
-    this.audiovoices[this.notes[note].getValueAtTime(t)].setADSR(a, d, s, r);
+    this.audiovoices[this.nots[note].getValueAtTime(t)].setADSR(a, d, s, r);
   };
   /**
    * Set the PolySynths global envelope. This method modifies the envelopes of each
@@ -2697,7 +2697,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
     var velocity = _velocity || 0.1;
     var currentVoice; //Release the note if it is already playing
 
-    if (this.notes[note] && this.notes[note].getValueAtTime(acTime) !== null) {
+    if (this.nots[note] && this.nots[note].getValueAtTime(acTime) !== null) {
       this.noteRelease(note, 0);
     } //Check to see how many voices are in use at the time the note will start
 
@@ -2715,8 +2715,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
     //corresponds to the index of the audiovoice that is playing it
 
 
-    this.notes[note] = new TimelineSignal();
-    this.notes[note].setValueAtTime(currentVoice, acTime); //Find the scheduled change in this._voicesInUse that will be previous to this new note
+    this.nots[note] = new TimelineSignal();
+    this.nots[note].setValueAtTime(currentVoice, acTime); //Find the scheduled change in this._voicesInUse that will be previous to this new note
     //Add 1 and schedule this value at time 't', when this note will start playing
 
     var previousVal = this._voicesInUse._searchBefore(acTime) === null ? 0 : this._voicesInUse._searchBefore(acTime).value;
@@ -2805,9 +2805,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 
       this._voicesInUse.setValueAtTime(0, t);
 
-      for (var n in this.notes) {
-        this.notes[n].dispose();
-        delete this.notes[n];
+      for (var n in this.nots) {
+        this.nots[n].dispose();
+        delete this.nots[n];
       }
 
       return;
@@ -2816,7 +2816,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 
     var note = noteToFreq(_note);
 
-    if (!this.notes[note] || this.notes[note].getValueAtTime(t) === null) {
+    if (!this.nots[note] || this.nots[note].getValueAtTime(t) === null) {
       console.warn('Cannot release a note that is not already playing');
     } else {
       //Find the scheduled change in this._voicesInUse that will be previous to this new note
@@ -2830,9 +2830,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
         this._updateAfter(t, -1);
       }
 
-      this.audiovoices[this.notes[note].getValueAtTime(t)].triggerRelease(tFromNow);
-      this.notes[note].dispose();
-      delete this.notes[note];
+      this.audiovoices[this.nots[note].getValueAtTime(t)].triggerRelease(tFromNow);
+      this.nots[note].dispose();
+      delete this.nots[note];
       this._newest = this._newest === 0 ? 0 : (this._newest - 1) % (this.maxVoices - 1);
     }
   };

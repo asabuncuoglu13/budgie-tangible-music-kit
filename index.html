@@ -5,11 +5,10 @@
     <title>Budgie</title>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
-    <script src="./libraries/tone/Tone.js"></script>
+    <script src="./libraries/p5sound/p5.min.js"></script>
+    <script src="./libraries/p5sound/p5.sound.js"></script>
     <script src="./libraries/tone/Tone.js"></script>
     <script src="./libraries/tone/Tonejs-Instruments.js"></script>
-    <script src="./libraries/tone/SimplePlayer.js"></script>
-    <script src="generator.js"></script>
 
     <style>
         body {
@@ -122,28 +121,29 @@
     </style>
 </head>
 <body>
+<script src="sketch.js"></script>
 <h1>Budgie Müzik Programlama</h1>
 <div class="grid">
     <div id="start" onclick="startSynth()" class="item"></div>
     <div id="loop" onclick="startLoop()" class="item"></div>
-    <div id="noteA" onclick="addNote('A')" class="item"></div>
-    <div id="noteB" onclick="addNote('B')"  class="item"></div>
-    <div id="noteC" onclick="addNote('C')"  class="item"></div>
-    <div id="noteD" onclick="addNote('D')"  class="item"></div>
-    <div id="noteE" onclick="addNote('E')"  class="item"></div>
-    <div id="noteF" onclick="addNote('F')"  class="item"></div>
-    <div id="noteG" onclick="addNote('G')"  class="item"></div>
-    <div id="noteN" onclick="addNote('N')"  class="item"></div>
-    <div id="lowfreq" onclick="changeOctave(2)"  class="item"></div>
-    <div id="medfreq" onclick="changeOctave(3)"  class="item"></div>
-    <div id="highfreq" onclick="changeOctave(4)"  class="item"></div>
+    <div id="noteA" onclick="addNote('A', 200)" class="item"></div>
+    <div id="noteB" onclick="addNote('B', 200)"  class="item"></div>
+    <div id="noteC" onclick="addNote('C', 200)"  class="item"></div>
+    <div id="noteD" onclick="addNote('D', 200)"  class="item"></div>
+    <div id="noteE" onclick="addNote('E', 200)"  class="item"></div>
+    <div id="noteF" onclick="addNote('F', 200)"  class="item"></div>
+    <div id="noteG" onclick="addNote('G', 200)"  class="item"></div>
+    <div id="noteN" onclick="addNote('N', 200)"  class="item"></div>
+    <div id="lowfreq" onclick="changeFreq(2)"  class="item"></div>
+    <div id="medfreq" onclick="changeFreq(3)"  class="item"></div>
+    <div id="highfreq" onclick="changeFreq(4)"  class="item"></div>
     <div id="lowtempo" onclick="changeBPM(80)"  class="item"></div>
     <div id="medtempo" onclick="changeBPM(120)"  class="item"></div>
     <div id="hightempo" onclick="changeBPM(160)"  class="item"></div>
-    <div id="sine" onclick="selectSynthWave('sine')"  class="item"></div>
-    <div id="square" onclick="selectSynthWave('square')"  class="item"></div>
+    <div id="sine" onclick="setOssiloscope('sine')"  class="item"></div>
+    <div id="square" onclick="setOssiloscope('square')"  class="item"></div>
     <div id="run" onclick="runCode()" class="item"></div>
-    <div id="info" onclick="showCode()" class="item"></div>
+    <div id="info" onclick="playSong()" class="item"></div>
 </div>
 <script>
     if (!String.prototype.format) {
@@ -165,6 +165,7 @@
     function runCode() {
         try {
             eval(getCode());
+            clearCode();
         } catch (e) {
             alert(e);
         }

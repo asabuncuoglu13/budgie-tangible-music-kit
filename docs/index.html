@@ -2,326 +2,59 @@
 <html lang="en">
 
 <head>
-    <title>midime</title>
+    <title>Budgie</title>
     <meta charset="utf-8">
+    <meta name="description" content="Budgie Music Kit Home Page">
+    <meta name="keywords" content="Budgie, Music, Programming, Kit, Children">
+    <meta name="author" content="Budgie">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/@magenta/music@1.9.0"></script>
-    <script src="https://cdn.jsdelivr.net/npm/d3@5.7.0/dist/d3.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700&display=optional" rel="stylesheet">
-    <link rel="icon" href="https://magenta.tensorflow.org/favicon.ico">
 </head>
 
 <body>
-    <div class="full green" id="splashScreen">
-        <div class="content small">
-            <section>
-                <h1>midi<b>me</b></h1>
-            </section>
+<div class="full green" id="splashScreen">
+    <div class="content small">
+        <section>
+            <h1><b>Budgie</b></h1>
+        </section>
 
-            <section>
-                <p><b>MidiMe</b> is a machine learning experiment to <b>train</b> a small model to sound like
-                    <b>you</b>.
-                    All the training happens directly in the browser using TensorFlow.js -- no
-                    servers or backends here!
-                </p>
-                <p>Try loading a single, full song to get outputs that sound like
-                    variations on it, or load multiple songs to get samples that
-                    combine various characteristics of them.
-                </p>
-                <p>
-                    The models we're using are either monophonic (for <b>melodies</b>) or polyphonic (multi-instrument
-                    <b>trios</b>),
-                    and the results depend on which
-                    of these you choose -- in the monophonic case the samples will (hopefully!) sound very close
-                    to the main melody of the
-                    song; in the polyphonic case the reconstruction of the melody will be significantly worse, but
-                    the trios will have similar musical patterns (like motifs) to the original. Choose your own
-                    adventure:
-                </p>
-                <div class="horizontal">
-                    <button id="btnGoMelodies" class="button">🎹 melodies</button>
-                    <button id="btnGoTrios" class="button">🎹🎸🥁 trios</button>
-                </div>
-            </section>
+        <section>
+            <p>
+                Programming education is now a part of secondary school curriculum in many countries.This quick
+                change brought the inequalities for most of the students.Many of the public schools have no
+                infrastructure or decent internet connection to run the programming activities. <br><br> Additionally, we do
+                not have an inclusive curriculum. Most of the programming activities include drawings, animations and
+                visuals as the outputs of programming activities. So, we decided to design a programming kit for blinds
+                on July 2019. <br><br> To make it reachable for the most of the community, the kit should be inclusive and
+                affordable at the same time.We aimed to finish the first prototype in two weeks to see it in action in a
+                previously planned workshop.We completed the first prototype only one hour before the workshop and it was
+                beyond our expectations. It was a very educational and inspiring process yet it was the first time we
+                teach to blind children. Their excitement to try a new product encouraged us to move this project
+                further.
+            </p>
+            <div class="horizontal">
+                <button id="toDemo" class="button">🎹🎸🥁 Online Demo</button>
+                <button id="toProject" class="button">🎹🎸🥁 Project</button>
+            </div>
+        </section>
 
-            <section>
-                <p style="text-align: center">
-                    Built with <a target="_blank" href="https://magenta.tensorflow.org">magenta.js</a>. See the code on
-                    <a target="_blank" href="https://glitch.com/edit/#!/midi-me">Glitch</a>.
-                </p>
-            </section>
-        </div>
+        <section>
+            <p style="text-align: center">
+                See the project on <a target="_blank" href="https://github.com/asabuncuoglu13/budgie-tangible-music-kit">Github</a>.
+            </p>
+        </section>
     </div>
-
-    <div class="full" id="mainScreen" hidden>
-        <div class="content">
-            <h1><span id="modeText">midi</span><b>me</b></h1>
-
-
-            <section id="section_1">
-                <div class="index" id="two">1</div>
-                <h2>Hear some samples!</h2>
-
-                <p><a href="https://magenta.tensorflow.org/music-vae">MusicVAE</a> is a machine learning model that has
-                    previously been trained
-                    on a lot of MIDI files, and has learned to generate melodies or trios. It
-                    represents each music sample as a vector
-                    of 256 features, and every different vector of 256 numbers sounds like a different piece of music.
-                    Here are
-                    some sliders for 90 of all these possible features
-                    -- we picked the most important ones to keep things simple. Slide some of them around and see how it
-                    affects the sample!</p>
-
-                <p id="afterTraining" hidden>🆕🆕🆕 This new model we trained learned to summarize those 256 sliders as
-                    4 <b>super sliders</b>. The super sliders
-                    control the features that make the random samples sound like your input. When you use them, the
-                    sample won't
-                    randomly change like it does when you use the regular sliders.
-                </p>
-
-                <b>
-                    <p id="loadingStatus">Loading model...</p>
-                </b>
-
-                <p>
-                    You can also <button class="button" id="btnSample" disabled>get another sample</button>
-                    whenever you want.
-                </p>
-
-                <div id="afterLoading" hidden>
-                    <div class="horizontal">
-                        <div class="sliders-container blue" id="midimeSlidersContainer" hidden>
-                            <p>✨<b>super</b> sliders!✨</p>
-                            <div class="sliders horizontal" id="midimeSliders">
-                                <div class="range-wrap"><input type="range" data-index="0" min="-1" max="1" step="0.1"
-                                        value="0"></div>
-                                <div class="range-wrap"><input type="range" data-index="1" min="-1" max="1" step="0.1"
-                                        value="0"></div>
-                                <div class="range-wrap"><input type="range" data-index="2" min="-1" max="1" step="0.1"
-                                        value="0"></div>
-                                <div class="range-wrap"><input type="range" data-index="3" min="-1" max="1" step="0.1"
-                                        value="0"></div>
-                            </div>
-                        </div>
-
-                        <div class="sliders-container green">
-                            <p>use these sliders to change some features of the sample</p>
-                            <svg id="lines"></svg>
-                            <div class="sliders horizontal" id="mvaeSliders"></div>
-                        </div>
-                    </div>
-
-                    <p>And this is what that sample sounds like:</p>
-                    <div class="relative">
-                        <div class="visualizer-container cream">
-                            <button id="btnPlaySample" class="button-circle" aria-label="play">
-                                <svg class="iconPlay" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z" />
-                                    <path d="M0 0h24v24H0z" fill="none" /></svg>
-                                <svg class="iconStop" hidden xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24">
-                                    <path d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M6 6h12v12H6z" /></svg>
-                            </button>
-                            <svg id="vizSample"></svg>
-                        </div>
-                    </div>
-                    <br>
-                    <button id="saveBtn" class="button">save this sample</button>
-                    <br>
-                    <p id="helpMsg">The thing about MusicVAE is that it only knows generic music; when you ask it for
-                        a sample, it just picks something from the space of all possible melodies. It can't
-                        give you something that sounds more like Twinkle Twinkle Little Star, or more like your
-                        favourite Beatles song, without having to be retrained on a new corpus of data, and that
-                        takes several days on a really big GPU (not to mention millions of data points!)
-                        Enter....<b>Midi Me!</b></p>
-                </div>
-            </section>
-
-            <section id="section_2" hidden>
-                <div class="index">2</div>
-                <h2>Choose your sound</h2>
-
-                <p>
-                    We are now going to <b>train a small model</b> (right here in your browser!!!), based on MusicVAE,
-                    that will try to make sure all the
-                    sampled variations will sound like some music you give it. You can
-                    <label class="button" id="fileBtn">
-                        load a midi file
-                        <input type="file" id="fileInput" multiple>
-                    </label>
-                    <b>or</b>
-                    <button id="sampleBtn" class="button">
-                        load our example
-                    </button>
-                    if you don't have a MIDI available.
-                    <div>
-                        Or, if you have the URL of a file (like from
-                        <a href="https://bitmidi.com/backstreet-boys-i-want-it-that-way-mid">BitMidi</a>) you can
-                        use that too:
-                        <input id="urlInput" type="text" value="https://bitmidi.com/uploads/15119.mid">
-                        <button id="urlBtn" class="button">
-                            load from url
-                        </button>.
-                    </div>
-                </p>
-                <b>
-                    <p id="status" hidden></p>
-                </b>
-
-                <div id="input" hidden>
-                    <p>This is what your file sounds like:</p>
-                    <div class="relative">
-                        <button id="btnPlayInput" class="button-circle" aria-label="play">
-                            <svg class="iconPlay" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z" />
-                                <path d="M0 0h24v24H0z" fill="none" /></svg>
-                            <svg class="iconStop" hidden xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24">
-                                <path d="M0 0h24v24H0z" fill="none" />
-                                <path d="M6 6h12v12H6z" /></svg>
-                        </button>
-                        <div class="visualizer-container cream">
-                            <svg id="vizInput"></svg>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="section_3" hidden>
-                <div class="index">3</div>
-                <h2>Personalize the model!</h2>
-
-                <div id="hasMelody" hidden>
-                    <p>The MIDI file you uploaded had several instruments, so this is what we think the melody is. This
-                        is what we will be training on.</p>
-                    <div class="relative">
-                        <button id="btnPlayMelody" class="button-circle" aria-label="play">
-                            <svg class="iconPlay" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z" />
-                                <path d="M0 0h24v24H0z" fill="none" /></svg>
-                            <svg class="iconStop" hidden xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24">
-                                <path d="M0 0h24v24H0z" fill="none" />
-                                <path d="M6 6h12v12H6z" /></svg>
-                        </button>
-                        <div class="visualizer-container cream">
-                            <svg id="vizMelody"></svg>
-                        </div>
-                    </div>
-                </div>
-
-                <p id="beforeTraining">We're ready to start training on the MIDI that you uploaded! If you think about
-                    MusicVAE as representing the
-                    space of all possible melodies as a giant sphere, we are now building a smaller sphere
-                    inside of it, which represents all the melodies that are musically in the same neighbourhood as
-                    <b>yours</b>. The more steps you
-                    train for, the better the results are. <br>
-                    When you're ready, <button class="button" id="btnTrain">start training!!</button> for <input
-                        id="trainingSteps" value="100" type="tel"> steps.
-                </p>
-                <p id="doneTraining" hidden><b>Training complete!</b><br>
-                    We've now added 4 new MidiMe sliders to Step 1: these super slliders
-                    control the features that make the random samples sound like <b>your</b> input. Go slide them around
-                    and see
-                    how the samples change!<br>
-                </p>
-                <div id="duringTraining" hidden>
-                    <p>Training step: <b id="trainingStep">0</b> / <span id="totalSteps">100</span></p>
-                    <p>To check how well we're training the model, we can track its error reconstructing your
-                        uploaded file. We're not looking for it to become exactly 0 -- just to go down and flatten out.
-                    </p>
-                    <svg id="errorGraph" width="300"></svg>
-                </div>
-            </section>
-        </div>
-    </div>
+</div>
 </body>
 <script>
-    function init() {
-        btnGoMelodies.addEventListener('click', function () {
-            splashScreen.hidden = true;
-            mainScreen.hidden = false;
-        });
-    }
-    init();
-    function updateUI(state) {
-        function show(el) { document.getElementById(el).removeAttribute('hidden'); }
-        function hide(el) { document.getElementById(el).setAttribute('hidden', true) };
-        function enable(el) { document.getElementById(el).removeAttribute('disabled'); }
-        function disable(el) { document.getElementById(el).setAttribute('disabled', true) };
-        switch (state) {
-            case 'model-loading':
-                hide('afterLoading');
-                show('status');
-                document.getElementById('status').textContent = 'Loading model...one sec!';
-                disable('btnSample');
-                break;
-            case 'model-loaded':
-                show('afterLoading');
-                enable('btnSample');
-                show('section_2');
-                hide('status');
-                hide('loadingStatus');
-                break;
-            case 'file-loading':
-                show('status');
-                hide('input');
-                hide('hasMelody');
-                document.getElementById('status').textContent = 'The robots are nomming on your file...';
-                break;
-            case 'file-error':
-                show('status');
-                document.getElementById('status').textContent = 'Oops, there was a problem reading your file. Make sure it\'s a valid MIDI and try again?';
-                break;
-            case 'file-loaded':
-                hide('status');
-                show('section_3');
-                show('input');
-                enable('input');
-                enable('section_3');
-                hide('duringTraining');
-                enable('btnTrain');
-                hide('midimeSlidersContainer');
-                btnTrain.focus();
-                btnTrain.scrollIntoView();
-                break;
-            case 'has-melody':
-                show('hasMelody');
-                break;
-            case 'training':
-                disable('fileBtn');
-                disable('section_2');
-                disable('section_1');
-                disable('sampleBtn');
-                show('duringTraining');
-                disable('btnTrain');
-                hide('midimeSlidersContainer');
-                errorGraph.scrollIntoView();
-                break;
-            case 'training-done':
-                enable('fileBtn');
-                enable('sampleBtn');
-                enable('section_2');
-                show('afterTraining');
-                enable('section_1');
-                hide('beforeTraining');
-                show('doneTraining');
-                disable('btnTrain');
-                show('midimeSlidersContainer');
-                helpMsg.innerHTML = 'Now that the model is trained, the random variations should sound much closer to your input!';
-                btnSample.focus();
-                btnSample.scrollIntoView();
-        }
-    }
-    window.updateUI = updateUI;
+    document.getElementById("toDemo").addEventListener('click', function () {
+        location.href = './demo.html';
+    });
+    document.getElementById("toProject").addEventListener('click', function () {
+        location.href = './project.html';
+    });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js" defer></script>
-
 </html>

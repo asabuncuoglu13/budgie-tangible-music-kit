@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Budgie Demo</title>
     <meta charset="utf-8">
-    <title>Budgie</title>
+    <meta name="description" content="Budgie Music Kit Online Demo">
+    <meta name="keywords" content="Budgie, Music, Programming, Kit, Children">
+    <meta name="author" content="Budgie">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
-    <script src="./libraries/p5sound/p5.min.js"></script>
-    <script src="./libraries/p5sound/p5.sound.js"></script>
-    <script src="./libraries/tone/Tone.js"></script>
-    <script src="./libraries/tone/Tonejs-Instruments.js"></script>
+    <script src="../libraries/p5sound/p5.min.js"></script>
+    <script src="../libraries/p5sound/p5.sound.js"></script>
+    <script src="../libraries/tone/Tone.js"></script>
+    <script src="../libraries/tone/Tonejs-Instruments.js"></script>
 
     <style>
         body {
@@ -38,83 +41,83 @@
         }
 
         #start {
-            background: url("./blocks/start.png") no-repeat center;
+            background: url("../blocks/start.png") no-repeat center;
             background-size: contain;
         }
         #loop {
-            background: url("./blocks/loop.png") no-repeat center;
+            background: url("../blocks/loop.png") no-repeat center;
             background-size: contain;
         }
         #noteA {
-             background: url("./blocks/a.png") no-repeat center;
+             background: url("../blocks/a.png") no-repeat center;
             background-size: contain;
          }
         #noteB {
-            background: url("./blocks/b.png") no-repeat center;
+            background: url("../blocks/b.png") no-repeat center;
             background-size: contain;
         }
         #noteC {
-            background: url("./blocks/c.png") no-repeat center;
+            background: url("../blocks/c.png") no-repeat center;
             background-size: contain;
         }
         #noteD {
-            background: url("./blocks/d.png") no-repeat center;
+            background: url("../blocks/d.png") no-repeat center;
             background-size: contain;
         }
         #noteE {
-            background: url("./blocks/e.png") no-repeat center;
+            background: url("../blocks/e.png") no-repeat center;
             background-size: contain;
         }
         #noteF {
-            background: url("./blocks/f.png") no-repeat center;
+            background: url("../blocks/f.png") no-repeat center;
             background-size: contain;
         }
         #noteG {
-            background: url("./blocks/g.png") no-repeat center;
+            background: url("../blocks/g.png") no-repeat center;
             background-size: contain;
         }
         #noteN {
-             background: url("./blocks/n.png") no-repeat center;
+             background: url("../blocks/n.png") no-repeat center;
             background-size: contain;
         }
         #lowfreq {
-            background: url("./blocks/lowfreq.png") no-repeat center;
+            background: url("../blocks/lowfreq.png") no-repeat center;
             background-size: contain;
         }
         #medfreq {
-            background: url("./blocks/medfreq.png") no-repeat center;
+            background: url("../blocks/medfreq.png") no-repeat center;
             background-size: contain;
         }
         #highfreq {
-            background: url("./blocks/highfreq.png") no-repeat center;
+            background: url("../blocks/highfreq.png") no-repeat center;
             background-size: contain;
         }
         #lowtempo {
-            background: url("./blocks/lowtempo.png") no-repeat center;
+            background: url("../blocks/lowtempo.png") no-repeat center;
             background-size: contain;
         }
         #medtempo {
-             background: url("./blocks/medtempo.png") no-repeat center;
+             background: url("../blocks/medtempo.png") no-repeat center;
             background-size: contain;
         }
         #hightempo {
-            background: url("./blocks/hightempo.png") no-repeat center;
+            background: url("../blocks/hightempo.png") no-repeat center;
             background-size: contain;
         }
         #sine {
-            background: url("./blocks/sine.png") no-repeat center;
+            background: url("../blocks/sine.png") no-repeat center;
             background-size: contain;
         }
         #square {
-            background: url("./blocks/square.png") no-repeat center;
+            background: url("../blocks/square.png") no-repeat center;
             background-size: contain;
         }
         #info {
-            background: url("./blocks/info.png") no-repeat center;
+            background: url("../blocks/info.png") no-repeat center;
             background-size: contain;
         }
         #run {
-            background: url("./blocks/run.png") no-repeat center;
+            background: url("../blocks/run.png") no-repeat center;
             background-size: contain;
         }
 

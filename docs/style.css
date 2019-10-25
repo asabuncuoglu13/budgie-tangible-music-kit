@@ -1,9 +1,7 @@
 html {
-    --green: #9DE5B8;
+    --orange: #e5b69d;
     --blue: #23465A;
     --cream: #DEF2F1;
-    
-    --slider-size: 20px;
     --thumb-size: 10px;
   }
   
@@ -19,6 +17,10 @@ html {
     background: var(--cream);
     color: var(--blue);
     line-height: 1.5;
+  }
+
+  h1 {
+    font-family: 'Abril Fatface', cursive;
   }
   
   * { box-sizing: border-box; }
@@ -135,7 +137,7 @@ html {
   }
   
   .green {
-    background: var(--green);
+    background: var(--orange);
     border: none;
     color: var(--blue);
   }
@@ -203,7 +205,7 @@ html {
     width: 30px;
     height: 30px;
     vertical-align: middle;
-    background: var(--green);
+    background: var(--orange);
     fill: var(--blue);
     position: absolute;
     top: 10px;
@@ -250,58 +252,7 @@ html {
     overflow: auto;  
     min-height: 100px;
   }
-  
-  /******************
-   * Sliders
-   ******************/
-  .sliders-container {
-    height: 200px;
-    width: 100%;
-    position: relative;
-    margin: 8px 0;
-    xpadding: 0 8px;
-    overflow: hidden;
-    text-align: center;
-  }
-  
-  #midimeSlidersContainer {
-    width: 300px;
-    margin-right: 8px;
-  }
-  
-  .range-wrap {
-    width: var(--slider-size);
-    height: 100px;
-    position: relative;
-  }
-  
-  #lines {
-    position: absolute;
-    left: -1px;
-  }
-  
-  input[type=range] {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: 0;
-    padding: 0;
-    width: 100px;
-    height: var(--thumb-size);
-    transform: translate(-50%, -50%) rotate(-90deg);
-  }
-  
-  input[type=range] {
-    -webkit-appearance: none; 
-    -moz-appearance: none;
-    appearance: none;
-    background: transparent;
-    border-bottom: none;
-  }
-  input[type=range]:hover {
-    background: transparent;
-  }
-  
+
    /* Thumb */
   input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -355,57 +306,6 @@ html {
     cursor: pointer;
     background: var(--blue);
   }
-  
-  
-  #mvaeSliders input[type=range]::-webkit-slider-runnable-track {
-    background: transparent;
-  }
-  #midimeSliders input[type=range]::-webkit-slider-runnable-track {
-    height: 4px;
-    background: var(--green);
-  }
-  #mvaeSliders input[type=range]::-moz-range-track {
-    background: transparent;
-  }
-  #midimeSliders input[type=range]::-moz-range-track {
-    height: 4px;
-    background: var(--green);
-  }#mvaeSliders input[type=range]::-ms-track {
-    background: transparent;
-  }
-  #midimeSliders input[type=range]::-ms-track {
-    height: 4px;
-    background: var(--green);
-  }
-  
-  #midimeSliders input[type=range]::-webkit-slider-thumb {
-    background: var(--green);
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    margin-top: -8px;
-  }
-  #midimeSliders input[type=range]::-moz-range-thumb {
-    background: var(--green);
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    margin-top: -8px;
-  }
-  #midimeSliders input[type=range]::-ms-thumb {
-    background: var(--green);
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    margin-top: -8px;
-  }
-  
-  #errorGraph .line {
-    fill: none;
-    stroke: var(--blue);
-    stroke-width: 4;
-  }
-  
   rect.active {
     outline: 1px solid black;
   }

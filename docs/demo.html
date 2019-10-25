@@ -84,10 +84,6 @@
             background: url("blocks/lowfreq.png") no-repeat center;
             background-size: contain;
         }
-        #medfreq {
-            background: url("blocks/medfreq.png") no-repeat center;
-            background-size: contain;
-        }
         #highfreq {
             background: url("blocks/highfreq.png") no-repeat center;
             background-size: contain;
@@ -120,7 +116,6 @@
             background: url("blocks/run.png") no-repeat center;
             background-size: contain;
         }
-
     </style>
 </head>
 <body>
@@ -137,9 +132,8 @@
     <div id="noteF" onclick="addNote('F', 200)"  class="item"></div>
     <div id="noteG" onclick="addNote('G', 200)"  class="item"></div>
     <div id="noteN" onclick="addNote('N', 200)"  class="item"></div>
-    <div id="lowfreq" onclick="changeFreq(2)"  class="item"></div>
-    <div id="medfreq" onclick="changeFreq(3)"  class="item"></div>
-    <div id="highfreq" onclick="changeFreq(4)"  class="item"></div>
+    <div id="lowfreq" onclick="changeFreq('bass')"  class="item"></div>
+    <div id="highfreq" onclick="changeFreq('treble')"  class="item"></div>
     <div id="lowtempo" onclick="changeBPM(80)"  class="item"></div>
     <div id="medtempo" onclick="changeBPM(120)"  class="item"></div>
     <div id="hightempo" onclick="changeBPM(160)"  class="item"></div>
@@ -147,6 +141,7 @@
     <div id="square" onclick="setOssiloscope('square')"  class="item"></div>
     <div id="run" onclick="runCode()" class="item"></div>
     <div id="info" onclick="playSong()" class="item"></div>
+    <div id="save" onclick="save()" class="item"></div>
 </div>
 <script>
     if (!String.prototype.format) {

@@ -5,9 +5,17 @@ let song = [];
 
 let trigger = 0;
 let autoplay = false;
-let osc, oscS, oscT;
+let oscS, oscT;
 let lowFreq = false;
 let highFreq = true;
+let drum, beatbox;
+let osc = "sine";
+let recorder, soundFile;
+
+function preload() {
+    beatbox = loadSound('sound/beatbox.mp3');
+    drum = loadSound('sound/drum.mp3');
+}
 
 function setup() {
     createCanvas(10, 10);
@@ -22,9 +30,9 @@ function setup() {
     oscS.start();
     oscS.amp(0);
 
-    osc = new p5.TriOsc();
-    osc.start();
-    osc.amp(0);
+    recorder = new p5.SoundRecorder();
+    recorder.setInput();
+    soundFile = new p5.SoundFile();
 }
 
 function playSong() {
@@ -35,10 +43,10 @@ function playSong() {
 }
 
 function changeFreq(val) {
-    if (val === 2) {
+    if (val === 'bass') {
         lowFreq = true;
         highFreq = false;
-    } else {
+    } else if (val === 'treble') {
         lowFreq = false;
         highFreq = true;
     }
@@ -60,51 +68,51 @@ function addNote(note, dur) {
     switch (note) {
         case 'A':
             if (lowFreq) {
-                song.push({note: 57, duration: dur, display: "A"});
+                song.push({note: 57, duration: dur, soundType: osc, display: "A"});
             } else {
-                song.push({note: 69, duration: dur, display: "A"});
+                song.push({note: 69, duration: dur, soundType: osc, display: "A"});
             }
             break;
         case 'B':
             if (lowFreq) {
-                song.push({note: 59, duration: dur, display: "b"});
+                song.push({note: 59, duration: dur, soundType: osc, display: "b"});
             } else {
-                song.push({note: 71, duration: dur, display: "B"});
+                song.push({note: 71, duration: dur, soundType: osc, display: "B"});
             }
             break;
         case 'C':
             if (lowFreq) {
-                song.push({note: 48, duration: dur, display: "C"});
+                song.push({note: 48, duration: dur, soundType: osc, display: "C"});
             } else {
-                song.push({note: 60, duration: dur, display: "C"});
+                song.push({note: 60, duration: dur, soundType: osc, display: "C"});
             }
             break;
         case 'D':
             if (lowFreq) {
-                song.push({note: 50, duration: dur, display: "D"});
+                song.push({note: 50, duration: dur, soundType: osc, display: "D"});
             } else {
-                song.push({note: 62, duration: dur, display: "D"});
+                song.push({note: 62, duration: dur, soundType: osc, display: "D"});
             }
             break;
         case 'E':
             if (lowFreq) {
-                song.push({note: 52, duration: dur, display: "E"});
+                song.push({note: 52, duration: dur, soundType: osc, display: "E"});
             } else {
-                song.push({note: 64, duration: dur, display: "E"});
+                song.push({note: 64, duration: dur, soundType: osc, display: "E"});
             }
             break;
         case 'F':
             if (lowFreq) {
-                song.push({note: 53, duration: dur, display: "F"});
+                song.push({note: 53, duration: dur, soundType: osc, display: "F"});
             } else {
-                song.push({note: 65, duration: dur, display: "F"});
+                song.push({note: 65, duration: dur, soundType: osc, display: "F"});
             }
             break;
         case 'G':
             if (lowFreq) {
-                song.push({note: 59, duration: dur, display: "G"});
+                song.push({note: 59, duration: dur, soundType: osc, display: "G"});
             } else {
-                song.push({note: 71, duration: dur, display: "G"});
+                song.push({note: 71, duration: dur, soundType: osc, display: "G"});
             }
             break;
         case 'N':
@@ -117,33 +125,59 @@ function addNote(note, dur) {
 
 function setOssiloscope(type) {
     if (type === "sine") {
-        osc = new p5.SinOsc();
-        osc.start();
-        osc.amp(0);
+        osc = "sine";
     } else {
-        osc = new p5.TriOsc();
-        osc.start();
-        osc.amp(0);
+        osc = "square";
     }
 }
 
 
-function playNote(note, duration) {
-    osc.freq(midiToFreq(note));
-    osc.fade(0.5, 0.2);
-    if (duration) {
-        setTimeout(function () {
-            osc.fade(0, 0.2);
-        }, duration - 50);
+function playNote(note, duration, soundType) {
+    if (soundType === "square") {
+        oscT.freq(midiToFreq(note));
+        oscT.fade(0.5, 0.2);
+        if (duration) {
+            setTimeout(function () {
+                oscT.fade(0, 0.2);
+            }, duration - 50);
+        }
+    } else if (soundType === "sine") {
+        oscS.freq(midiToFreq(note));
+        oscS.fade(0.5, 0.2);
+        if (duration) {
+            setTimeout(function () {
+                oscS.fade(0, 0.2);
+            }, duration - 50);
+        }
+
+    }
+}
+
+
+function keyTyped() {
+    if (key === 's') {
+        save(soundFile, 'mySound.wav');
     }
 }
 
 function draw() {
     if (autoplay && millis() > trigger) {
-        playNote(song[index].note, song[index].duration);
+        recorder.record(soundFile);
+        playNote(song[index].note, song[index].duration, song[index].soundType);
         trigger = millis() + song[index].duration;
         index++;
+        if (index >= song.length){
+            recorder.stop();
+        }
     } else if (index >= song.length) {
         autoplay = false;
     }
+    /*
+    if (frameCount % 30 === 0) {
+        drum.play();
+    }
+    if (frameCount % 60 === 0) {
+        beatbox.play();
+    }
+    */
 }

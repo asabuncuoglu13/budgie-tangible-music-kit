@@ -108,8 +108,12 @@
             background: url("blocks/square.png") no-repeat center;
             background-size: contain;
         }
-        #info {
-            background: url("blocks/info.png") no-repeat center;
+        #parallelpart {
+            background: url("blocks/parallelpart.png") no-repeat center;
+            background-size: contain;
+        }
+        #piano {
+            background: url("blocks/piano.png") no-repeat center;
             background-size: contain;
         }
         #run {
@@ -139,9 +143,9 @@
     <div id="hightempo" onclick="changeBPM(160)"  class="item"></div>
     <div id="sine" onclick="setOssiloscope('sine')"  class="item"></div>
     <div id="square" onclick="setOssiloscope('square')"  class="item"></div>
-    <div id="run" onclick="runCode()" class="item"></div>
-    <div id="info" onclick="playSong()" class="item"></div>
-    <div id="save" onclick="save()" class="item"></div>
+    <div id="parallelpart" onclick="startNewPart()" class="item"></div>
+    <div id="piano" onclick="addPiano()" class="item"></div>
+    <div id="run" onclick="playSong()" class="item"></div>
 </div>
 <script>
     if (!String.prototype.format) {
@@ -154,19 +158,6 @@
                     ;
             });
         };
-    }
-
-    function showCode() {
-        console.log(getCode());
-    }
-
-    function runCode() {
-        try {
-            eval(getCode());
-            clearCode();
-        } catch (e) {
-            alert(e);
-        }
     }
 </script>
 

@@ -2304,7 +2304,7 @@ module.exports={
             "namespace": "",
             "file": "lib/addons/p5.sound.js",
             "line": 2154,
-            "description": "<p>Amplitude measures volume between 0.0 and 1.0.\nListens to all p5sound by default, or use setInput()\nto listen to a specific sound source. Accepts an optional\nsmoothing value, which defaults to 0.</p>\n",
+            "description": "<p>Amplitude measures volume between 0.0 and 1.0.\nListens to all p5 by default, or use setInput()\nto listen to a specific sound source. Accepts an optional\nsmoothing value, which defaults to 0.</p>\n",
             "is_constructor": 1,
             "params": [
                 {
@@ -19076,7 +19076,7 @@ module.exports={
         {
             "file": "lib/addons/p5.sound.js",
             "line": 340,
-            "description": "<p>Scale the output of all sound in this sketch</p>\nScaled between 0.0 (silence) and 1.0 (full volume).\n1.0 is the maximum amplitude of a digital sound, so multiplying\nby greater than 1.0 may cause digital distortion. To\nfade, provide a <code>rampTime</code> parameter. For more\ncomplex fades, see the Env class.\n\nAlternately, you can pass in a signal source such as an\noscillator to modulate the amplitude with an audio signal.\n\n<p><b>How This Works</b>: When you load the p5.sound module, it\ncreates a single instance of p5sound. All sound objects in this\nmodule output to p5sound before reaching your computer&#39;s output.\nSo if you change the amplitude of p5sound, it impacts all of the\nsound in this module.</p>\n\n<p>If no value is provided, returns a Web Audio API Gain Node</p>",
+            "description": "<p>Scale the output of all sound in this sketch</p>\nScaled between 0.0 (silence) and 1.0 (full volume).\n1.0 is the maximum amplitude of a digital sound, so multiplying\nby greater than 1.0 may cause digital distortion. To\nfade, provide a <code>rampTime</code> parameter. For more\ncomplex fades, see the Env class.\n\nAlternately, you can pass in a signal source such as an\noscillator to modulate the amplitude with an audio signal.\n\n<p><b>How This Works</b>: When you load the p5.sound module, it\ncreates a single instance of p5. All sound objects in this\nmodule output to p5 before reaching your computer&#39;s output.\nSo if you change the amplitude of p5, it impacts all of the\nsound in this module.</p>\n\n<p>If no value is provided, returns a Web Audio API Gain Node</p>",
             "itemtype": "method",
             "name": "masterVolume",
             "params": [
@@ -19705,7 +19705,7 @@ module.exports={
         {
             "file": "lib/addons/p5.sound.js",
             "line": 1712,
-            "description": "<p>Connects the output of a p5sound object to input of another\np5.sound object. For example, you may connect a p5.SoundFile to an\nFFT or an Effect. If no parameter is given, it will connect to\nthe master output. Most p5sound objects connect to the master\noutput when they are created.</p>\n",
+            "description": "<p>Connects the output of a p5 object to input of another\np5.sound object. For example, you may connect a p5.SoundFile to an\nFFT or an Effect. If no parameter is given, it will connect to\nthe master output. Most p5 objects connect to the master\noutput when they are created.</p>\n",
             "itemtype": "method",
             "name": "connect",
             "params": [
@@ -19723,7 +19723,7 @@ module.exports={
         {
             "file": "lib/addons/p5.sound.js",
             "line": 1733,
-            "description": "<p>Disconnects the output of this p5sound object.</p>\n",
+            "description": "<p>Disconnects the output of this p5 object.</p>\n",
             "itemtype": "method",
             "name": "disconnect",
             "class": "p5.SoundFile",
@@ -19887,7 +19887,7 @@ module.exports={
         {
             "file": "lib/addons/p5.sound.js",
             "line": 2232,
-            "description": "<p>Connects to the p5sound instance (master output) by default.\nOptionally, you can pass in a specific source (i.e. a soundfile).</p>\n",
+            "description": "<p>Connects to the p5 instance (master output) by default.\nOptionally, you can pass in a specific source (i.e. a soundfile).</p>\n",
             "itemtype": "method",
             "name": "setInput",
             "params": [

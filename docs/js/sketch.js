@@ -14,6 +14,8 @@ let osc = "sine";
 let recorder, soundFile;
 let loopTimes = 2;
 let currentBlock = "start";
+let p_a3, p_a4, p_b3, p_b4, p_c3, p_c4, p_d3, p_d4, p_e3, p_e4, p_f3, p_f4, p_g3, p_g4;
+let g_a3, g_a4, g_b3, g_b4, g_c3, g_c4, g_d3, g_d4, g_e3, g_e4, g_f3, g_f4, g_g3, g_g4;
 
 function preload() {
     p_a3 = loadSound('sound/piano/A3.mp3');
@@ -30,6 +32,22 @@ function preload() {
     p_f4 = loadSound('sound/piano/F4.mp3');
     p_g3 = loadSound('sound/piano/G3.mp3');
     p_g4 = loadSound('sound/piano/G4.mp3');
+
+    g_a3 = loadSound('sound/guitar/A3.mp3');
+    g_a4 = loadSound('sound/guitar/A4.mp3');
+    g_b3 = loadSound('sound/guitar/B3.mp3');
+    g_b4 = loadSound('sound/guitar/B4.mp3');
+    g_c3 = loadSound('sound/guitar/C3.mp3');
+    g_c4 = loadSound('sound/guitar/C4.mp3');
+    g_d3 = loadSound('sound/guitar/D3.mp3');
+    g_d4 = loadSound('sound/guitar/D4.mp3');
+    g_e3 = loadSound('sound/guitar/E3.mp3');
+    g_e4 = loadSound('sound/guitar/E4.mp3');
+    g_f3 = loadSound('sound/guitar/F3.mp3');
+    g_f4 = loadSound('sound/guitar/F4.mp3');
+    g_g3 = loadSound('sound/guitar/G3.mp3');
+    g_g4 = loadSound('sound/guitar/G4.mp3');
+
     beatbox = loadSound('sound/beatbox.mp3');
     drum = loadSound('sound/drum.mp3');
 }
@@ -155,12 +173,16 @@ function addPiano() {
     osc = "piano";
 }
 
-function setOssiloscope(type) {
-    if (type === "sine") {
-        osc = "sine";
-    } else {
-        osc = "square";
-    }
+function addGuitar() {
+    osc = "guitar";
+}
+
+function addSine() {
+    osc = "sine";
+}
+
+function addSquare() {
+    osc = "square";
 }
 
 
@@ -236,6 +258,82 @@ function playNote(note, duration, soundType) {
                 p_b4.setVolume(1);
                 p_b4.play();
                 p_b4.stop(1);
+                break;
+            default:
+                break;
+        }
+    }
+    if (soundType === "guitar") {
+        switch (note) {
+            case 48:
+                g_c3.setVolume(1);
+                g_c3.play();
+                g_c3.stop(1);
+                break;
+            case 50:
+                g_d3.setVolume(1);
+                g_d3.play();
+                g_d3.stop(1);
+                break;
+            case 52:
+                g_e3.setVolume(1);
+                g_e3.play();
+                g_e3.stop(1);
+                break;
+            case 53:
+                g_f3.setVolume(1);
+                g_f3.play();
+                g_f3.stop(1);
+                break;
+            case 55:
+                g_g3.setVolume(1);
+                g_g3.play();
+                g_g3.stop(1);
+                break;
+            case 57:
+                g_a3.setVolume(1);
+                g_a3.play();
+                g_a3.stop(1);
+                break;
+            case 59:
+                g_b3.setVolume(1);
+                g_b3.play();
+                g_b3.stop(1);
+                break;
+            case 60:
+                g_c4.setVolume(1);
+                g_c4.play();
+                g_c4.stop(1);
+                break;
+            case 62:
+                g_d4.setVolume(1);
+                g_d4.play();
+                g_d4.stop(1);
+                break;
+            case 64:
+                g_e4.setVolume(1);
+                g_e4.play();
+                g_e4.stop(1);
+                break;
+            case 65:
+                g_f4.setVolume(1);
+                g_f4.play();
+                g_f4.stop(1);
+                break;
+            case 67:
+                g_g4.setVolume(1);
+                g_g4.play();
+                g_g4.stop(1);
+                break;
+            case 69:
+                g_a4.setVolume(1);
+                g_a4.play();
+                g_a4.stop(1);
+                break;
+            case 71:
+                g_b4.setVolume(1);
+                g_b4.play();
+                g_b4.stop(1);
                 break;
             default:
                 break;

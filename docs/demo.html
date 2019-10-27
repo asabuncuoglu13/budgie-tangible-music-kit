@@ -8,10 +8,8 @@
     <meta name="author" content="Budgie">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
-    <script src="js/p5sound/p5.js"></script>
-    <script src="js/p5sound/p5.sound.js"></script>
-    <script src="js/tone/Tone.js"></script>
-    <script src="js/tone/Tonejs-Instruments.js"></script>
+    <script src="js/p5/p5.js"></script>
+    <script src="js/p5/p5.sound.js"></script>
 
     <style>
         body {
@@ -96,8 +94,8 @@
              background: url("blocks/medtempo.png") no-repeat center;
             background-size: contain;
         }
-        #hightempo {
-            background: url("blocks/hightempo.png") no-repeat center;
+        #guitar {
+            background: url("blocks/guitar.png") no-repeat center;
             background-size: contain;
         }
         #sine {
@@ -140,9 +138,9 @@
     <div id="highfreq" onclick="changeFreq('treble')"  class="item"></div>
     <div id="lowtempo" onclick="changeBPM(80)"  class="item"></div>
     <div id="medtempo" onclick="changeBPM(120)"  class="item"></div>
-    <div id="hightempo" onclick="changeBPM(160)"  class="item"></div>
-    <div id="sine" onclick="setOssiloscope('sine')"  class="item"></div>
-    <div id="square" onclick="setOssiloscope('square')"  class="item"></div>
+    <div id="guitar" onclick="addGuitar()"  class="item"></div>
+    <div id="sine" onclick="addSine()"  class="item"></div>
+    <div id="square" onclick="addSquare()"  class="item"></div>
     <div id="parallelpart" onclick="startNewPart()" class="item"></div>
     <div id="piano" onclick="addPiano()" class="item"></div>
     <div id="run" onclick="playSong()" class="item"></div>

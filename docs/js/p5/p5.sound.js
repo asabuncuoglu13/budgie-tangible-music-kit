@@ -223,9 +223,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
    *  oscillator to modulate the amplitude with an audio signal.
    *
    *  <p><b>How This Works</b>: When you load the p5.sound module, it
-   *  creates a single instance of p5sound. All sound objects in this
-   *  module output to p5sound before reaching your computer's output.
-   *  So if you change the amplitude of p5sound, it impacts all of the
+   *  creates a single instance of p5. All sound objects in this
+   *  module output to p5 before reaching your computer's output.
+   *  So if you change the amplitude of p5, it impacts all of the
    *  sound in this module.</p>
    *
    *  <p>If no value is provided, returns a Web Audio API Gain Node</p>
@@ -646,7 +646,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     for (var i = 0; i < p5sound.soundArray.length; i++) {
       p5sound.soundArray[i].dispose();
     }
-  }; // register removeSound to dispose of p5sound SoundFiles, Convolvers,
+  }; // register removeSound to dispose of p5 SoundFiles, Convolvers,
   // Oscillators etc when sketch ends
 
 
@@ -1500,7 +1500,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
     this.oscillator.connect(this.output); // stereo panning
 
     this.panPosition = 0.0;
-    this.connection = p5sound.input; // connect to p5sound by default
+    this.connection = p5sound.input; // connect to p5 by default
 
     this.panner = new p5.Panner(this.output, this.connection, 1); //array of math operation signal chaining
 
@@ -4728,10 +4728,10 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     }
   };
   /**
-   * Connects the output of a p5sound object to input of another
+   * Connects the output of a p5 object to input of another
    * p5.sound object. For example, you may connect a p5.SoundFile to an
    * FFT or an Effect. If no parameter is given, it will connect to
-   * the master output. Most p5sound objects connect to the master
+   * the master output. Most p5 objects connect to the master
    * output when they are created.
    *
    * @method connect
@@ -4752,7 +4752,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     }
   };
   /**
-   * Disconnects the output of this p5sound object.
+   * Disconnects the output of this p5 object.
    *
    * @method disconnect
    * @for p5.SoundFile
@@ -5381,7 +5381,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
   var p5sound = __webpack_require__(1);
   /**
    *  Amplitude measures volume between 0.0 and 1.0.
-   *  Listens to all p5sound by default, or use setInput()
+   *  Listens to all p5 by default, or use setInput()
    *  to listen to a specific sound source. Accepts an optional
    *  smoothing value, which defaults to 0.
    *
@@ -5422,7 +5422,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 
 
   p5.Amplitude = function (smoothing) {
-    // Set to 2048 for now. In future iterations, this should be inherited or parsed from p5sound's default
+    // Set to 2048 for now. In future iterations, this should be inherited or parsed from p5's default
     this.bufferSize = 2048; // set audio context
 
     this.audiocontext = p5sound.audiocontext;
@@ -5444,14 +5444,14 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
     this.processor.connect(this.output);
     this.output.gain.value = 0; // this may only be necessary because of a Chrome bug
 
-    this.output.connect(this.audiocontext.destination); // connect to p5sound master output by default, unless set by input()
+    this.output.connect(this.audiocontext.destination); // connect to p5 master output by default, unless set by input()
 
     p5sound.meter.connect(this.processor); // add this p5.SoundFile to the soundArray
 
     p5sound.soundArray.push(this);
   };
   /**
-   *  Connects to the p5sound instance (master output) by default.
+   *  Connects to the p5 instance (master output) by default.
    *  Optionally, you can pass in a specific source (i.e. a soundfile).
    *
    *  @method setInput
@@ -5800,7 +5800,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
     }); // set default smoothing and bins
 
     this.smooth(smoothing);
-    this.bins = bins || 1024; // default connections to p5sound fftMeter
+    this.bins = bins || 1024; // default connections to p5 fftMeter
 
     p5sound.fftMeter.connect(this.analyser);
     this.freqDomain = new Uint8Array(this.analyser.frequencyBinCount);
@@ -6387,7 +6387,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 
 
   p5.Signal = function (value) {
-    var s = new Signal(value); // p5sound.soundArray.push(s);
+    var s = new Signal(value); // p5.soundArray.push(s);
 
     return s; // TODO: is this really a constructor?
   };

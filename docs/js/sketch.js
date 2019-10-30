@@ -9,7 +9,6 @@ let autoplay = false;
 let oscS, oscT;
 let lowFreq = false;
 let highFreq = true;
-let drum, beatbox;
 let osc = "sine";
 let recorder, soundFile;
 let loopTimes = 2;
@@ -47,9 +46,6 @@ function preload() {
     g_f4 = loadSound('sound/guitar/F4.mp3');
     g_g3 = loadSound('sound/guitar/G3.mp3');
     g_g4 = loadSound('sound/guitar/G4.mp3');
-
-    beatbox = loadSound('sound/beatbox.mp3');
-    drum = loadSound('sound/drum.mp3');
 }
 
 function setup() {
@@ -359,10 +355,16 @@ function playNote(note, duration, soundType) {
     }
 }
 
+// TODO: Change it as an NFC function
 function mousePressed() {
     getAudioContext().resume();
 }
 
+function touchStarted() {
+    getAudioContext().resume()
+}
+
+// TODO: Change it to save block
 function keyTyped() {
     if (key === 's') {
         save(soundFile, 'mySound.wav');
@@ -378,6 +380,10 @@ function keyPressed() {
             (loopTimes < 2) ? loopTimes = 2 : loopTimes--;
         }
     }
+}
+
+function startNewPart() {
+
 }
 
 function draw() {
@@ -397,12 +403,4 @@ function draw() {
     } else if (inLoop ? index >= loopedSong.length : index >= song.length) {
         autoplay = false;
     }
-    /*
-    if (frameCount % 30 === 0) {
-        drum.play();
-    }
-    if (frameCount % 60 === 0) {
-        beatbox.play();
-    }
-    */
 }

@@ -14,15 +14,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.alpay.twinmusic.utils.ButtonDebug;
-import com.alpay.twinmusic.utils.Utils;
 import com.squareup.seismic.ShakeDetector;
 
 import java.io.UnsupportedEncodingException;
@@ -34,27 +32,25 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
     public static final String MIME_TEXT_PLAIN = "text/plain";
     private NfcAdapter mNfcAdapter;
     private WebView webView;
-    //private ButtonDebug buttonDebug = new ButtonDebug(this);
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_code);
-        //setContentView(R.layout.activity_debug);
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
         prepareWebView();
-        //buttonDebug.setButtons();
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         ShakeDetector sd = new ShakeDetector(this);
         sd.start(sensorManager);
 
         if (mNfcAdapter == null) {
-            Utils.showToast(this, R.string.no_nfc_warning, Toast.LENGTH_LONG);
+            Toast.makeText(this, R.string.no_nfc_warning, Toast.LENGTH_LONG).show();
             finish();
             return;
         }
         if (!mNfcAdapter.isEnabled()) {
-            Utils.showToast(this, R.string.nfc_disabled_warning, Toast.LENGTH_LONG);
+            Toast.makeText(this, R.string.nfc_disabled_warning, Toast.LENGTH_LONG).show();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 Intent intent = new Intent(Settings.ACTION_NFC_SETTINGS);
                 startActivity(intent);
@@ -86,17 +82,20 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
 
     private void prepareWebView() {
         webView = findViewById(R.id.webview);
+        textView = findViewById(R.id.code_blocks);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setMediaPlaybackRequiresUserGesture(false);
+        webSettings.setAllowFileAccessFromFileURLs(true);
+        webSettings.setAllowUniversalAccessFromFileURLs(true);
         webView.loadUrl("file:///android_asset/index.html");
     }
 
-    public void evalCode(String code) {
+    public void evalCode(final String code) {
         webView.evaluateJavascript(code, new ValueCallback<String>() {
             @Override
             public void onReceiveValue(String value) {
-                Toast.makeText(CodeActivity.this, "JS Run Success", Toast.LENGTH_SHORT).show();
+                textView.setText(code);
             }
         });
     }
@@ -109,7 +108,7 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
                 Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
                 new NdefReaderTask().execute(tag);
             } else {
-                Utils.showToast(this, R.string.nfc_wrong_mime_error, Toast.LENGTH_SHORT);
+                Toast.makeText(this, R.string.nfc_wrong_mime_error, Toast.LENGTH_SHORT);
             }
         } else if (NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)) {
             Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
@@ -165,60 +164,51 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
                 TextView textView = findViewById(R.id.info_text);
                 textView.setText(result);
                 if (result.contentEquals(NFCTag.START)) {
-                    CodeGenerator.startSynth();
+                    evalCode(CodeGenerator.START_SYNTH);
+                } else if (result.contentEquals(NFCTag.PART)) {
+                    evalCode(CodeGenerator.START_PART);
                 } else if (result.contentEquals(NFCTag.LOOP)) {
-                    CodeGenerator.startLoop();
+                    evalCode(CodeGenerator.START_LOOP);
                 } else if (result.contentEquals(NFCTag.CLEAR_ALL)) {
-                    CodeGenerator.clearCode();
+                    evalCode(CodeGenerator.CLEAR_ALL);
                 } else if (result.contentEquals(NFCTag.LOW_FREQ)) {
-                    CodeGenerator.changeOctave(2);
-                } else if (result.contentEquals(NFCTag.MEDIUM_FREQ)) {
-                    CodeGenerator.changeOctave(3);
+                    evalCode(CodeGenerator.CHANGE_FREQ_BASS);
                 } else if (result.contentEquals(NFCTag.HIGH_FREQ)) {
-                    CodeGenerator.changeOctave(4);
+                    evalCode(CodeGenerator.CHANGE_FREQ_TREBLE);
                 } else if (result.contentEquals(NFCTag.PIANO_SOUND)) {
-                    CodeGenerator.selectSample("piano");
-                } else if (result.contentEquals(NFCTag.CELLO_SOUND)) {
-                    CodeGenerator.selectSample("cello");
-                } else if (result.contentEquals(NFCTag.HARMONIUM_SOUND)) {
-                    CodeGenerator.selectSample("harmonium");
+                    evalCode(CodeGenerator.ADD_PIANO);
+                } else if (result.contentEquals(NFCTag.GUITAR_SOUND)) {
+                    evalCode(CodeGenerator.ADD_GUITAR);
                 } else if (result.contentEquals(NFCTag.SINE_WAVE)) {
-                    CodeGenerator.selectSynthWave("sine");
+                    evalCode(CodeGenerator.ADD_SINE);
                 } else if (result.contentEquals(NFCTag.SQUARE_WAVE)) {
-                    CodeGenerator.selectSynthWave("square");
+                    evalCode(CodeGenerator.ADD_SQUARE);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_A)) {
-                    CodeGenerator.addNote(CodeGenerator.Notes.A);
+                    evalCode(CodeGenerator.ADD_NOTE_A);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_B)) {
-                    CodeGenerator.addNote(CodeGenerator.Notes.B);
+                    evalCode(CodeGenerator.ADD_NOTE_B);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_C)) {
-                    CodeGenerator.addNote(CodeGenerator.Notes.C);
+                    evalCode(CodeGenerator.ADD_NOTE_C);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_D)) {
-                    CodeGenerator.addNote(CodeGenerator.Notes.D);
+                    evalCode(CodeGenerator.ADD_NOTE_D);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_E)) {
-                    CodeGenerator.addNote(CodeGenerator.Notes.E);
+                    evalCode(CodeGenerator.ADD_NOTE_E);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_F)) {
-                    CodeGenerator.addNote(CodeGenerator.Notes.F);
+                    evalCode(CodeGenerator.ADD_NOTE_F);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_G)) {
-                    CodeGenerator.addNote(CodeGenerator.Notes.G);
+                    evalCode(CodeGenerator.ADD_NOTE_G);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_NULL)) {
-                    CodeGenerator.addNote(CodeGenerator.Notes.N);
-                } else if (result.contentEquals(NFCTag.SHORT_NOTE)) {
-                    CodeGenerator.shortNote();
-                } else if (result.contentEquals(NFCTag.LONG_NOTE)) {
-                    CodeGenerator.longNote();
+                    evalCode(CodeGenerator.ADD_NOTE_N);
+                } else if (result.contentEquals(NFCTag.BEAT_SLOW)) {
+                    evalCode(CodeGenerator.CHANGE_TEMPO_LOW);
+                } else if (result.contentEquals(NFCTag.BEAT_MED)) {
+                    evalCode(CodeGenerator.CHANGE_TEMPO_MED);
+                } else if (result.contentEquals(NFCTag.BEAT_FAST)) {
+                    evalCode(CodeGenerator.CHANGE_TEMPO_HIGH);
                 } else if (result.contentEquals(NFCTag.RUN)) {
-                    evalCode(CodeGenerator.getCode());
+                    evalCode(CodeGenerator.PLAY_SONG);
                 } else if (result.contentEquals(NFCTag.SPEAK)) {
                     launchSpeak();
-                } else if (result.contentEquals(NFCTag.BEAT_SLOW)) {
-                    CodeGenerator.addBeat();
-                    evalCode(CodeGenerator.changeBPM(80));
-                } else if (result.contentEquals(NFCTag.BEAT_MED)) {
-                    CodeGenerator.addBeat();
-                    evalCode(CodeGenerator.changeBPM(120));
-                } else if (result.contentEquals(NFCTag.BEAT_FAST)) {
-                    CodeGenerator.addBeat();
-                    evalCode(CodeGenerator.changeBPM(160));
                 } else {
                     //TODO: error handling
                 }
@@ -250,18 +240,25 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
         adapter.disableForegroundDispatch(activity);
     }
 
-    public void launchSpeak(){
+    public void launchSpeak() {
         Intent intent = new Intent(this, InfoActivity.class);
         startActivity(intent);
     }
 
     @Override
-    public void hearShake() {
-        if (CodeGenerator.isPaused()) {
-            evalCode(CodeGenerator.resume());
-        } else {
-            evalCode(CodeGenerator.pause());
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)){
+            evalCode(CodeGenerator.LOOP_DOWN);
         }
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)){
+            evalCode(CodeGenerator.LOOP_UP);
+        }
+        return true;
+    }
+
+    @Override
+    public void hearShake() {
+        evalCode(CodeGenerator.PAUSE);
         webView.reload();
         Toast.makeText(this, "Shake detected.", Toast.LENGTH_SHORT).show();
     }

@@ -17,7 +17,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alpay.twinmusic.utils.Utils;
 import com.squareup.seismic.ShakeDetector;
 
 import java.io.UnsupportedEncodingException;
@@ -41,12 +40,12 @@ public class InfoActivity extends AppCompatActivity implements ShakeDetector.Lis
         ShakeDetector sd = new ShakeDetector(this);
         sd.start(sensorManager);
         if (mNfcAdapter == null) {
-            Utils.showToast(this, R.string.no_nfc_warning, Toast.LENGTH_LONG);
+            Toast.makeText(this, R.string.no_nfc_warning, Toast.LENGTH_LONG).show();
             finish();
             return;
         }
         if (!mNfcAdapter.isEnabled()) {
-            Utils.showToast(this, R.string.nfc_disabled_warning, Toast.LENGTH_LONG);
+            Toast.makeText(this, R.string.nfc_disabled_warning, Toast.LENGTH_LONG).show();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 Intent intent = new Intent(Settings.ACTION_NFC_SETTINGS);
                 startActivity(intent);
@@ -84,7 +83,7 @@ public class InfoActivity extends AppCompatActivity implements ShakeDetector.Lis
                 Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
                 new NdefReaderTask().execute(tag);
             } else {
-                Utils.showToast(this, R.string.nfc_wrong_mime_error, Toast.LENGTH_SHORT);
+                Toast.makeText(this, R.string.nfc_wrong_mime_error, Toast.LENGTH_SHORT).show();
             }
         } else if (NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)) {
             Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
@@ -147,33 +146,31 @@ public class InfoActivity extends AppCompatActivity implements ShakeDetector.Lis
                 } else if (result.contentEquals(NFCTag.CLEAR_ALL)) {
                     Speak.playSound(appCompatActivity, Speak.START);
                 } else if (result.contentEquals(NFCTag.LOW_FREQ)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
+                    Speak.playSound(appCompatActivity, Speak.FREQ_LOW);
                 } else if (result.contentEquals(NFCTag.MEDIUM_FREQ)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
+                    Speak.playSound(appCompatActivity, Speak.FREQ_MED);
                 } else if (result.contentEquals(NFCTag.HIGH_FREQ)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
+                    Speak.playSound(appCompatActivity, Speak.FREQ_HIGH);
                 } else if (result.contentEquals(NFCTag.PIANO_SOUND)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
-                } else if (result.contentEquals(NFCTag.CELLO_SOUND)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
-                } else if (result.contentEquals(NFCTag.HARMONIUM_SOUND)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
-                } else if (result.contentEquals(NFCTag.ADD_NOTE_A)) {
+                    Speak.playSound(appCompatActivity, Speak.PIANO);
+                } else if (result.contentEquals(NFCTag.GUITAR_SOUND)) {
+                    Speak.playSound(appCompatActivity, Speak.CELLO);
+                }else if (result.contentEquals(NFCTag.ADD_NOTE_A)) {
                     Speak.playSound(appCompatActivity, Speak.ADD_NOTE_A);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_B)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
+                    Speak.playSound(appCompatActivity, Speak.ADD_NOTE_B);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_C)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
+                    Speak.playSound(appCompatActivity, Speak.ADD_NOTE_C);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_D)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
+                    Speak.playSound(appCompatActivity, Speak.ADD_NOTE_D);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_E)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
+                    Speak.playSound(appCompatActivity, Speak.ADD_NOTE_E);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_F)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
+                    Speak.playSound(appCompatActivity, Speak.ADD_NOTE_F);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_G)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
+                    Speak.playSound(appCompatActivity, Speak.ADD_NOTE_G);
                 } else if (result.contentEquals(NFCTag.RUN)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
+                    Speak.playSound(appCompatActivity, Speak.RUN);
                 }  else {
                     //TODO: error handling
                 }

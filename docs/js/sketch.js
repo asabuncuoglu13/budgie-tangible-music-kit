@@ -16,6 +16,10 @@ let currentBlock = "start";
 let p_a3, p_a4, p_b3, p_b4, p_c3, p_c4, p_d3, p_d4, p_e3, p_e4, p_f3, p_f4, p_g3, p_g4;
 let g_a3, g_a4, g_b3, g_b4, g_c3, g_c4, g_d3, g_d4, g_e3, g_e4, g_f3, g_f4, g_g3, g_g4;
 
+let box, drum, myPart;
+let boxPat = [1,0,0,2,0,2,0,0];
+let drumPat = [0,1,1,0,2,0,1,0];
+
 function preload() {
     p_a3 = loadSound('sound/piano/A3.mp3');
     p_a4 = loadSound('sound/piano/A4.mp3');
@@ -46,6 +50,9 @@ function preload() {
     g_f4 = loadSound('sound/guitar/F4.mp3');
     g_g3 = loadSound('sound/guitar/G3.mp3');
     g_g4 = loadSound('sound/guitar/G4.mp3');
+
+    box = loadSound('sound/beatbox.mp3');
+    drum = loadSound('sound/drum.mp3');
 }
 
 function setup() {
@@ -64,16 +71,30 @@ function setup() {
     recorder = new p5.SoundRecorder();
     recorder.setInput();
     soundFile = new p5.SoundFile();
+
+    myPart = new p5.Part();
 }
 
 function playSong() {
     if (inLoop) {
         createLoopedSong(loopTimes);
+        myPart.loop();
     }
     if (!autoplay) {
         index = 0;
         autoplay = true;
     }
+    myPart.start();
+}
+
+function playBox(time, playbackRate) {
+    box.rate(playbackRate);
+    box.play(time);
+}
+
+function playDrum(time, playbackRate) {
+    drum.rate(playbackRate);
+    drum.play(time);
 }
 
 function changeFreq(val) {
@@ -84,6 +105,10 @@ function changeFreq(val) {
         lowFreq = false;
         highFreq = true;
     }
+}
+
+function changeBPM(num) {
+    myPart.setBPM(num);
 }
 
 function startSynth() {
@@ -158,7 +183,7 @@ function addNote(note, dur) {
             }
             break;
         case 'N':
-            song.push({note: 0, duration: dur, soundType: osc, display: "G"});
+            song.push({note: 0, duration: dur, soundType: osc, display: "N"});
             break;
         default:
             break;
@@ -379,11 +404,16 @@ function keyPressed() {
         if (keyCode === DOWN_ARROW) {
             (loopTimes < 2) ? loopTimes = 2 : loopTimes--;
         }
+        document.getElementById("loopTimes").innerHTML = loopTimes;
     }
 }
 
 function startNewPart() {
+    let boxPhrase = new p5.Phrase('box', playBox, boxPat);
+    let drumPhrase = new p5.Phrase('drum', playDrum, drumPat);
 
+    myPart.addPhrase(boxPhrase);
+    myPart.addPhrase(drumPhrase);
 }
 
 function draw() {

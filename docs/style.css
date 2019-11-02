@@ -2,10 +2,11 @@ html {
     --orange: #e5b69d;
     --blue: #23465A;
     --cream: #DEF2F1;
+    --yellow: #ffe082;
     --thumb-size: 10px;
-  }
-  
-  body {
+}
+
+body {
     font-family: 'IBM Plex Mono', monospace;
     -webkit-font-smoothing: antialiased;
     font-size: 16px;
@@ -17,59 +18,65 @@ html {
     background: var(--cream);
     color: var(--blue);
     line-height: 1.5;
-  }
+}
 
-  h1 {
+h1 {
     font-family: 'Abril Fatface', cursive;
-  }
-  
-  * { box-sizing: border-box; }
-  
-  [hidden] {
+}
+
+* {
+    box-sizing: border-box;
+}
+
+[hidden] {
     display: none !important;
-  }
-  
-  [disabled] {
+}
+
+[disabled] {
     opacity: 0.3;
     pointer-events: none;
-  }
-  
-  /******************
-   * Layout and colours
-   ******************/
-  p { line-height: 1.5; }
-  #splashScreen p {
+}
+
+/******************
+ * Layout and colours
+ ******************/
+p {
+    line-height: 1.5;
+}
+
+#splashScreen p {
     margin-bottom: 32px;
-  }
-  
-  h1 {
+}
+
+h1 {
     font-size: 60px;
     font-weight: normal;
     text-align: center;
     margin-top: 0;
-  }
-  
-  #mainScreen h1 {
+}
+
+#mainScreen h1 {
     font-size: 30px;
-  }
-  
-  a {
+}
+
+a {
     font-weight: bold;
     transition: color 0.2s linear;
-  }
-  
-  a:link, a:visited {
+}
+
+a:link, a:visited {
     color: var(--blue);
     text-decoration: none;
     border-bottom: 2px solid var(--blue);
-  }
-  a:hover {
+}
+
+a:hover {
     background: var(--blue);
     color: var(--cream);
     text-decoration: none;
-  }
-  
-  .full {
+}
+
+.full {
     position: absolute;
     top: 0;
     left: 0;
@@ -77,29 +84,29 @@ html {
     min-height: 100vh;
     padding: 40px;
     padding-top: 0;
-  }
-  
-  .content {
+}
+
+.content {
     z-index: 1;
     position: relative;
     text-align: left;
     max-width: 900px;
     margin: 0 auto;
-  }
-  
-  section {
+}
+
+section {
     position: relative;
     margin: 40px 0;
-  }
-  
-  #mainScreen section {
+}
+
+#mainScreen section {
     padding: 40px;
     background: white;
     border-radius: 5px;
     text-align: left;
-  }
-  
-  section .index {
+}
+
+section .index {
     height: 60px;
     width: 60px;
     border-radius: 50%;
@@ -112,52 +119,58 @@ html {
     position: absolute;
     left: -30px;
     top: 45px;
-  }
-  
-  .with-padding {
+}
+
+.with-padding {
     padding: 8px;
-  }
-  
-  .horizontal {
+}
+
+.horizontal {
     flex-direction: row;
     display: flex;
     justify-content: space-around;
     align-items: center;
-  }
-  
-  .vertical {
+}
+
+.vertical {
     flex-direction: column;
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  .relative {
+}
+
+.relative {
     position: relative;
-  }
-  
-  .green {
+}
+
+.green {
     background: var(--orange);
     border: none;
     color: var(--blue);
-  }
-  
-  .blue {
+}
+
+.blue {
     background: var(--blue);
     border: none;
     color: var(--cream);
-  }
-  
-  .cream {
+}
+
+.cream {
     background: var(--cream);
     border: 2px solid var(--blue);
     color: var(--blue);
-  }
-  
-  /******************
-   * Buttons
-   ******************/
-  .button {
+}
+
+.yellow {
+    background: var(--yellow);
+    border: none;
+    color: var(--blue);
+}
+
+/******************
+ * Buttons
+ ******************/
+.button {
     display: inline-block;
     font-family: inherit;
     font-weight: normal;
@@ -169,28 +182,28 @@ html {
     text-shadow: none;
     border-radius: 3px;
     cursor: pointer;
-    
+
     font-size: 16px;
     vertical-align: middle;
     background: var(--blue);
     color: white;
-  }
-  
-  .button:hover {
+}
+
+.button:hover {
     background: var(--cream);
     color: var(--blue);
-  }
-  
-  #splashScreen .button {
+}
+
+#splashScreen .button {
     padding: 14px 8px;
-    min-width:300px;
-  }
-  
-  #splashScreen .button:hover {
+    min-width: 300px;
+}
+
+#splashScreen .button:hover {
     letter-spacing: 2px;
-  }
-  
-  .button-circle {
+}
+
+.button-circle {
     display: inline-block;
     font-family: inherit;
     font-weight: bold;
@@ -210,25 +223,27 @@ html {
     position: absolute;
     top: 10px;
     right: 0;
-    
-  }
-  .button-circle:hover {
+
+}
+
+.button-circle:hover {
     background: var(--blue);
     fill: var(--cream);
-  }
-  .button-circle > svg {
+}
+
+.button-circle > svg {
     pointer-events: none;
-  }
-  
-  input[type="file"] {
+}
+
+input[type="file"] {
     width: 0;
     height: 0;
     opacity: 0;
     cursor: pointer;
     display: none;
-  }
-  
-  input[type="tel"], input[type="text"] {
+}
+
+input[type="tel"], input[type="text"] {
     border: none;
     border-bottom: 4px solid var(--blue);
     box-shadow: none;
@@ -238,23 +253,23 @@ html {
     color: inherit;
     font-weight: inherit;
     text-align: center;
-  }
-  
-  input[type="text"] {
+}
+
+input[type="text"] {
     width: 50%;
     font-family: inherit;
-  }
-  
-  /******************
-   * Sections
-   ******************/
-  .visualizer-container {
-    overflow: auto;  
-    min-height: 100px;
-  }
+}
 
-   /* Thumb */
-  input[type=range]::-webkit-slider-thumb {
+/******************
+ * Sections
+ ******************/
+.visualizer-container {
+    overflow: auto;
+    min-height: 100px;
+}
+
+/* Thumb */
+input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
     border: none;
     height: var(--thumb-size);
@@ -262,11 +277,13 @@ html {
     background: var(--blue);
     cursor: pointer;
     margin-top: -3px;
-  }
-  input[type=range]::-webkit-slider-thumb:hover {
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
     transform: scale(1.5);
-  }
-  input[type=range]::-moz-range-thumb {
+}
+
+input[type=range]::-moz-range-thumb {
     -webkit-appearance: none;
     border: none;
     height: var(--thumb-size);
@@ -274,11 +291,13 @@ html {
     background: var(--blue);
     cursor: pointer;
     margin-top: -3px;
-  }
-  input[type=range]::-moz-range-thumb:hover {
+}
+
+input[type=range]::-moz-range-thumb:hover {
     transform: scale(1.5);
-  }
-  input[type=range]::-ms-thumb {
+}
+
+input[type=range]::-ms-thumb {
     -webkit-appearance: none;
     border: none;
     height: var(--thumb-size);
@@ -286,80 +305,89 @@ html {
     background: var(--blue);
     cursor: pointer;
     margin-top: -3px;
-  }
-  input[type=range]::-ms-thumb:hover {
+}
+
+input[type=range]::-ms-thumb:hover {
     transform: scale(1.5);
-  }
-  
-  input[type=range]::-webkit-slider-runnable-track {
+}
+
+input[type=range]::-webkit-slider-runnable-track {
     height: 2px;
     cursor: pointer;
     background: var(--blue);
-  }
-  input[type=range]::-moz-range-track {
+}
+
+input[type=range]::-moz-range-track {
     height: 2px;
     cursor: pointer;
     background: var(--blue);
-  }
-  input[type=range]::-ms-track {
+}
+
+input[type=range]::-ms-track {
     height: 2px;
     cursor: pointer;
     background: var(--blue);
-  }
-  rect.active {
+}
+
+rect.active {
     outline: 1px solid black;
-  }
-  
-  @media screen and (max-width: 800px) {
+}
+
+@media screen and (max-width: 800px) {
     .sliders {
-      flex-direction:row !important;
+        flex-direction: row !important;
     }
+
     #midimeSlidersContainer {
-      width: 100%;
-      margin-right: 0;
+        width: 100%;
+        margin-right: 0;
     }
-  }
-  
-  @media screen and (max-width: 600px) {
+}
+
+@media screen and (max-width: 600px) {
     .full {
-      padding: 0;
+        padding: 0;
     }
-    
+
     .horizontal {
-      flex-direction: column;
+        flex-direction: column;
     }
-    
+
     html {
-      --slider-size: calc(90vw / 90);
-      --thumb-size: calc(90vw / 80);
+        --slider-size: calc(90vw / 90);
+        --thumb-size: calc(90vw / 80);
     }
-    
+
     .button {
-      padding: 4px 8px;
-      margin-bottom: 8px;
+        padding: 4px 8px;
+        margin-bottom: 8px;
     }
-    
+
     #mainScreen section {
-      margin: 20px 10px;
-      padding: 20px 10px;
+        margin: 20px 10px;
+        padding: 20px 10px;
     }
+
     #splashScreen section {
-      margin: 20px;
-      padding: 0;
+        margin: 20px;
+        padding: 0;
     }
+
     .index {
-      left: calc(50% - 40px) !important;
-      top: -30px !important;
+        left: calc(50% - 40px) !important;
+        top: -30px !important;
     }
-    
+
     #splashScreen h1 {
-      margin-bottom: 0;
-      margin-top: 0;
+        margin-bottom: 0;
+        margin-top: 0;
     }
+
     #mainScreen h1 {
-      margin-bottom: 40px;
+        margin-bottom: 40px;
     }
+
     input[type=range]::-webkit-slider-thumb {
-      margin-top: -2px;
+        margin-top: -2px;
     }
-  }
+}

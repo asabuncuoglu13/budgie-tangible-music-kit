@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Budgie Tutorial</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Budgie Music Kit Explanation, Curriculum and Resources">
+    <meta name="keywords" content="Budgie, Music, Programming, Kit, Children">
+    <meta name="author" content="Budgie">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700&display=optional" rel="stylesheet">
+    <script src="js/p5/p5.js"></script>
+    <script src="js/p5/p5.speech.js"></script>
+</head>
+
+<body>
+<div class="full yellow" id="mainScreen">
+    <div class="content">
+        <h1><span id="modeText"><a href="index.html">Budgie</a></span></h1>
+        <section id="section_1">
+            <div class="index" id="one">1</div>
+            <h2>Hello Budgie</h2>
+            <p id="section1Content">Programming is the design process of a program to execute some functions in a
+                computational device. This
+                device might be a computer, a phone, a speaker or a car. Nowadays, computational devices appears in
+                various forms. From our watches to elevators, many devices communicate with each other and use electric
+                signals to make some computations. Budgie kit is one of them. Every block you hold, carries a bit of
+                data. The data can only be understood by NFC-supported devices, such as your mobile phone. We will
+                explain what is NFC in the next tutorials.
+                <br><br>
+                Now, it is time to create our first program. To start a new program in Budgie, you need to use
+                <b>"start"</b>
+                block. When you read the start block, the mobile app queues the commands.
+            </p>
+            <button id="readSection1" class="button">📝 Read the Text</button>
+        </section>
+        <section id="section_2">
+            <div class="index" id="two">2</div>
+            <h2>How to use Budgie?</h2>
+            <p>Budgie is an open-source and free-for-all music programming kit. You can get the Budgie Kit in two
+                ways:</p>
+            <p><b>1. </b>Prepare the 3D blocks with a material of your choice, and use NFC stickers to define the
+                models. <a href="https://github.com/asabuncuoglu13/budgie-tangible-music-kit"> You can access the
+                    model files, code and guidelines from our Github page</a></p>
+            <p><b>2. </b>Buy a Budgie Kit.</p>
+            <button id="buyButton" class="button">🛒 Buy the Kit</button>
+        </section>
+        <section id="section_3">
+            <div class="index" id="three">3</div>
+            <h2>Curriculum</h2>
+            <p>We prepared a curriculum to introduce technology to young minds and develop their computational thinking
+                skills.</p>
+            <p>The curriculum is intended to 9-12 age group, educators can adapt the curriculum for lower and upper age
+                groups.</p>
+            <button id="curriculumButton" class="button">📚 See the Curriculum</button>
+        </section>
+    </div>
+</div>
+<script>
+
+    let s = new p5.Speech();
+
+    document.getElementById("readSection1").addEventListener('click', function () {
+        s.speak(document.getElementById("section1Content").textContent);
+    });
+
+    document.getElementById("curriculumButton").addEventListener('click', function () {
+        location.href = 'https://www.notion.so/tangiblemusic/6f695bcf80e84f88a0694afdb3da29e8?v=bc15d1b5ccc24b09b39c0d54fac248de';
+    });
+</script>
+</body>
+
+</html>

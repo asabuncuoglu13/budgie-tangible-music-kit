@@ -7,6 +7,7 @@
     <meta name="keywords" content="Budgie, Music, Programming, Kit, Children">
     <meta name="author" content="Budgie">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+    <link href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono&display=optional" rel="stylesheet">
     <script src="js/p5/p5.js"></script>
@@ -18,6 +19,10 @@
             color: black;
             font-size: calc(12px + 0.2vw);
             margin-left: 1vw;
+        }
+
+        h1{
+            text-align: center;
         }
 
         .grid {
@@ -126,7 +131,7 @@
 </head>
 <body>
 <script src="js/sketch.js"></script>
-<h1>Budgie Music Kit Demo</h1>
+<h1><a href="index.html">Budgie</a></h1>
 <div class="grid">
     <div id="start" onclick="startSynth()" class="item">start music</div>
     <div id="loop" onclick="startLoop()" class="item">loop : <p id="loopTimes">2</p> times</div>

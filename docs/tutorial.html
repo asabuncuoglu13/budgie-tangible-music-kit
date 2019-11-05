@@ -24,54 +24,72 @@
         <section id="section_1">
             <div class="index" id="one">1</div>
             <h2>Hello Budgie</h2>
-            <p id="section1Content">Programming is the design process of a program to execute some functions in a
-                computational device. This
-                device might be a computer, a phone, a speaker or a car. Nowadays, computational devices appears in
-                various forms. From our watches to elevators, many devices communicate with each other and use electric
-                signals to make some computations. Budgie kit is one of them. Every block you hold, carries a bit of
-                data. The data can only be understood by NFC-supported devices, such as your mobile phone. We will
-                explain what is NFC in the next tutorials.
+            <div id="section1Content">
+                Programming is the design process of a program to execute some functions in a computational device. This device might be a computer, a phone, a speaker or a car. Nowadays, computational devices appears in various forms. From our watches to elevators, many devices communicate with each other and use electric signals to make some computations. Budgie kit is one of them. Every block you hold, carries a bit of data. The data can only be understood by NFC-supported devices, such as your mobile phone. We will explain what is NFC in the next tutorials.
                 <br><br>
-                Now, it is time to create our first program. To start a new program in Budgie, you need to use
-                <b>"start"</b>
-                block. When you read the start block, the mobile app queues the commands.
-            </p>
+                Now, it is time to create our first program:
+                <ul>
+                    <li>To start a new program in Budgie, you need to use
+                        <b>"start"</b> block. Start block starts a new program.
+                    </li>
+                    <li>This new program holds all the code to create a new composition.</li>
+                    <li>Budgie Kit contains three types of blocks: interface, attribute and notes. Attribute blocks define the properties of note blocks.
+                    </li>
+                    <li>You can change the octave, tempo or sound type with these blocks.</li>
+                    <li>In our first program let's define the sound type to <b>piano</b>.</li>
+                    <li>Then, read the note blocks: <b>A, E, C, E, A, C.</b> Finally, read the
+                        <b>"play"</b> block with your phone to play the song.
+                    </li>
+                </ul>
+            </div>
             <button id="readSection1" class="button">📝 Read the Text</button>
         </section>
         <section id="section_2">
             <div class="index" id="two">2</div>
-            <h2>How to use Budgie?</h2>
-            <p>Budgie is an open-source and free-for-all music programming kit. You can get the Budgie Kit in two
-                ways:</p>
-            <p><b>1. </b>Prepare the 3D blocks with a material of your choice, and use NFC stickers to define the
-                models. <a href="https://github.com/asabuncuoglu13/budgie-tangible-music-kit"> You can access the
-                    model files, code and guidelines from our Github page</a></p>
-            <p><b>2. </b>Buy a Budgie Kit.</p>
-            <button id="buyButton" class="button">🛒 Buy the Kit</button>
+            <h2>Looping</h2>
+            <div id="section2Content">
+                Loop is one of the common structure in coding. If you want a code to repeat multiple times, you would define a loop. You can create loops in Budgie kit.
+                <ul>
+                    <li>Read the loop block. It will automatically create a loop that runs for two times.
+                    <li>To increase the number of loop cycles, swipe up the screen. Each swipe up increase the number of loop cycles one.
+                    </li>
+                    <li>To decrease the number of loop cycles, swipe down the screen. Each swipe down decrease the number of loop cycles one.
+                    </li>
+                    <li>
+                        <b>Now, let's create a new song with 3 loop cycles that repeats the A,B,C blocks.</b>
+                    </li>
+                </ul>
+            </div>
+            <button id="readSection2" class="button">📝 Read the Text</button>
         </section>
         <section id="section_3">
             <div class="index" id="three">3</div>
-            <h2>Curriculum</h2>
-            <p>We prepared a curriculum to introduce technology to young minds and develop their computational thinking
-                skills.</p>
-            <p>The curriculum is intended to 9-12 age group, educators can adapt the curriculum for lower and upper age
-                groups.</p>
-            <button id="curriculumButton" class="button">📚 See the Curriculum</button>
+            <h2>Sound Types</h2>
+            <p id="section3Content"></p>
+            <button id="readSection3" class="button">📝 Read the Text</button>
+        </section>
+        <section id="section_4">
+            <div class="index" id="four">4</div>
+            <h2>Sound Types</h2>
+            <p id="section4Content"></p>
+            <button id="readSection4" class="button">📝 Read the Text</button>
         </section>
     </div>
 </div>
 <script>
-
     let s = new p5.Speech();
 
     document.getElementById("readSection1").addEventListener('click', function () {
         s.speak(document.getElementById("section1Content").textContent);
     });
 
-    document.getElementById("curriculumButton").addEventListener('click', function () {
-        location.href = 'https://www.notion.so/tangiblemusic/6f695bcf80e84f88a0694afdb3da29e8?v=bc15d1b5ccc24b09b39c0d54fac248de';
+    document.getElementById("readSection2").addEventListener('click', function () {
+        s.speak(document.getElementById("section2Content").textContent);
+    });
+
+    document.getElementById("readSection3").addEventListener('click', function () {
+        s.speak(document.getElementById("section3Content").textContent);
     });
 </script>
 </body>
-
 </html>

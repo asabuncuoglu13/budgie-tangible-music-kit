@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <WebView
@@ -10,29 +11,37 @@
         android:layout_height="wrap_content" />
 
     <TextView
+        android:layout_marginTop="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textColor="@color/md_black"
         android:gravity="center"
+        android:textStyle="bold"
         android:text="@string/coding_area"
-        android:textSize="30dp" />
+        android:textSize="54dp" />
 
     <TextView
         android:id="@+id/info_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/md_red"
         android:layout_marginTop="30dp"
         android:gravity="center"
-        android:textSize="30dp" />
+        android:textSize="36dp"
+        tools:text="Treble"/>
 
     <TextView
         android:id="@+id/code_blocks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/md_blue"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:gravity="center"
-        android:textSize="14dp" />
+        android:textSize="24dp"
+        tools:text="changeFrequency('Treble')"/>
 
 </LinearLayout>

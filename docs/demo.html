@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Budgie Demo</title>
     <meta charset="utf-8">
     <meta name="description" content="Budgie Music Programming Kit Demo, Curriculum and Resources">
     <meta name="keywords" content="Budgie, Music, Programming, Kit, Children">
     <meta name="author" content="Budgie">
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
-    <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
     <link href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono&display=optional" rel="stylesheet">
@@ -22,7 +23,7 @@
             margin-left: 1vw;
         }
 
-        h1{
+        h1 {
             text-align: center;
         }
 
@@ -42,7 +43,8 @@
             cursor: pointer;
             background-size: contain;
         }
-        .grid .item:active{
+
+        .grid .item:active {
             border: #f8bbd0 4px solid;
             border-radius: 0.5vh;
             cursor: pointer;
@@ -52,122 +54,143 @@
             background: url("blocks/start.png") no-repeat center;
             background-size: contain;
         }
+
         #loop {
             background: url("blocks/loop.png") no-repeat center;
             background-size: contain;
         }
+
         #noteA {
-             background: url("blocks/note_A.png") no-repeat center;
+            background: url("blocks/note_A.png") no-repeat center;
             background-size: contain;
-         }
+        }
+
         #noteB {
             background: url("blocks/note_B.png") no-repeat center;
             background-size: contain;
         }
+
         #noteC {
             background: url("blocks/note_C.png") no-repeat center;
             background-size: contain;
         }
+
         #noteD {
             background: url("blocks/note_D.png") no-repeat center;
             background-size: contain;
         }
+
         #noteE {
             background: url("blocks/note_E.png") no-repeat center;
             background-size: contain;
         }
+
         #noteF {
             background: url("blocks/note_F.png") no-repeat center;
             background-size: contain;
         }
+
         #noteG {
             background: url("blocks/note_G.png") no-repeat center;
             background-size: contain;
         }
+
         #noteN {
-             background: url("blocks/note_N.png") no-repeat center;
+            background: url("blocks/note_N.png") no-repeat center;
             background-size: contain;
         }
+
         #lowfreq {
             background: url("blocks/freq_low.png") no-repeat center;
             background-size: contain;
         }
+
         #highfreq {
             background: url("blocks/freq_high.png") no-repeat center;
             background-size: contain;
         }
+
         #lowtempo {
             background: url("blocks/tempo_low.png") no-repeat center;
             background-size: contain;
         }
+
         #medtempo {
-             background: url("blocks/tempo_med.png") no-repeat center;
+            background: url("blocks/tempo_med.png") no-repeat center;
             background-size: contain;
         }
+
         #guitar {
             background: url("blocks/guitar.png") no-repeat center;
             background-size: contain;
         }
+
         #sine {
             background: url("blocks/wave_sine.png") no-repeat center;
             background-size: contain;
         }
+
         #square {
             background: url("blocks/wave_square.png") no-repeat center;
             background-size: contain;
         }
+
         #parallelpart {
             background: url("blocks/parallelpart.png") no-repeat center;
             background-size: contain;
         }
+
         #piano {
             background: url("blocks/piano.png") no-repeat center;
             background-size: contain;
         }
+
         #run {
             background: url("blocks/play.png") no-repeat center;
             background-size: contain;
         }
     </style>
 </head>
+
 <body>
-<script src="js/sketch.js"></script>
-<h1><a href="index.html">Budgie</a></h1>
-<div class="grid">
-    <div id="start" onclick="startSynth()" class="item">start music</div>
-    <div id="loop" onclick="startLoop()" class="item">loop : <p id="loopTimes">2</p> times</div>
-    <div id="noteA" onclick="addNote('A', 200)" class="item">note A</div>
-    <div id="noteB" onclick="addNote('B', 200)"  class="item">note B</div>
-    <div id="noteC" onclick="addNote('C', 200)"  class="item">note C</div>
-    <div id="noteD" onclick="addNote('D', 200)"  class="item">note D</div>
-    <div id="noteE" onclick="addNote('E', 200)"  class="item">note E</div>
-    <div id="noteF" onclick="addNote('F', 200)"  class="item">note F</div>
-    <div id="noteG" onclick="addNote('G', 200)"  class="item">note G</div>
-    <div id="noteN" onclick="addNote('N', 200)"  class="item">rest</div>
-    <div id="lowfreq" onclick="changeFreq('bass')"  class="item">bass</div>
-    <div id="highfreq" onclick="changeFreq('treble')"  class="item">treble</div>
-    <div id="lowtempo" onclick="changeBPM(30)"  class="item">30 bpm</div>
-    <div id="medtempo" onclick="changeBPM(60)"  class="item">60 bpm</div>
-    <div id="guitar" onclick="addGuitar()"  class="item">guitar</div>
-    <div id="sine" onclick="addSine()"  class="item">sine wave</div>
-    <div id="square" onclick="addSquare()"  class="item">square wave</div>
-    <div id="parallelpart" onclick="startNewPart()" class="item">add beat</div>
-    <div id="piano" onclick="addPiano()" class="item">piano</div>
-    <div id="run" onclick="playSong()" class="item">play</div>
-</div>
-<script>
-    if (!String.prototype.format) {
-        String.prototype.format = function() {
-            var args = arguments;
-            return this.replace(/{(\d+)}/g, function(match, number) {
-                return typeof args[number] != 'undefined'
-                    ? args[number]
-                    : match
-                    ;
-            });
-        };
-    }
-</script>
+    <script src="js/sketch.js"></script>
+    <h1><a href="index.html">Budgie</a></h1>
+    <div class="grid">
+        <div id="start" onclick="startSynth()" class="item">start music</div>
+        <div id="loop" onclick="startLoop()" class="item">loop : <p id="loopTimes">2</p> times</div>
+        <div id="noteA" onclick="addNote('A', 200)" class="item">note A</div>
+        <div id="noteB" onclick="addNote('B', 200)" class="item">note B</div>
+        <div id="noteC" onclick="addNote('C', 200)" class="item">note C</div>
+        <div id="noteD" onclick="addNote('D', 200)" class="item">note D</div>
+        <div id="noteE" onclick="addNote('E', 200)" class="item">note E</div>
+        <div id="noteF" onclick="addNote('F', 200)" class="item">note F</div>
+        <div id="noteG" onclick="addNote('G', 200)" class="item">note G</div>
+        <div id="noteN" onclick="addNote('N', 200)" class="item">rest</div>
+        <div id="lowfreq" onclick="changeFreq('bass')" class="item">bass</div>
+        <div id="highfreq" onclick="changeFreq('treble')" class="item">treble</div>
+        <div id="lowtempo" onclick="changeBPM(30)" class="item">30 bpm</div>
+        <div id="medtempo" onclick="changeBPM(60)" class="item">60 bpm</div>
+        <div id="guitar" onclick="addGuitar()" class="item">guitar</div>
+        <div id="sine" onclick="addSine()" class="item">sine wave</div>
+        <div id="square" onclick="addSquare()" class="item">square wave</div>
+        <div id="parallelpart" onclick="startNewPart()" class="item">add beat</div>
+        <div id="piano" onclick="addPiano()" class="item">piano</div>
+        <div id="run" onclick="playSong()" class="item">play</div>
+    </div>
+    <script>
+        if (!String.prototype.format) {
+            String.prototype.format = function () {
+                var args = arguments;
+                return this.replace(/{(\d+)}/g, function (match, number) {
+                    return typeof args[number] != 'undefined'
+                        ? args[number]
+                        : match
+                        ;
+                });
+            };
+        }
+    </script>
 
 </body>
+
 </html>

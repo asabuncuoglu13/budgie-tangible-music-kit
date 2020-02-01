@@ -57,7 +57,7 @@ function preload() {
 }
 
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    noCanvas();
 
     // Triangle oscillator
     oscT = new p5.TriOsc();
@@ -133,7 +133,6 @@ function createLoopedSong(num) {
 }
 
 function addNote(note, dur) {
-    drawNote(note, dur);
     switch (note) {
         case 'A':
             if (lowFreq) {
@@ -210,7 +209,6 @@ function addSquare() {
 
 
 function playNote(note, duration, soundType) {
-    drawNote(note, duration);
     if (soundType === "piano") {
         switch (note) {
             case 48:
@@ -460,13 +458,21 @@ function keyTyped() {
     }
 }
 
+function increaseLoop() {
+    (loopTimes > 10) ? loopTimes = 10 : loopTimes++;
+}
+
+function decreaseLoop() {
+    (loopTimes < 2) ? loopTimes = 2 : loopTimes--;
+}
+
 function keyPressed() {
     if (currentBlock === "loop") {
         if (keyCode === UP_ARROW) {
-            (loopTimes > 10) ? loopTimes = 10 : loopTimes++;
+            increaseLoop();
         }
         if (keyCode === DOWN_ARROW) {
-            (loopTimes < 2) ? loopTimes = 2 : loopTimes--;
+            decreaseLoop();
         }
         document.getElementById("loopTimes").innerHTML = loopTimes;
     }
@@ -480,24 +486,7 @@ function startNewPart() {
     myPart.addPhrase(drumPhrase);
 }
 
-function drawStaff() {
-    let lineY = height / 2 - 75;
-    for (let i = 0; i < 5; i++) {
-        line(0, lineY, width, lineY);
-        lineY += gap;
-    }
-}
-
-function drawNote(note, dur) {
-    ellipseMode(CENTER);
-    let noteY = height / 2 - 75;
-    let diff = note.charCodeAt(0) - "A".charCodeAt(0);
-    ellipse(width / 2, noteY + diff * (gap / 2), gap + 10, gap);
-}
-
 function draw() {
-    background(255);
-    drawStaff();
     if (autoplay && millis() > trigger) {
         recorder.record(soundFile);
         if (inLoop) {

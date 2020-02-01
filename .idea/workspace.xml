@@ -7,76 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4332da44-fc07-4348-a83f-210b0fc4c60d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/docs/device.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/desktop.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/frequency_ellipse/14_elips alt.stl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/frequency_ellipse/15_elips ust 1.stl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/frequency_ellipse/16_elips ust 2.stl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/frequency_ellipse/17_elips ust 3.stl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/frequency_ellipse/desktop.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/frequency_ellipse/elips alt final.prt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/frequency_ellipse/elips ust final 2.prt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/frequency_ellipse/elips ust final 3.prt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/frequency_ellipse/elips ust final.prt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/loop_gear/7_tirtikli yuvarlak alt.stl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/loop_gear/8_tirtikli yuvarlak ust.stl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/loop_gear/desktop.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/loop_gear/tirtikli yuvarlak alt.prt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/loop_gear/tirtikli yuvarlak ust.prt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/mdf.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/mdf.prt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/note_square/11_kare ust.stl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/note_square/12_kare alt.stl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/note_square/desktop.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/note_square/kare alt.prt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/note_square/kare ust.prt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/sound_trapezoid/18_yamuk alt.stl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/sound_trapezoid/19_yamuk ust 1.stl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/sound_trapezoid/20_yamuk ust 2.stl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/sound_trapezoid/21_yamuk ust 3.stl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/sound_trapezoid/desktop.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/sound_trapezoid/yamuk alt.prt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/sound_trapezoid/yamuk ust 1.prt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/sound_trapezoid/yamuk ust 2.prt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/sound_trapezoid/yamuk ust 3.prt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/tempo_hexagon/22_altigen alt.stl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/tempo_hexagon/23_altigen ust 1.stl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/tempo_hexagon/24_altigen ust 2.stl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/tempo_hexagon/25_altigen ust 3.stl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/tempo_hexagon/altigen alt final.prt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/tempo_hexagon/altigen ust final 2.prt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/tempo_hexagon/altigen ust final 3.prt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/tempo_hexagon/altigen ust final.prt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/tempo_hexagon/desktop.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/ui_circle/1_clear all.stl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/ui_circle/2_delete last.stl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/ui_circle/3_differentiate.stl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/ui_circle/4_run script.stl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/ui_circle/5_start new script.stl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/ui_circle/6_yuvarlak.stl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/ui_circle/clear all.prt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/ui_circle/delete last.prt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/ui_circle/desktop.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/ui_circle/differentiate.prt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/ui_circle/run script.prt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/ui_circle/start new script.prt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/ui_circle/yuvarlakx4.prt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/wavetype_wavysquare/10_tirtikli kare ust 1.stl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/wavetype_wavysquare/11_tirtikli kare ust 2.stl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/wavetype_wavysquare/9_tirtikli kare alt.stl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/wavetype_wavysquare/desktop.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/wavetype_wavysquare/tirtikli kare alt.prt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/wavetype_wavysquare/tirtikli kare ust 2.prt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/block models/wavetype_wavysquare/tirtikli kare ust.prt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/budgie-android/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/budgie-android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/budgie-android/app/src/main/assets/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/budgie-android/app/src/main/assets/js/sketch.js" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/js/sketch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/budgie-android/app/src/main/assets/sketch.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/budgie-android/app/src/main/java/com/alpay/twinmusic/CodeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/src/main/java/com/alpay/twinmusic/CodeActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budgie-android/app/src/main/res/layout/activity_code.xml" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/src/main/res/layout/activity_code.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/js/sketch.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/js/sketch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/project.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/project.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -110,13 +45,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="33" />
-          <entry key="js" value="95" />
+          <entry key="js" value="179" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="33" />
-          <entry key="JavaScript" value="95" />
+          <entry key="JavaScript" value="179" />
         </counts>
       </usages-collector>
     </session>
@@ -126,8 +61,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-158">
-              <caret line="12" column="38" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
+            <state relative-caret-position="180">
+              <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -145,17 +80,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/demo.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-210">
-              <caret line="159" column="47" selection-start-line="159" selection-start-column="47" selection-end-line="159" selection-end-column="47" />
+            <state relative-caret-position="-236">
+              <caret line="170" column="76" selection-start-line="170" selection-start-column="76" selection-end-line="170" selection-end-column="76" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/device.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
+            <state relative-caret-position="52">
+              <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
               <folding>
                 <element signature="n#style#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -163,11 +98,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/docs/js/sketch.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1137">
-              <caret line="503" column="102" selection-start-line="503" selection-start-column="102" selection-end-line="503" selection-end-column="102" />
+            <state relative-caret-position="153">
+              <caret line="134" column="29" selection-start-line="134" selection-start-column="29" selection-end-line="134" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -184,15 +119,12 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Str</find>
-      <find>}&quot;</find>
       <find>evalCode</find>
       <find>class=&quot;item&quot;</find>
       <find>octave</find>
       <find>bpm</find>
       <find>sine</find>
       <find>no-repeat center;</find>
-      <find>loop</find>
       <find>note</find>
       <find>startLoop</find>
       <find>nots</find>
@@ -214,6 +146,9 @@
       <find>full</find>
       <find>&lt;/p&gt;</find>
       <find>document</find>
+      <find>note.co</find>
+      <find>loop</find>
+      <find>draw</find>
     </findStrings>
     <replaceStrings>
       <replace>let</replace>
@@ -241,8 +176,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/docs/js/sketch.js" />
         <option value="$PROJECT_DIR$/docs/device.html" />
+        <option value="$PROJECT_DIR$/docs/js/sketch.js" />
       </list>
     </option>
   </component>
@@ -286,12 +221,6 @@
               <item name="budgie-tangible-music-kit" type="b2602c69:ProjectViewProjectNode" />
               <item name="budgie-tangible-music-kit" type="462c0819:PsiDirectoryNode" />
               <item name="docs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="budgie-tangible-music-kit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="budgie-tangible-music-kit" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -424,23 +353,23 @@
       <workItem from="1580382464460" duration="610000" />
       <workItem from="1580422214065" duration="32000" />
       <workItem from="1580422267521" duration="887000" />
-      <workItem from="1580550347510" duration="5156000" />
+      <workItem from="1580550347510" duration="6929000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5156000" />
+    <option name="totallyTimeSpent" value="6929000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="85" y="-8" width="1843" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2498615" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2498615" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
+      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.32911393" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -481,34 +410,34 @@
     <entry file="file://$PROJECT_DIR$/docs/project.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/docs/device.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/docs/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-158">
-          <caret line="12" column="38" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
+        <state relative-caret-position="180">
+          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/demo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-210">
-          <caret line="159" column="47" selection-start-line="159" selection-start-column="47" selection-end-line="159" selection-end-column="47" />
+        <state relative-caret-position="-236">
+          <caret line="170" column="76" selection-start-line="170" selection-start-column="76" selection-end-line="170" selection-end-column="76" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/js/sketch.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1137">
-          <caret line="503" column="102" selection-start-line="503" selection-start-column="102" selection-end-line="503" selection-end-column="102" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/device.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
-          <folding>
-            <element signature="n#style#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="153">
+          <caret line="134" column="29" selection-start-line="134" selection-start-column="29" selection-end-line="134" selection-end-column="29" />
         </state>
       </provider>
     </entry>

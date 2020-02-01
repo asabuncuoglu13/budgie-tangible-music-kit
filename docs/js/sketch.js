@@ -1,5 +1,6 @@
 let index = 0;
 let inLoop = false;
+let gap = 30;
 
 let song = [];
 let loopedSong = [];
@@ -56,7 +57,7 @@ function preload() {
 }
 
 function setup() {
-    createCanvas(10, 10);
+    createCanvas(windowWidth, windowHeight);
 
     // Triangle oscillator
     oscT = new p5.TriOsc();
@@ -132,6 +133,7 @@ function createLoopedSong(num) {
 }
 
 function addNote(note, dur) {
+    drawNote(note, dur);
     switch (note) {
         case 'A':
             if (lowFreq) {
@@ -208,6 +210,7 @@ function addSquare() {
 
 
 function playNote(note, duration, soundType) {
+    drawNote(note, duration);
     if (soundType === "piano") {
         switch (note) {
             case 48:
@@ -477,7 +480,24 @@ function startNewPart() {
     myPart.addPhrase(drumPhrase);
 }
 
+function drawStaff() {
+    let lineY = height / 2 - 75;
+    for (let i = 0; i < 5; i++) {
+        line(0, lineY, width, lineY);
+        lineY += gap;
+    }
+}
+
+function drawNote(note, dur) {
+    ellipseMode(CENTER);
+    let noteY = height / 2 - 75;
+    let diff = note.charCodeAt(0) - "A".charCodeAt(0);
+    ellipse(width / 2, noteY + diff * (gap / 2), gap + 10, gap);
+}
+
 function draw() {
+    background(255);
+    drawStaff();
     if (autoplay && millis() > trigger) {
         recorder.record(soundFile);
         if (inLoop) {

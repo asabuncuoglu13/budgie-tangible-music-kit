@@ -1,5 +1,6 @@
 let index = 0;
 let inLoop = false;
+let gap = 30;
 
 let song = [];
 let loopedSong = [];
@@ -15,6 +16,10 @@ let loopTimes = 2;
 let currentBlock = "start";
 let p_a3, p_a4, p_b3, p_b4, p_c3, p_c4, p_d3, p_d4, p_e3, p_e4, p_f3, p_f4, p_g3, p_g4;
 let g_a3, g_a4, g_b3, g_b4, g_c3, g_c4, g_d3, g_d4, g_e3, g_e4, g_f3, g_f4, g_g3, g_g4;
+
+let box, drum, myPart;
+let boxPat = [1, 0, 0, 2, 0, 2, 0, 0];
+let drumPat = [0, 1, 1, 0, 2, 0, 1, 0];
 
 function preload() {
     p_a3 = loadSound('sound/piano/A3.mp3');
@@ -46,10 +51,13 @@ function preload() {
     g_f4 = loadSound('sound/guitar/F4.mp3');
     g_g3 = loadSound('sound/guitar/G3.mp3');
     g_g4 = loadSound('sound/guitar/G4.mp3');
+
+    box = loadSound('sound/beatbox.mp3');
+    drum = loadSound('sound/drum.mp3');
 }
 
 function setup() {
-    createCanvas(10, 10);
+    createCanvas(windowWidth, windowHeight);
 
     // Triangle oscillator
     oscT = new p5.TriOsc();
@@ -64,16 +72,30 @@ function setup() {
     recorder = new p5.SoundRecorder();
     recorder.setInput();
     soundFile = new p5.SoundFile();
+
+    myPart = new p5.Part();
 }
 
 function playSong() {
     if (inLoop) {
         createLoopedSong(loopTimes);
+        myPart.loop();
     }
     if (!autoplay) {
         index = 0;
         autoplay = true;
     }
+    myPart.start();
+}
+
+function playBox(time, playbackRate) {
+    box.rate(playbackRate);
+    box.play(time);
+}
+
+function playDrum(time, playbackRate) {
+    drum.rate(playbackRate);
+    drum.play(time);
 }
 
 function changeFreq(val) {
@@ -84,6 +106,10 @@ function changeFreq(val) {
         lowFreq = false;
         highFreq = true;
     }
+}
+
+function changeBPM(num) {
+    myPart.setBPM(num);
 }
 
 function startSynth() {
@@ -107,58 +133,59 @@ function createLoopedSong(num) {
 }
 
 function addNote(note, dur) {
+    drawNote(note, dur);
     switch (note) {
         case 'A':
             if (lowFreq) {
-                song.push({note: 57, duration: dur, soundType: osc, display: "A"});
+                song.push({ note: 57, duration: dur, soundType: osc, display: "A" });
             } else {
-                song.push({note: 69, duration: dur, soundType: osc, display: "A"});
+                song.push({ note: 69, duration: dur, soundType: osc, display: "A" });
             }
             break;
         case 'B':
             if (lowFreq) {
-                song.push({note: 59, duration: dur, soundType: osc, display: "b"});
+                song.push({ note: 59, duration: dur, soundType: osc, display: "b" });
             } else {
-                song.push({note: 71, duration: dur, soundType: osc, display: "B"});
+                song.push({ note: 71, duration: dur, soundType: osc, display: "B" });
             }
             break;
         case 'C':
             if (lowFreq) {
-                song.push({note: 48, duration: dur, soundType: osc, display: "C"});
+                song.push({ note: 48, duration: dur, soundType: osc, display: "C" });
             } else {
-                song.push({note: 60, duration: dur, soundType: osc, display: "C"});
+                song.push({ note: 60, duration: dur, soundType: osc, display: "C" });
             }
             break;
         case 'D':
             if (lowFreq) {
-                song.push({note: 50, duration: dur, soundType: osc, display: "D"});
+                song.push({ note: 50, duration: dur, soundType: osc, display: "D" });
             } else {
-                song.push({note: 62, duration: dur, soundType: osc, display: "D"});
+                song.push({ note: 62, duration: dur, soundType: osc, display: "D" });
             }
             break;
         case 'E':
             if (lowFreq) {
-                song.push({note: 52, duration: dur, soundType: osc, display: "E"});
+                song.push({ note: 52, duration: dur, soundType: osc, display: "E" });
             } else {
-                song.push({note: 64, duration: dur, soundType: osc, display: "E"});
+                song.push({ note: 64, duration: dur, soundType: osc, display: "E" });
             }
             break;
         case 'F':
             if (lowFreq) {
-                song.push({note: 53, duration: dur, soundType: osc, display: "F"});
+                song.push({ note: 53, duration: dur, soundType: osc, display: "F" });
             } else {
-                song.push({note: 65, duration: dur, soundType: osc, display: "F"});
+                song.push({ note: 65, duration: dur, soundType: osc, display: "F" });
             }
             break;
         case 'G':
             if (lowFreq) {
-                song.push({note: 59, duration: dur, soundType: osc, display: "G"});
+                song.push({ note: 59, duration: dur, soundType: osc, display: "G" });
             } else {
-                song.push({note: 71, duration: dur, soundType: osc, display: "G"});
+                song.push({ note: 71, duration: dur, soundType: osc, display: "G" });
             }
             break;
         case 'N':
-            song.push({note: 0, duration: dur, soundType: osc, display: "G"});
+            song.push({ note: 0, duration: dur, soundType: osc, display: "N" });
             break;
         default:
             break;
@@ -183,6 +210,7 @@ function addSquare() {
 
 
 function playNote(note, duration, soundType) {
+    drawNote(note, duration);
     if (soundType === "piano") {
         switch (note) {
             case 48:
@@ -366,8 +394,69 @@ function touchStarted() {
 
 // TODO: Change it to save block
 function keyTyped() {
-    if (key === 's') {
-        save(soundFile, 'mySound.wav');
+    switch (key) {
+        case 'a' || 'A':
+            addNote('A', 200);
+            break;
+        case 'b' || 'B':
+            addNote('B', 200);
+            break;
+        case 'c' || 'C':
+            addNote('C', 200);
+            break;
+        case 'd' || 'D':
+            addNote('D', 200);
+            break;
+        case 'e' || 'E':
+            addNote('E', 200);
+            break;
+        case 'f' || 'F':
+            addNote('F', 200);
+            break;
+        case 'g' || 'G':
+            addNote('G', 200);
+            break;
+        case 'n' || 'N':
+            addNote('N', 200);
+            break;
+        case '1':
+            startSynth();
+            break;
+        case 'l' || 'L':
+            startLoop();
+            break;
+        case 'f' || 'F':
+            changeFreq('bass');
+            break;
+        case 't' || 'T':
+            changeFreq('treble');
+            break;
+        case '3':
+            changeBPM(30);
+            break;
+        case '6':
+            changeBPM(60);
+            break;
+        case 'u' || 'U':
+            addGuitar();
+            break;
+        case 'i' || 'I':
+            addSine();
+            break;
+        case 'r' || 'R':
+            addSquare();
+            break;
+        case 'o' || 'O':
+            addPiano();
+            break;
+        case 'p' || 'P':
+            playSong();
+            break;
+        case 's' || 'S':
+            save(soundFile, 'mySound.wav');
+            break;
+        default:
+            break;
     }
 }
 
@@ -379,14 +468,36 @@ function keyPressed() {
         if (keyCode === DOWN_ARROW) {
             (loopTimes < 2) ? loopTimes = 2 : loopTimes--;
         }
+        document.getElementById("loopTimes").innerHTML = loopTimes;
     }
 }
 
 function startNewPart() {
+    let boxPhrase = new p5.Phrase('box', playBox, boxPat);
+    let drumPhrase = new p5.Phrase('drum', playDrum, drumPat);
 
+    myPart.addPhrase(boxPhrase);
+    myPart.addPhrase(drumPhrase);
+}
+
+function drawStaff() {
+    let lineY = height / 2 - 75;
+    for (let i = 0; i < 5; i++) {
+        line(0, lineY, width, lineY);
+        lineY += gap;
+    }
+}
+
+function drawNote(note, dur) {
+    ellipseMode(CENTER);
+    let noteY = height / 2 - 75;
+    let diff = note.charCodeAt(0) - "A".charCodeAt(0);
+    ellipse(width / 2, noteY + diff * (gap / 2), gap + 10, gap);
 }
 
 function draw() {
+    background(255);
+    drawStaff();
     if (autoplay && millis() > trigger) {
         recorder.record(soundFile);
         if (inLoop) {

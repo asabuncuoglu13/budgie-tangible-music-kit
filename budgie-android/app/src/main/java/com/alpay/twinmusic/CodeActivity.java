@@ -1,9 +1,12 @@
 package com.alpay.twinmusic;
 
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.hardware.SensorManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
@@ -13,8 +16,12 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.GestureDetector;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -27,7 +34,15 @@ import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
 
-public class CodeActivity extends AppCompatActivity implements ShakeDetector.Listener {
+public class CodeActivity extends AppCompatActivity implements ShakeDetector.Listener,
+        GestureDetector.OnGestureListener,
+        GestureDetector.OnDoubleTapListener {
+
+    private static final int SWIPE_MIN_DISTANCE = 120;
+    private static final int SWIPE_MAX_OFF_PATH = 250;
+    private static final int SWIPE_THRESHOLD_VELOCITY = 200;
+    private static final String DEBUG_TAG = "Gestures";
+    private GestureDetectorCompat mDetector;
 
     public static final String MIME_TEXT_PLAIN = "text/plain";
     private NfcAdapter mNfcAdapter;
@@ -59,6 +74,9 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
                 startActivity(intent);
             }
         }
+        mDetector = new GestureDetectorCompat(this, this);
+        mDetector.setOnDoubleTapListener(this);
+
         handleIntent(getIntent());
     }
 
@@ -88,7 +106,11 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
         webSettings.setMediaPlaybackRequiresUserGesture(false);
         webSettings.setAllowFileAccessFromFileURLs(true);
         webSettings.setAllowUniversalAccessFromFileURLs(true);
-        webView.loadUrl("file:///android_asset/index.html");
+        if (isNetworkAvailable()) {
+            webView.loadUrl("https://budgi.es/device.html");
+        } else {
+            webView.loadUrl("file:///android_asset/index.html");
+        }
     }
 
     public void evalCode(final String code) {
@@ -245,16 +267,101 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
         startActivity(intent);
     }
 
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)){
-            evalCode(CodeGenerator.LOOP_DOWN);
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
+
         }
-        if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)){
-            evalCode(CodeGenerator.LOOP_UP);
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
         }
         return true;
     }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (this.mDetector.onTouchEvent(event)) {
+            return true;
+        }
+        return super.onTouchEvent(event);
+    }
+
+    @Override
+    public boolean onDown(MotionEvent event) {
+        Log.d(DEBUG_TAG, "onDown: " + event.toString());
+        return true;
+    }
+
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+                           float velocityY) {
+        try {
+            if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH) {
+                return false;
+            }
+            // right to left swipe
+            if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
+                    && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                evalCode(CodeGenerator.LOOP_DOWN);
+            }
+            // left to right swipe
+            else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
+                    && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                evalCode(CodeGenerator.LOOP_UP);
+            }
+        } catch (Exception e) {
+
+        }
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent event) {
+        Log.d(DEBUG_TAG, "onLongPress: " + event.toString());
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent event1, MotionEvent event2, float distanceX,
+                            float distanceY) {
+        Log.d(DEBUG_TAG, "onScroll: " + event1.toString() + event2.toString());
+        return true;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent event) {
+        Log.d(DEBUG_TAG, "onShowPress: " + event.toString());
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent event) {
+        Log.d(DEBUG_TAG, "onSingleTapUp: " + event.toString());
+        return true;
+    }
+
+    @Override
+    public boolean onDoubleTap(MotionEvent event) {
+        Log.d(DEBUG_TAG, "onDoubleTap: " + event.toString());
+        return true;
+    }
+
+    @Override
+    public boolean onDoubleTapEvent(MotionEvent event) {
+        Log.d(DEBUG_TAG, "onDoubleTapEvent: " + event.toString());
+        return true;
+    }
+
+    @Override
+    public boolean onSingleTapConfirmed(MotionEvent event) {
+        Log.d(DEBUG_TAG, "onSingleTapConfirmed: " + event.toString());
+        return true;
+    }
+
 
     @Override
     public void hearShake() {

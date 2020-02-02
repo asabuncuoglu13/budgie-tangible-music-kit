@@ -39,10 +39,11 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
         GestureDetector.OnDoubleTapListener {
 
     private static final int SWIPE_MIN_DISTANCE = 120;
-    private static final int SWIPE_MAX_OFF_PATH = 250;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
     private static final String DEBUG_TAG = "Gestures";
     private GestureDetectorCompat mDetector;
+    private boolean inLoop = false;
+    private boolean inBPM = false;
 
     public static final String MIME_TEXT_PLAIN = "text/plain";
     private NfcAdapter mNfcAdapter;
@@ -190,6 +191,7 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
                 } else if (result.contentEquals(NFCTag.PART)) {
                     evalCode(CodeGenerator.START_PART);
                 } else if (result.contentEquals(NFCTag.LOOP)) {
+                    inLoop = !inLoop;
                     evalCode(CodeGenerator.START_LOOP);
                 } else if (result.contentEquals(NFCTag.CLEAR_ALL)) {
                     evalCode(CodeGenerator.CLEAR_ALL);
@@ -221,12 +223,11 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
                     evalCode(CodeGenerator.ADD_NOTE_G);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_NULL)) {
                     evalCode(CodeGenerator.ADD_NOTE_N);
-                } else if (result.contentEquals(NFCTag.BEAT_SLOW)) {
-                    evalCode(CodeGenerator.CHANGE_TEMPO_LOW);
                 } else if (result.contentEquals(NFCTag.BEAT_MED)) {
+                    inBPM = !inBPM;
                     evalCode(CodeGenerator.CHANGE_TEMPO_MED);
-                } else if (result.contentEquals(NFCTag.BEAT_FAST)) {
-                    evalCode(CodeGenerator.CHANGE_TEMPO_HIGH);
+                } else if (result.contentEquals(NFCTag.KICK)) {
+                    evalCode(CodeGenerator.KICK);
                 } else if (result.contentEquals(NFCTag.RUN)) {
                     evalCode(CodeGenerator.PLAY_SONG);
                 } else if (result.contentEquals(NFCTag.SPEAK)) {
@@ -275,16 +276,6 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
-
-        }
-        if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
-        }
-        return true;
-    }
-
-    @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (this.mDetector.onTouchEvent(event)) {
             return true;
@@ -303,24 +294,28 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
                            float velocityY) {
         try {
             // right to left swipe
-            if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
-                    && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                evalCode(CodeGenerator.LOOP_DOWN);
+            if (inLoop){
+                if (e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE
+                        && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
+                    evalCode(CodeGenerator.LOOP_UP);
+                }
+                if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE
+                        && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
+                    evalCode(CodeGenerator.LOOP_DOWN);
+                }
             }
-            // down to up
-            if (e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE
-                    && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
-                evalCode(CodeGenerator.LOOP_UP);
+
+            if (inBPM){
+                if (e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE
+                        && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
+                    evalCode(CodeGenerator.BPM_UP);
+                }
+                if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE
+                        && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
+                    evalCode(CodeGenerator.BPM_DOWN);
+                }
             }
-            if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE
-                    && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
-                evalCode(CodeGenerator.LOOP_DOWN);
-            }
-            // left to right swipe
-            else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
-                    && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                evalCode(CodeGenerator.LOOP_UP);
-            }
+
         } catch (Exception e) {
 
         }

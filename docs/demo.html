@@ -110,12 +110,7 @@
             background-size: contain;
         }
 
-        #lowtempo {
-            background: url("blocks/tempo_low.png") no-repeat center;
-            background-size: contain;
-        }
-
-        #medtempo {
+        #bpm {
             background: url("blocks/tempo_med.png") no-repeat center;
             background-size: contain;
         }
@@ -158,18 +153,17 @@
     <div class="grid">
         <div id="start" onclick="startSynth()" class="item">start music</div>
         <div id="loop" onclick="startLoop()" class="item">loop : <p id="loopTimes">2</p> times</div>
-        <div id="noteA" onclick="addNote('A', 200)" class="item">note A</div>
-        <div id="noteB" onclick="addNote('B', 200)" class="item">note B</div>
-        <div id="noteC" onclick="addNote('C', 200)" class="item">note C</div>
-        <div id="noteD" onclick="addNote('D', 200)" class="item">note D</div>
-        <div id="noteE" onclick="addNote('E', 200)" class="item">note E</div>
-        <div id="noteF" onclick="addNote('F', 200)" class="item">note F</div>
-        <div id="noteG" onclick="addNote('G', 200)" class="item">note G</div>
-        <div id="noteN" onclick="addNote('N', 200)" class="item">rest</div>
+        <div id="noteA" onclick="addNote('A', 1)" class="item">note A</div>
+        <div id="noteB" onclick="addNote('B', 1)" class="item">note B</div>
+        <div id="noteC" onclick="addNote('C', 1)" class="item">note C</div>
+        <div id="noteD" onclick="addNote('D', 1)" class="item">note D</div>
+        <div id="noteE" onclick="addNote('E', 1)" class="item">note E</div>
+        <div id="noteF" onclick="addNote('F', 1)" class="item">note F</div>
+        <div id="noteG" onclick="addNote('G', 1)" class="item">note G</div>
+        <div id="noteN" onclick="addNote('N', 1)" class="item">rest</div>
         <div id="lowfreq" onclick="changeFreq('bass')" class="item">bass</div>
         <div id="highfreq" onclick="changeFreq('treble')" class="item">treble</div>
-        <div id="lowtempo" onclick="changeBPM(30)" class="item">30 bpm</div>
-        <div id="medtempo" onclick="changeBPM(60)" class="item">60 bpm</div>
+        <div id="bpm" onclick="changeBPM()" class="item">bpm : <p id="bpmTimes">120</p></div>
         <div id="guitar" onclick="addGuitar()" class="item">guitar</div>
         <div id="sine" onclick="addSine()" class="item">sine wave</div>
         <div id="square" onclick="addSquare()" class="item">square wave</div>

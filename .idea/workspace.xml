@@ -8,10 +8,12 @@
   <component name="ChangeListManager">
     <list default="true" id="4332da44-fc07-4348-a83f-210b0fc4c60d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/budgie-android/app/src/main/assets/js/sketch.js" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/js/sketch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/budgie-android/app/src/main/java/com/alpay/twinmusic/CodeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/src/main/java/com/alpay/twinmusic/CodeActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/budgie-android/app/src/main/res/layout/activity_code.xml" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/src/main/res/layout/activity_code.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budgie-android/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budgie-android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/demo.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/demo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/js/p5/p5.sound.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/js/p5/p5.sound.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/js/sketch.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/js/sketch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/project.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/project.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,42 +28,44 @@
     <session id="1079843545">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.8" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="html" value="5" />
-          <entry key="js" value="1" />
+          <entry key="js" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="HTML" value="5" />
-          <entry key="JavaScript" value="1" />
+          <entry key="JavaScript" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="33" />
-          <entry key="js" value="179" />
+          <entry key="html" value="65" />
+          <entry key="js" value="820" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="33" />
-          <entry key="JavaScript" value="179" />
+          <entry key="HTML" value="65" />
+          <entry key="JavaScript" value="820" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
+            <state relative-caret-position="322">
               <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
             </state>
           </provider>
@@ -80,8 +84,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/demo.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-236">
-              <caret line="170" column="76" selection-start-line="170" selection-start-column="76" selection-end-line="170" selection-end-column="76" />
+            <state relative-caret-position="-2179">
+              <caret line="18" column="14" lean-forward="true" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -101,8 +105,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/docs/js/sketch.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="134" column="29" selection-start-line="134" selection-start-column="29" selection-end-line="134" selection-end-column="29" />
+            <state relative-caret-position="213">
+              <caret line="101" column="9" lean-forward="true" selection-start-line="101" selection-start-column="9" selection-end-line="101" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -119,18 +123,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>evalCode</find>
-      <find>class=&quot;item&quot;</find>
-      <find>octave</find>
-      <find>bpm</find>
-      <find>sine</find>
-      <find>no-repeat center;</find>
-      <find>note</find>
-      <find>startLoop</find>
-      <find>nots</find>
-      <find>c === 2</find>
-      <find>hidden</find>
-      <find>slider</find>
       <find>--green</find>
       <find>btnGoMelodies</find>
       <find>duration: dur,</find>
@@ -149,9 +141,20 @@
       <find>note.co</find>
       <find>loop</find>
       <find>draw</find>
+      <find>song</find>
+      <find>loopedSong</find>
+      <find>soundType</find>
+      <find>loopTimes</find>
+      <find>BPM</find>
+      <find>beatsPerMinute</find>
+      <find>nots</find>
+      <find>note</find>
+      <find>noteAtt</find>
+      <find>var</find>
+      <find>osc</find>
+      <find>oscType</find>
     </findStrings>
     <replaceStrings>
-      <replace>let</replace>
       <replace>function</replace>
       <replace>{0}</replace>
       <replace>{1}</replace>
@@ -168,6 +171,7 @@
       <replace>duration: dur, soundType: osc,</replace>
       <replace>guitar</replace>
       <replace>g_</replace>
+      <replace>let</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -177,6 +181,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/docs/device.html" />
+        <option value="$PROJECT_DIR$/docs/js/p5/p5.sound.js" />
+        <option value="$PROJECT_DIR$/docs/demo.html" />
         <option value="$PROJECT_DIR$/docs/js/sketch.js" />
       </list>
     </option>
@@ -198,10 +204,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="417" />
-    <option name="y" value="24" />
-    <option name="width" value="1400" />
-    <option name="height" value="1000" />
+    <option name="x" value="85" />
+    <option name="y" value="-8" />
+    <option name="width" value="1843" />
+    <option name="height" value="1096" />
   </component>
   <component name="ProjectId" id="1X8KJ8oEOxmex4SXijHiS0dq71L" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -210,6 +216,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -222,11 +229,29 @@
               <item name="budgie-tangible-music-kit" type="462c0819:PsiDirectoryNode" />
               <item name="docs" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="budgie-tangible-music-kit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="budgie-tangible-music-kit" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="budgie-tangible-music-kit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="budgie-tangible-music-kit" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="p5" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="budgie-tangible-music-kit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="budgie-tangible-music-kit" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+              <item name="sound" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="ProjectViewState">
@@ -353,24 +378,21 @@
       <workItem from="1580382464460" duration="610000" />
       <workItem from="1580422214065" duration="32000" />
       <workItem from="1580422267521" duration="887000" />
-      <workItem from="1580550347510" duration="6929000" />
+      <workItem from="1580550347510" duration="7588000" />
+      <workItem from="1580651551015" duration="9875000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6929000" />
+    <option name="totallyTimeSpent" value="17463000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="85" y="-8" width="1843" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2498615" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2498615" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.32911393" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -378,6 +400,10 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.09704641" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -404,10 +430,27 @@
     <state x="640" y="146" key="SettingsEditor/93.0.1827.1080@93.0.1827.1080" timestamp="1580422520014" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/docs/tutorial.html">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/docs/js/p5/p5.sound.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1778">
+          <caret line="12588" column="50" lean-forward="true" selection-start-line="12588" selection-start-column="50" selection-end-line="12588" selection-end-column="50" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/project.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/tutorial.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/device.html">
@@ -420,24 +463,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/demo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-236">
-          <caret line="170" column="76" selection-start-line="170" selection-start-column="76" selection-end-line="170" selection-end-column="76" />
+        <state relative-caret-position="-2179">
+          <caret line="18" column="14" lean-forward="true" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/js/sketch.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="134" column="29" selection-start-line="134" selection-start-column="29" selection-end-line="134" selection-end-column="29" />
+        <state relative-caret-position="213">
+          <caret line="101" column="9" lean-forward="true" selection-start-line="101" selection-start-column="9" selection-end-line="101" selection-end-column="9" />
         </state>
       </provider>
     </entry>

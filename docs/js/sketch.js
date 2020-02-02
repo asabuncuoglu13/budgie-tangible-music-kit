@@ -4,13 +4,18 @@ let gap = 30;
 
 let song = [];
 let loopedSong = [];
+let sloop;
+let synth;
+let eventIndex = 0;
+let beatsPerMinute = 120;
+let secondsPerBeat;
 
 let trigger = 0;
 let autoplay = false;
-let oscS, oscT;
+let osc;
 let lowFreq = false;
 let highFreq = true;
-let osc = "sine";
+let oscType = "sine";
 let recorder, soundFile;
 let loopTimes = 2;
 let currentBlock = "start";
@@ -57,17 +62,12 @@ function preload() {
 }
 
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    noCanvas();
 
-    // Triangle oscillator
-    oscT = new p5.TriOsc();
-    oscT.start();
-    oscT.amp(0);
-
-    // Sine oscillator
-    oscS = new p5.SinOsc();
-    oscS.start();
-    oscS.amp(0);
+    synth = new p5.PolySynth();
+    sloop = new p5.SoundLoop(soundLoop, 0.2);
+    osc = new p5.Oscillator();
+    osc.amp(1);
 
     recorder = new p5.SoundRecorder();
     recorder.setInput();
@@ -76,8 +76,62 @@ function setup() {
     myPart = new p5.Part();
 }
 
+function noteToFreq(note) {
+    let notes = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'], octave, keyNumber;
+    if (note.length === 3) {
+        octave = note.charAt(2);
+    } else {
+        octave = note.charAt(1);
+    }
+    keyNumber = notes.indexOf(note.slice(0, -1));
+    if (keyNumber < 3) {
+        keyNumber = keyNumber + 12 + ((octave - 1) * 12) + 1;
+    } else {
+        keyNumber = keyNumber + ((octave - 1) * 12) + 1;
+    }
+    return 440 * Math.pow(2, (keyNumber- 49) / 12);
+};
+
+function soundLoop(cycleStartTime) {
+    let event = song[eventIndex];
+    if (event.type === 1) {
+        if (event.soundType === "poly"){
+            synth.noteAttack(event.pitch, event.velocity, cycleStartTime);
+        } else {
+            attackNote(event.pitch, event.timeSincePrevEvent, event.soundType);
+        }
+    } else {
+        if (event.soundType  === "poly") {
+            synth.noteRelease(event.pitch, cycleStartTime);
+        } else {
+            releaseNote(event.pitch, event.timeSincePrevEvent, event.soundType);
+        }
+    }
+    // Prepare for next event
+    eventIndex++;
+    if (eventIndex >= song.length) {
+        this.stop();
+    } else {
+        let nextEvent = song[eventIndex];
+        // This cycle will last for the time since previous event of the next event
+        secondsPerBeat = 60 / beatsPerMinute;
+
+        let duration = nextEvent.timeSincePrevEvent * secondsPerBeat;
+        this.interval = max(duration, 0.01); // Cannot have interval of exactly 0
+    }
+}
+
 function playSong() {
-    if (inLoop) {
+    if (sloop.isPlaying) {
+        sloop.stop();
+        synth.noteRelease(); // Release all notes
+    } else {
+        // Reset counters
+        eventIndex = 0;
+        sloop.start();
+    }
+
+  /*  if (inLoop) {
         createLoopedSong(loopTimes);
         myPart.loop();
     }
@@ -85,7 +139,7 @@ function playSong() {
         index = 0;
         autoplay = true;
     }
-    myPart.start();
+    myPart.start();*/
 }
 
 function playBox(time, playbackRate) {
@@ -108,8 +162,8 @@ function changeFreq(val) {
     }
 }
 
-function changeBPM(num) {
-    myPart.setBPM(num);
+function changeBPM() {
+    currentBlock = "bpm";
 }
 
 function startSynth() {
@@ -133,150 +187,101 @@ function createLoopedSong(num) {
 }
 
 function addNote(note, dur) {
-    switch (note) {
-        case 'A':
-            if (lowFreq) {
-                song.push({ note: 57, duration: dur, soundType: osc, display: "A" });
-            } else {
-                song.push({ note: 69, duration: dur, soundType: osc, display: "A" });
-            }
-            break;
-        case 'B':
-            if (lowFreq) {
-                song.push({ note: 59, duration: dur, soundType: osc, display: "b" });
-            } else {
-                song.push({ note: 71, duration: dur, soundType: osc, display: "B" });
-            }
-            break;
-        case 'C':
-            if (lowFreq) {
-                song.push({ note: 48, duration: dur, soundType: osc, display: "C" });
-            } else {
-                song.push({ note: 60, duration: dur, soundType: osc, display: "C" });
-            }
-            break;
-        case 'D':
-            if (lowFreq) {
-                song.push({ note: 50, duration: dur, soundType: osc, display: "D" });
-            } else {
-                song.push({ note: 62, duration: dur, soundType: osc, display: "D" });
-            }
-            break;
-        case 'E':
-            if (lowFreq) {
-                song.push({ note: 52, duration: dur, soundType: osc, display: "E" });
-            } else {
-                song.push({ note: 64, duration: dur, soundType: osc, display: "E" });
-            }
-            break;
-        case 'F':
-            if (lowFreq) {
-                song.push({ note: 53, duration: dur, soundType: osc, display: "F" });
-            } else {
-                song.push({ note: 65, duration: dur, soundType: osc, display: "F" });
-            }
-            break;
-        case 'G':
-            if (lowFreq) {
-                song.push({ note: 59, duration: dur, soundType: osc, display: "G" });
-            } else {
-                song.push({ note: 71, duration: dur, soundType: osc, display: "G" });
-            }
-            break;
-        case 'N':
-            song.push({ note: 0, duration: dur, soundType: osc, display: "N" });
-            break;
-        default:
-            break;
+    if (lowFreq) {
+        song.push({pitch: note + '3', velocity:1, timeSincePrevEvent:0, type:1, soundType: oscType, display: note+'3'});
+        song.push({pitch: note + '3', velocity:1, timeSincePrevEvent:dur, type:0, soundType: oscType, display: note+'3'});
+    } else {
+        song.push({pitch: note + '4', velocity:1, timeSincePrevEvent:0, type:1, soundType: oscType, display: note+'4'});
+        song.push({pitch: note + '4', velocity:1, timeSincePrevEvent:dur, type:0, soundType: oscType, display: note+'4'});
     }
 }
 
 function addPiano() {
-    osc = "piano";
+    oscType = "piano";
 }
 
 function addGuitar() {
-    osc = "guitar";
+    oscType = "guitar";
 }
 
 function addSine() {
-    osc = "sine";
+    oscType = "sine";
 }
 
 function addSquare() {
-    osc = "square";
+    oscType = "square";
 }
 
 
 function playNote(note, duration, soundType) {
     if (soundType === "piano") {
         switch (note) {
-            case 48:
+            case "C3":
                 p_c3.setVolume(1);
                 p_c3.play();
                 p_c3.stop(1);
                 break;
-            case 50:
+            case "D3":
                 p_d3.setVolume(1);
                 p_d3.play();
                 p_d3.stop(1);
                 break;
-            case 52:
+            case "E3":
                 p_e3.setVolume(1);
                 p_e3.play();
                 p_e3.stop(1);
                 break;
-            case 53:
+            case "F3":
                 p_f3.setVolume(1);
                 p_f3.play();
                 p_f3.stop(1);
                 break;
-            case 55:
+            case "G3":
                 p_g3.setVolume(1);
                 p_g3.play();
                 p_g3.stop(1);
                 break;
-            case 57:
+            case "A3":
                 p_a3.setVolume(1);
                 p_a3.play();
                 p_a3.stop(1);
                 break;
-            case 59:
+            case "B3":
                 p_b3.setVolume(1);
                 p_b3.play();
                 p_b3.stop(1);
                 break;
-            case 60:
+            case "C4":
                 p_c4.setVolume(1);
                 p_c4.play();
                 p_c4.stop(1);
                 break;
-            case 62:
+            case "D4":
                 p_d4.setVolume(1);
                 p_d4.play();
                 p_d4.stop(1);
                 break;
-            case 64:
+            case "E4":
                 p_e4.setVolume(1);
                 p_e4.play();
                 p_e4.stop(1);
                 break;
-            case 65:
+            case "F4":
                 p_f4.setVolume(1);
                 p_f4.play();
                 p_f4.stop(1);
                 break;
-            case 67:
+            case "G4":
                 p_g4.setVolume(1);
                 p_g4.play();
                 p_g4.stop(1);
                 break;
-            case 69:
+            case "A4":
                 p_a4.setVolume(1);
                 p_a4.play();
                 p_a4.stop(1);
                 break;
-            case 71:
+            case "B4":
                 p_b4.setVolume(1);
                 p_b4.play();
                 p_b4.stop(1);
@@ -287,72 +292,72 @@ function playNote(note, duration, soundType) {
     }
     if (soundType === "guitar") {
         switch (note) {
-            case 48:
+            case "C3":
                 g_c3.setVolume(1);
                 g_c3.play();
                 g_c3.stop(1);
                 break;
-            case 50:
+            case "D3":
                 g_d3.setVolume(1);
                 g_d3.play();
                 g_d3.stop(1);
                 break;
-            case 52:
+            case "E3":
                 g_e3.setVolume(1);
                 g_e3.play();
                 g_e3.stop(1);
                 break;
-            case 53:
+            case "F3":
                 g_f3.setVolume(1);
                 g_f3.play();
                 g_f3.stop(1);
                 break;
-            case 55:
+            case "G3":
                 g_g3.setVolume(1);
                 g_g3.play();
                 g_g3.stop(1);
                 break;
-            case 57:
+            case "A3":
                 g_a3.setVolume(1);
                 g_a3.play();
                 g_a3.stop(1);
                 break;
-            case 59:
+            case "B3":
                 g_b3.setVolume(1);
                 g_b3.play();
                 g_b3.stop(1);
                 break;
-            case 60:
+            case "C4":
                 g_c4.setVolume(1);
                 g_c4.play();
                 g_c4.stop(1);
                 break;
-            case 62:
+            case "D4":
                 g_d4.setVolume(1);
                 g_d4.play();
                 g_d4.stop(1);
                 break;
-            case 64:
+            case "E4":
                 g_e4.setVolume(1);
                 g_e4.play();
                 g_e4.stop(1);
                 break;
-            case 65:
+            case "F4":
                 g_f4.setVolume(1);
                 g_f4.play();
                 g_f4.stop(1);
                 break;
-            case 67:
+            case "G4":
                 g_g4.setVolume(1);
                 g_g4.play();
                 g_g4.stop(1);
                 break;
-            case 69:
+            case "A4":
                 g_a4.setVolume(1);
                 g_a4.play();
                 g_a4.stop(1);
                 break;
-            case 71:
+            case "B4":
                 g_b4.setVolume(1);
                 g_b4.play();
                 g_b4.stop(1);
@@ -362,24 +367,349 @@ function playNote(note, duration, soundType) {
         }
     }
     if (soundType === "square") {
-        oscT.freq(midiToFreq(note));
-        oscT.fade(0.5, 0.2);
-        if (duration) {
-            setTimeout(function () {
-                oscT.fade(0, 0.2);
-            }, duration - 50);
-        }
+        osc.start();
+        osc.freq(noteToFreq(note));
+        osc.amp(1);
+        osc.setType('square');
+        osc.stop(duration);
     } else if (soundType === "sine") {
-        oscS.freq(midiToFreq(note));
-        oscS.fade(0.5, 0.2);
-        if (duration) {
-            setTimeout(function () {
-                oscS.fade(0, 0.2);
-            }, duration - 50);
-        }
-
+        osc.start();
+        osc.freq(noteToFreq(note));
+        osc.amp(1);
+        osc.setType('sine');
+        osc.stop(duration);
     }
 }
+
+
+function attackNote(note, duration, soundType) {
+    if (soundType === "piano") {
+        switch (note) {
+            case "C3":
+                p_c3.setVolume(1);
+                p_c3.play();
+                p_c3.stop(1);
+                break;
+            case "D3":
+                p_d3.setVolume(1);
+                p_d3.play();
+                p_d3.stop(1);
+                break;
+            case "E3":
+                p_e3.setVolume(1);
+                p_e3.play();
+                p_e3.stop(1);
+                break;
+            case "F3":
+                p_f3.setVolume(1);
+                p_f3.play();
+                p_f3.stop(1);
+                break;
+            case "G3":
+                p_g3.setVolume(1);
+                p_g3.play();
+                p_g3.stop(1);
+                break;
+            case "A3":
+                p_a3.setVolume(1);
+                p_a3.play();
+                p_a3.stop(1);
+                break;
+            case "B3":
+                p_b3.setVolume(1);
+                p_b3.play();
+                p_b3.stop(1);
+                break;
+            case "C4":
+                p_c4.setVolume(1);
+                p_c4.play();
+                p_c4.stop(1);
+                break;
+            case "D4":
+                p_d4.setVolume(1);
+                p_d4.play();
+                p_d4.stop(1);
+                break;
+            case "E4":
+                p_e4.setVolume(1);
+                p_e4.play();
+                p_e4.stop(1);
+                break;
+            case "F4":
+                p_f4.setVolume(1);
+                p_f4.play();
+                p_f4.stop(1);
+                break;
+            case "G4":
+                p_g4.setVolume(1);
+                p_g4.play();
+                p_g4.stop(1);
+                break;
+            case "A4":
+                p_a4.setVolume(1);
+                p_a4.play();
+                p_a4.stop(1);
+                break;
+            case "B4":
+                p_b4.setVolume(1);
+                p_b4.play();
+                p_b4.stop(1);
+                break;
+            default:
+                break;
+        }
+    }
+    if (soundType === "guitar") {
+        switch (note) {
+            case "C3":
+                g_c3.setVolume(1);
+                g_c3.play();
+                g_c3.stop(1);
+                break;
+            case "D3":
+                g_d3.setVolume(1);
+                g_d3.play();
+                g_d3.stop(1);
+                break;
+            case "E3":
+                g_e3.setVolume(1);
+                g_e3.play();
+                g_e3.stop(1);
+                break;
+            case "F3":
+                g_f3.setVolume(1);
+                g_f3.play();
+                g_f3.stop(1);
+                break;
+            case "G3":
+                g_g3.setVolume(1);
+                g_g3.play();
+                g_g3.stop(1);
+                break;
+            case "A3":
+                g_a3.setVolume(1);
+                g_a3.play();
+                g_a3.stop(1);
+                break;
+            case "B3":
+                g_b3.setVolume(1);
+                g_b3.play();
+                g_b3.stop(1);
+                break;
+            case "C4":
+                g_c4.setVolume(1);
+                g_c4.play();
+                g_c4.stop(1);
+                break;
+            case "D4":
+                g_d4.setVolume(1);
+                g_d4.play();
+                g_d4.stop(1);
+                break;
+            case "E4":
+                g_e4.setVolume(1);
+                g_e4.play();
+                g_e4.stop(1);
+                break;
+            case "F4":
+                g_f4.setVolume(1);
+                g_f4.play();
+                g_f4.stop(1);
+                break;
+            case "G4":
+                g_g4.setVolume(1);
+                g_g4.play();
+                g_g4.stop(1);
+                break;
+            case "A4":
+                g_a4.setVolume(1);
+                g_a4.play();
+                g_a4.stop(1);
+                break;
+            case "B4":
+                g_b4.setVolume(1);
+                g_b4.play();
+                g_b4.stop(1);
+                break;
+            default:
+                break;
+        }
+    }
+    if (soundType === "square") {
+        osc.start();
+        osc.freq(noteToFreq(note));
+        osc.amp(1);
+        osc.setType('square');
+    } else if (soundType === "sine") {
+        osc.start();
+        osc.freq(noteToFreq(note));
+        osc.amp(1);
+        osc.setType('sine');
+    }
+}
+
+
+function releaseNote(note, duration, soundType) {
+    if (soundType === "piano") {
+        switch (note) {
+            case "C3":
+                p_c3.setVolume(1);
+                p_c3.play();
+                p_c3.stop(1);
+                break;
+            case "D3":
+                p_d3.setVolume(1);
+                p_d3.play();
+                p_d3.stop(1);
+                break;
+            case "E3":
+                p_e3.setVolume(1);
+                p_e3.play();
+                p_e3.stop(1);
+                break;
+            case "F3":
+                p_f3.setVolume(1);
+                p_f3.play();
+                p_f3.stop(1);
+                break;
+            case "G3":
+                p_g3.setVolume(1);
+                p_g3.play();
+                p_g3.stop(1);
+                break;
+            case "A3":
+                p_a3.setVolume(1);
+                p_a3.play();
+                p_a3.stop(1);
+                break;
+            case "B3":
+                p_b3.setVolume(1);
+                p_b3.play();
+                p_b3.stop(1);
+                break;
+            case "C4":
+                p_c4.setVolume(1);
+                p_c4.play();
+                p_c4.stop(1);
+                break;
+            case "D4":
+                p_d4.setVolume(1);
+                p_d4.play();
+                p_d4.stop(1);
+                break;
+            case "E4":
+                p_e4.setVolume(1);
+                p_e4.play();
+                p_e4.stop(1);
+                break;
+            case "F4":
+                p_f4.setVolume(1);
+                p_f4.play();
+                p_f4.stop(1);
+                break;
+            case "G4":
+                p_g4.setVolume(1);
+                p_g4.play();
+                p_g4.stop(1);
+                break;
+            case "A4":
+                p_a4.setVolume(1);
+                p_a4.play();
+                p_a4.stop(1);
+                break;
+            case "B4":
+                p_b4.setVolume(1);
+                p_b4.play();
+                p_b4.stop(1);
+                break;
+            default:
+                break;
+        }
+    }
+    if (soundType === "guitar") {
+        switch (note) {
+            case "C3":
+                g_c3.setVolume(1);
+                g_c3.play();
+                g_c3.stop(1);
+                break;
+            case "D3":
+                g_d3.setVolume(1);
+                g_d3.play();
+                g_d3.stop(1);
+                break;
+            case "E3":
+                g_e3.setVolume(1);
+                g_e3.play();
+                g_e3.stop(1);
+                break;
+            case "F3":
+                g_f3.setVolume(1);
+                g_f3.play();
+                g_f3.stop(1);
+                break;
+            case "G3":
+                g_g3.setVolume(1);
+                g_g3.play();
+                g_g3.stop(1);
+                break;
+            case "A3":
+                g_a3.setVolume(1);
+                g_a3.play();
+                g_a3.stop(1);
+                break;
+            case "B3":
+                g_b3.setVolume(1);
+                g_b3.play();
+                g_b3.stop(1);
+                break;
+            case "C4":
+                g_c4.setVolume(1);
+                g_c4.play();
+                g_c4.stop(1);
+                break;
+            case "D4":
+                g_d4.setVolume(1);
+                g_d4.play();
+                g_d4.stop(1);
+                break;
+            case "E4":
+                g_e4.setVolume(1);
+                g_e4.play();
+                g_e4.stop(1);
+                break;
+            case "F4":
+                g_f4.setVolume(1);
+                g_f4.play();
+                g_f4.stop(1);
+                break;
+            case "G4":
+                g_g4.setVolume(1);
+                g_g4.play();
+                g_g4.stop(1);
+                break;
+            case "A4":
+                g_a4.setVolume(1);
+                g_a4.play();
+                g_a4.stop(1);
+                break;
+            case "B4":
+                g_b4.setVolume(1);
+                g_b4.play();
+                g_b4.stop(1);
+                break;
+            default:
+                break;
+        }
+    }
+    if (soundType === "square") {
+        osc.stop(duration);
+    } else if (soundType === "sine") {
+        osc.stop(duration);
+    }
+}
+
+
 
 // TODO: Change it as an NFC function
 function mousePressed() {
@@ -387,7 +717,7 @@ function mousePressed() {
 }
 
 function touchStarted() {
-    getAudioContext().resume()
+    getAudioContext().resume();
 }
 
 // TODO: Change it to save block
@@ -423,7 +753,7 @@ function keyTyped() {
         case 'l' || 'L':
             startLoop();
             break;
-        case 'f' || 'F':
+        case 'o' || 'O':
             changeFreq('bass');
             break;
         case 't' || 'T':
@@ -441,22 +771,31 @@ function keyTyped() {
         case 'i' || 'I':
             addSine();
             break;
-        case 'r' || 'R':
+        case 's' || 'S':
             addSquare();
             break;
-        case 'o' || 'O':
+        case 'p' || 'P':
             addPiano();
             break;
-        case 'p' || 'P':
+        case 'r' || 'R':
             playSong();
             break;
-        case 's' || 'S':
+        case 'v' || 'V':
             save(soundFile, 'mySound.wav');
             break;
         default:
             break;
     }
 }
+
+function increaseBPM() {
+    (beatsPerMinute > 180) ? beatsPerMinute = 180 : beatsPerMinute+=5;
+}
+
+function decreaseBPM() {
+    (beatsPerMinute < 60) ? beatsPerMinute = 60 : beatsPerMinute-=5;
+}
+
 
 function increaseLoop() {
     (loopTimes > 10) ? loopTimes = 10 : loopTimes++;
@@ -475,6 +814,15 @@ function keyPressed() {
             decreaseLoop();
         }
         document.getElementById("loopTimes").innerHTML = loopTimes;
+    }
+    if (currentBlock === "bpm") {
+        if (keyCode === UP_ARROW) {
+            increaseBPM();
+        }
+        if (keyCode === DOWN_ARROW) {
+            decreaseBPM();
+        }
+        document.getElementById("bpmTimes").innerHTML = beatsPerMinute;
     }
 }
 
@@ -501,9 +849,13 @@ function drawNote(note, dur) {
     ellipse(width / 2, noteY + diff * (gap / 2), gap + 10, gap);
 }
 
+function generateID() {
+    return '_' + Math.random().toString(36).substr(2, 9);
+}
+
 function draw() {
     background(255);
-    if (autoplay && millis() > trigger) {
+    /*if (autoplay && millis() > trigger) {
         recorder.record(soundFile);
         if (inLoop) {
             playNote(loopedSong[index].note, loopedSong[index].duration, loopedSong[index].soundType);
@@ -518,5 +870,5 @@ function draw() {
         }
     } else if (inLoop ? index >= loopedSong.length : index >= song.length) {
         autoplay = false;
-    }
+    }*/
 }

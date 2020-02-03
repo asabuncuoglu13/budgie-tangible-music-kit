@@ -5,6 +5,7 @@ public class CodeGenerator {
     public static final String START_SYNTH = "startSynth()";
     public static final String START_LOOP = "startLoop()";
     public static final String CLEAR_ALL = "clearCode()";
+    public static final String SAVE = "saveFile()";
     public static final String ADD_NOTE_A = "addNote('A', 1)";
     public static final String ADD_NOTE_B = "addNote('B', 1)";
     public static final String ADD_NOTE_C = "addNote('C', 1)";

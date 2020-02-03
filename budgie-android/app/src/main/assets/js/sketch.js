@@ -88,9 +88,10 @@ function noteToFreq(note) {
         keyNumber = keyNumber + ((octave - 1) * 12) + 1;
     }
     return 440 * Math.pow(2, (keyNumber- 49) / 12);
-};
+}
 
 function soundLoop(cycleStartTime) {
+    recorder.record(soundFile);
     let event = song[eventIndex];
     if (event.type === 1) {
         if (event.soundType === "poly"){
@@ -108,6 +109,7 @@ function soundLoop(cycleStartTime) {
     // Prepare for next event
     eventIndex++;
     if (eventIndex >= song.length) {
+        recorder.stop();
         this.stop();
     } else {
         let nextEvent = song[eventIndex];
@@ -528,11 +530,15 @@ function keyTyped() {
             playSong();
             break;
         case 'v' || 'V':
-            save(soundFile, 'mySound.wav');
+            saveFile();
             break;
         default:
             break;
     }
+}
+
+function saveFile() {
+    save(soundFile, 'myAlgorithmicMusic.wav');
 }
 
 function increaseBPM() {

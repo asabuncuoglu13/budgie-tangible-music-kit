@@ -3,6 +3,7 @@ package com.alpay.twinmusic;
 public class NFCTag {
     public static final String BEAT_MED = "beatmed";
     public static final String KICK = "kick";
+    public static final String SAVE = "save";
     public static final String CLEAR_ALL = "clearall";
     public static final String HIGH_FREQ = "freqhigh";
     public static final String LOW_FREQ = "freqlow";

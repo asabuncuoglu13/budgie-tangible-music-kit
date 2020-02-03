@@ -1,5 +1,6 @@
 package com.alpay.twinmusic;
 
+import android.app.DownloadManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.content.IntentFilter;
 import android.hardware.SensorManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
@@ -15,13 +17,18 @@ import android.nfc.tech.Ndef;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.Settings;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
+import android.webkit.CookieManager;
+import android.webkit.DownloadListener;
+import android.webkit.URLUtil;
 import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -32,30 +39,36 @@ import com.squareup.seismic.ShakeDetector;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
+import java.util.Locale;
 
 
 public class CodeActivity extends AppCompatActivity implements ShakeDetector.Listener,
         GestureDetector.OnGestureListener,
         GestureDetector.OnDoubleTapListener {
 
+    private TextToSpeech textToSpeech;
     private static final int SWIPE_MIN_DISTANCE = 120;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
     private static final String DEBUG_TAG = "Gestures";
     private GestureDetectorCompat mDetector;
     private boolean inLoop = false;
     private boolean inBPM = false;
+    private int beatsPerMinute = 120;
+    private int loopTimes = 2;
 
     public static final String MIME_TEXT_PLAIN = "text/plain";
     private NfcAdapter mNfcAdapter;
     private WebView webView;
     private TextView textView;
+    private TextView loopText;
+    private TextView bpmText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_code);
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
-        prepareWebView();
+        prepareViews();
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         ShakeDetector sd = new ShakeDetector(this);
         sd.start(sensorManager);
@@ -77,6 +90,14 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
         }
         mDetector = new GestureDetectorCompat(this, this);
         mDetector.setOnDoubleTapListener(this);
+        textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR) {
+                    textToSpeech.setLanguage(Locale.ENGLISH);
+                }
+            }
+        });
 
         handleIntent(getIntent());
     }
@@ -90,6 +111,10 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
     @Override
     protected void onPause() {
         stopForegroundDispatch(this, mNfcAdapter);
+        if(textToSpeech !=null){
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+        }
         super.onPause();
     }
 
@@ -98,10 +123,11 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
         handleIntent(intent);
     }
 
-
-    private void prepareWebView() {
+    private void prepareViews() {
         webView = findViewById(R.id.webview);
         textView = findViewById(R.id.code_blocks);
+        loopText = findViewById(R.id.loop_text);
+        bpmText = findViewById(R.id.bpm_text);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setMediaPlaybackRequiresUserGesture(false);
@@ -228,6 +254,8 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
                     evalCode(CodeGenerator.CHANGE_TEMPO_MED);
                 } else if (result.contentEquals(NFCTag.KICK)) {
                     evalCode(CodeGenerator.KICK);
+                } else if (result.contentEquals(NFCTag.SAVE)) {
+                    evalCode(CodeGenerator.SAVE);
                 } else if (result.contentEquals(NFCTag.RUN)) {
                     evalCode(CodeGenerator.PLAY_SONG);
                 } else if (result.contentEquals(NFCTag.SPEAK)) {
@@ -289,30 +317,74 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
         return true;
     }
 
+    protected void increaseBPM() {
+        if (beatsPerMinute > 180) {
+            beatsPerMinute = 180;
+        } else {
+            beatsPerMinute += 5;
+        }
+        bpmText.setText(String.valueOf(beatsPerMinute));
+        textToSpeech.speak(String.valueOf(beatsPerMinute), TextToSpeech.QUEUE_ADD, null);
+    }
+
+    protected void decreaseBPM() {
+        if (beatsPerMinute < 60) {
+            beatsPerMinute = 60;
+        } else {
+            beatsPerMinute -= 5;
+        }
+        bpmText.setText(String.valueOf(beatsPerMinute));
+        textToSpeech.speak(String.valueOf(beatsPerMinute), TextToSpeech.QUEUE_ADD, null);
+    }
+
+    protected void increaseLoop() {
+        if (loopTimes > 10) {
+            loopTimes = 10;
+        } else {
+            loopTimes++;
+        }
+        loopText.setText(String.valueOf(loopTimes));
+        textToSpeech.speak(String.valueOf(loopTimes), TextToSpeech.QUEUE_ADD, null);
+    }
+
+    protected void decreaseLoop() {
+        if (loopTimes < 2) {
+            loopTimes = 2;
+        } else {
+            loopTimes--;
+        }
+        loopText.setText(String.valueOf(loopTimes));
+        textToSpeech.speak(String.valueOf(loopTimes), TextToSpeech.QUEUE_ADD, null);
+    }
+
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
                            float velocityY) {
         try {
             // right to left swipe
-            if (inLoop){
+            if (inLoop) {
                 if (e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE
                         && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
                     evalCode(CodeGenerator.LOOP_UP);
+                    increaseLoop();
                 }
                 if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE
                         && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
                     evalCode(CodeGenerator.LOOP_DOWN);
+                    decreaseLoop();
                 }
             }
 
-            if (inBPM){
+            if (inBPM) {
                 if (e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE
                         && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
                     evalCode(CodeGenerator.BPM_UP);
+                    increaseBPM();
                 }
                 if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE
                         && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
                     evalCode(CodeGenerator.BPM_DOWN);
+                    decreaseBPM();
                 }
             }
 

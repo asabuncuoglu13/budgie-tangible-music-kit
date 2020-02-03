@@ -111,7 +111,7 @@
         }
 
         #bpm {
-            background: url("blocks/tempo_med.png") no-repeat center;
+            background: url("blocks/tempo_low.png") no-repeat center;
             background-size: contain;
         }
 
@@ -140,6 +140,11 @@
             background-size: contain;
         }
 
+        #measure {
+            background: url("blocks/tempo_high.png") no-repeat center;
+            background-size: contain;
+        }
+
         #run {
             background: url("blocks/play.png") no-repeat center;
             background-size: contain;
@@ -150,20 +155,25 @@
 <body>
     <script src="js/sketch.js"></script>
     <h1><a href="index.html">Budgie</a></h1>
+    <p style="text-align: center; font-family: 'IBM Plex Mono',sans-serif">Let's click on Start, Loop, Note A, note B and Play grids.
+        Congratulations, you
+        built an algorithm.
+        <a href="tutorial.html">Visit our tutorials to learn about algorithms and music.</a></p>
     <div class="grid">
         <div id="start" onclick="startSynth()" class="item">start music</div>
         <div id="loop" onclick="startLoop()" class="item">loop : <p id="loopTimes">2</p> times</div>
-        <div id="noteA" onclick="addNote('A', 1)" class="item">note A</div>
-        <div id="noteB" onclick="addNote('B', 1)" class="item">note B</div>
-        <div id="noteC" onclick="addNote('C', 1)" class="item">note C</div>
-        <div id="noteD" onclick="addNote('D', 1)" class="item">note D</div>
-        <div id="noteE" onclick="addNote('E', 1)" class="item">note E</div>
-        <div id="noteF" onclick="addNote('F', 1)" class="item">note F</div>
-        <div id="noteG" onclick="addNote('G', 1)" class="item">note G</div>
-        <div id="noteN" onclick="addNote('N', 1)" class="item">rest</div>
+        <div id="noteA" onclick="addNote('A', measure)" class="item">note A</div>
+        <div id="noteB" onclick="addNote('B', measure)" class="item">note B</div>
+        <div id="noteC" onclick="addNote('C', measure)" class="item">note C</div>
+        <div id="noteD" onclick="addNote('D', measure)" class="item">note D</div>
+        <div id="noteE" onclick="addNote('E', measure)" class="item">note E</div>
+        <div id="noteF" onclick="addNote('F', measure)" class="item">note F</div>
+        <div id="noteG" onclick="addNote('G', measure)" class="item">note G</div>
+        <div id="noteN" onclick="addNote('N', measure)" class="item">rest</div>
         <div id="lowfreq" onclick="changeFreq('bass')" class="item">bass</div>
         <div id="highfreq" onclick="changeFreq('treble')" class="item">treble</div>
         <div id="bpm" onclick="changeBPM()" class="item">bpm : <p id="bpmTimes">120</p></div>
+        <div id="measure" onclick="changeMeasure()" class="item">n : <p id="measureTimes">1</p></div>
         <div id="guitar" onclick="addGuitar()" class="item">guitar</div>
         <div id="sine" onclick="addSine()" class="item">sine wave</div>
         <div id="square" onclick="addSquare()" class="item">square wave</div>

@@ -75,7 +75,8 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
 
         if (mNfcAdapter == null) {
             Toast.makeText(this, R.string.no_nfc_warning, Toast.LENGTH_LONG).show();
-            finish();
+            Intent intent = new Intent(this, DemoActivity.class);
+            startActivity(intent);
             return;
         }
         if (!mNfcAdapter.isEnabled()) {
@@ -105,12 +106,16 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
     @Override
     protected void onResume() {
         super.onResume();
-        setupForegroundDispatch(this, mNfcAdapter);
+        if(mNfcAdapter != null) {
+            setupForegroundDispatch(this, mNfcAdapter);
+        }
     }
 
     @Override
     protected void onPause() {
-        stopForegroundDispatch(this, mNfcAdapter);
+        if(mNfcAdapter != null){
+            stopForegroundDispatch(this, mNfcAdapter);
+        }
         if(textToSpeech !=null){
             textToSpeech.stop();
             textToSpeech.shutdown();

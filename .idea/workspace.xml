@@ -6,17 +6,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4332da44-fc07-4348-a83f-210b0fc4c60d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/budgie-android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/budgie-android/app/release/app-release.apk" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/release/app-release.apk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/budgie-android/app/release/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/release/output.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/budgie-android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/blocks/undo.png" beforeDir="false" afterPath="$PROJECT_DIR$/docs/blocks/save.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/demo.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/demo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/js/sketch.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/js/sketch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/project.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/project.html" afterDir="false" />
-    </list>
+    <list default="true" id="4332da44-fc07-4348-a83f-210b0fc4c60d" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -30,7 +20,7 @@
     <session id="1079843545">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.8" value="2" />
           <entry key="project.opened" value="3" />
@@ -66,11 +56,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/docs/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="598">
-              <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+            <state relative-caret-position="364">
+              <caret line="54" column="39" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -116,10 +106,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/js/sketch.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
+            <state relative-caret-position="-6734">
               <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
             </state>
           </provider>
@@ -165,8 +155,8 @@
       <find>inmeas</find>
       <find>bpm</find>
       <find>inloop</find>
-      <find>measure</find>
       <find>1</find>
+      <find>measure</find>
     </findStrings>
     <replaceStrings>
       <replace>function</replace>
@@ -403,16 +393,15 @@
       <workItem from="1580422267521" duration="887000" />
       <workItem from="1580550347510" duration="7588000" />
       <workItem from="1580651551015" duration="20914000" />
-      <workItem from="1580751965393" duration="4099000" />
+      <workItem from="1580751965393" duration="4226000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32601000" />
+    <option name="totallyTimeSpent" value="32728000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="85" y="-8" width="1843" height="1096" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2498615" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -486,13 +475,6 @@
         <state relative-caret-position="-390" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/project.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="534">
@@ -512,8 +494,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/js/sketch.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
+        <state relative-caret-position="-6734">
           <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="54" column="39" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
         </state>
       </provider>
     </entry>

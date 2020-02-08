@@ -6,116 +6,26 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4332da44-fc07-4348-a83f-210b0fc4c60d" name="Default Changelist" comment="" />
-    <ignored path="$PROJECT_DIR$/.tmp/" />
-    <ignored path="$PROJECT_DIR$/temp/" />
-    <ignored path="$PROJECT_DIR$/tmp/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <list default="true" id="4332da44-fc07-4348-a83f-210b0fc4c60d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budgie-android/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budgie-android/app/src/main/java/com/alpay/twinmusic/CodeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/src/main/java/com/alpay/twinmusic/CodeActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budgie-android/app/src/main/java/com/alpay/twinmusic/CodeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/src/main/java/com/alpay/twinmusic/CodeGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budgie-android/app/src/main/java/com/alpay/twinmusic/NFCTag.java" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/src/main/java/com/alpay/twinmusic/NFCTag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budgie-android/app/src/main/res/layout/activity_code.xml" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/src/main/res/layout/activity_code.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budgie-android/app/src/main/res/values-tr/strings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/budgie-android/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/blocks/parallelpart.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/blocks/tempo_high.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/blocks/tempo_low.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/blocks/tempo_med.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/demo.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/demo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/js/sketch.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/js/sketch.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="1079843545">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="3" />
-          <entry key="project.open.time.5" value="1" />
-          <entry key="project.open.time.8" value="2" />
-          <entry key="project.opened" value="3" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="html" value="5" />
-          <entry key="js" value="3" />
-          <entry key="png" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="HTML" value="5" />
-          <entry key="Image" value="2" />
-          <entry key="JavaScript" value="3" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="html" value="596" />
-          <entry key="js" value="1453" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="HTML" value="596" />
-          <entry key="JavaScript" value="1453" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/docs/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="54" column="39" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/tutorial.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-390" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/project.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="534">
-              <caret line="58" column="24" selection-start-line="58" selection-start-column="24" selection-end-line="58" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/demo.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3094">
-              <caret line="164" column="49" selection-start-line="164" selection-start-column="49" selection-end-line="164" selection-end-column="49" />
-              <folding>
-                <element signature="n#style#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/device.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="7" column="7" selection-end-line="14" />
-              <folding>
-                <element signature="n#style#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/js/sketch.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-6734">
-              <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -125,80 +35,8 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>note.co</find>
-      <find>loop</find>
-      <find>draw</find>
-      <find>song</find>
-      <find>soundType</find>
-      <find>loopTimes</find>
-      <find>BPM</find>
-      <find>beatsPerMinute</find>
-      <find>nots</find>
-      <find>note</find>
-      <find>noteAtt</find>
-      <find>var</find>
-      <find>osc</find>
-      <find>oscType</find>
-      <find>stop()</find>
-      <find>stop</find>
-      <find>stop(1)</find>
-      <find>loopedSong</find>
-      <find>play</find>
-      <find>200</find>
-      <find>drum</find>
-      <find>start</find>
-      <find>clearC</find>
-      <find>sav</find>
-      <find>save</find>
-      <find>inmeas</find>
-      <find>bpm</find>
-      <find>inloop</find>
-      <find>1</find>
-      <find>measure</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>function</replace>
-      <replace>{0}</replace>
-      <replace>{1}</replace>
-      <replace>{2}</replace>
-      <replace>length</replace>
-      <replace>.format(</replace>
-      <replace>&quot;.format(</replace>
-      <replace>push</replace>
-      <replace>'}&quot;</replace>
-      <replace>}'&quot;</replace>
-      <replace>id=&quot;&quot; onclick=&quot;&quot;  class=&quot;item&quot;</replace>
-      <replace>lowFreq</replace>
-      <replace>--orange</replace>
-      <replace>duration: dur, soundType: osc,</replace>
-      <replace>guitar</replace>
-      <replace>g_</replace>
-      <replace>let</replace>
-      <replace>1</replace>
-      <replace>measure</replace>
-    </replaceStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/docs/js/p5/p5.sound.js" />
-        <option value="$PROJECT_DIR$/docs/device.html" />
-        <option value="$PROJECT_DIR$/docs/project.html" />
-        <option value="$PROJECT_DIR$/docs/demo.html" />
-        <option value="$PROJECT_DIR$/docs/js/sketch.js" />
-      </list>
-    </option>
-  </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectConfigurationFiles">
     <option name="files">
@@ -210,63 +48,8 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1096" />
-  </component>
   <component name="ProjectId" id="1X8KJ8oEOxmex4SXijHiS0dq71L" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="budgie-tangible-music-kit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="budgie-tangible-music-kit" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="budgie-tangible-music-kit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="budgie-tangible-music-kit" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="budgie-tangible-music-kit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="budgie-tangible-music-kit" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="blocks" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="budgie-tangible-music-kit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="budgie-tangible-music-kit" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="budgie-tangible-music-kit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="budgie-tangible-music-kit" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="p5" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="budgie-tangible-music-kit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="budgie-tangible-music-kit" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="sound" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
-  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -298,18 +81,6 @@
       <recent name="C:\Users\asabuncuoglu13\Desktop\education-repo\budgie-tangible-music-kit\blocks" />
       <recent name="C:\Users\asabuncuoglu13\Desktop\education-repo\budgie-tangible-music-kit\libraries\tone" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -394,39 +165,12 @@
       <workItem from="1580550347510" duration="7588000" />
       <workItem from="1580651551015" duration="20914000" />
       <workItem from="1580751965393" duration="4226000" />
+      <workItem from="1581122158248" duration="4829000" />
     </task>
     <servers />
   </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32728000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="85" y="-8" width="1843" height="1096" extended-state="6" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2498615" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.18987341" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
   </component>
   <component name="WindowStateProjectService">
     <state x="686" y="268" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1580422230816">
@@ -441,70 +185,5 @@
       <screen x="93" y="0" width="1827" height="1080" />
     </state>
     <state x="640" y="146" key="SettingsEditor/93.0.1827.1080@93.0.1827.1080" timestamp="1580422520014" />
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/docs/js/p5/p5.sound.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="12572" column="10" lean-forward="true" selection-end-line="12604" selection-end-column="4" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/blocks/note_N.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/blocks/save.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/device.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="7" column="7" selection-end-line="14" />
-          <folding>
-            <element signature="n#style#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/tutorial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-390" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/project.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
-          <caret line="58" column="24" selection-start-line="58" selection-start-column="24" selection-end-line="58" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/demo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3094">
-          <caret line="164" column="49" selection-start-line="164" selection-start-column="49" selection-end-line="164" selection-end-column="49" />
-          <folding>
-            <element signature="n#style#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/js/sketch.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6734">
-          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="54" column="39" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
   </component>
 </project>

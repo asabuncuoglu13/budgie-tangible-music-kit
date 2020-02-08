@@ -143,12 +143,8 @@ public class InfoActivity extends AppCompatActivity implements ShakeDetector.Lis
                     appCompatActivity.onBackPressed();
                 } else if (result.contentEquals(NFCTag.LOOP)) {
                     Speak.playSound(appCompatActivity, Speak.LOOP);
-                } else if (result.contentEquals(NFCTag.CLEAR_ALL)) {
-                    Speak.playSound(appCompatActivity, Speak.START);
                 } else if (result.contentEquals(NFCTag.LOW_FREQ)) {
                     Speak.playSound(appCompatActivity, Speak.FREQ_LOW);
-                } else if (result.contentEquals(NFCTag.MEDIUM_FREQ)) {
-                    Speak.playSound(appCompatActivity, Speak.FREQ_MED);
                 } else if (result.contentEquals(NFCTag.HIGH_FREQ)) {
                     Speak.playSound(appCompatActivity, Speak.FREQ_HIGH);
                 } else if (result.contentEquals(NFCTag.PIANO_SOUND)) {

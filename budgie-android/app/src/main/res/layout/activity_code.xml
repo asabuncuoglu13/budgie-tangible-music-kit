@@ -54,7 +54,7 @@
         android:layout_marginTop="30dp"
         android:gravity="center"
         android:textSize="24dp"
-        tools:text="2"/>
+        tools:text="Loop Occurance: 2"/>
 
     <TextView
         android:id="@+id/bpm_text"
@@ -65,6 +65,17 @@
         android:layout_marginTop="30dp"
         android:gravity="center"
         android:textSize="24dp"
-        tools:text="120"/>
+        tools:text="BPM: 120"/>
+
+    <TextView
+        android:id="@+id/measure_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/md_blue"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:textSize="24dp"
+        tools:text="Measure: 1"/>
 
 </LinearLayout>

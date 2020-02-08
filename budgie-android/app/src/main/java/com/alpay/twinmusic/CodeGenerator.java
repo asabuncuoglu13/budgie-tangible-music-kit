@@ -4,7 +4,6 @@ public class CodeGenerator {
 
     public static final String START_SYNTH = "startSynth()";
     public static final String START_LOOP = "startLoop()";
-    public static final String CLEAR_ALL = "clearCode()";
     public static final String SAVE = "saveFile()";
     public static final String ADD_NOTE_A = "addNote('A', 1)";
     public static final String ADD_NOTE_B = "addNote('B', 1)";
@@ -16,10 +15,10 @@ public class CodeGenerator {
     public static final String ADD_NOTE_N = "addNote('N', 1)";
     public static final String CHANGE_FREQ_BASS = "changeFreq('bass')";
     public static final String CHANGE_FREQ_TREBLE = "changeFreq('treble')";
-    public static final String CHANGE_TEMPO_MED = "changeBPM()";
+    public static final String CHANGE_BPM = "changeBPM()";
+    public static final String CHANGE_MEASURE = "changeMeasure()";
     public static final String ADD_GUITAR = "addGuitar()";
     public static final String ADD_PIANO = "addPiano()";
-    public static final String START_PART = "startNewPart()";
     public static final String ADD_SINE = "addSine()";
     public static final String ADD_SQUARE = "addSquare()";
     public static final String PLAY_SONG = "playSong()";
@@ -29,5 +28,7 @@ public class CodeGenerator {
     public static final String BPM_DOWN = "decreaseBPM()";
     public static final String KICK = "kick()";
     public static final String PAUSE = "pauseSynth()";
+    public static final String MEASURE_UP = "increaseMeasure()";
+    public static final String MEASURE_DOWN = "decreaseMeasure()";
 
 }

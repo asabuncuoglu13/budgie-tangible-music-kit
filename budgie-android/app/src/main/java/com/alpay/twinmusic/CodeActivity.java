@@ -53,8 +53,10 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
     private GestureDetectorCompat mDetector;
     private boolean inLoop = false;
     private boolean inBPM = false;
+    private boolean inMeasure = false;
     private int beatsPerMinute = 120;
     private int loopTimes = 2;
+    private double measure = 1;
 
     public static final String MIME_TEXT_PLAIN = "text/plain";
     private NfcAdapter mNfcAdapter;
@@ -62,6 +64,7 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
     private TextView textView;
     private TextView loopText;
     private TextView bpmText;
+    private TextView measureText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +136,7 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
         textView = findViewById(R.id.code_blocks);
         loopText = findViewById(R.id.loop_text);
         bpmText = findViewById(R.id.bpm_text);
+        measureText = findViewById(R.id.measure_text);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setMediaPlaybackRequiresUserGesture(false);
@@ -219,25 +223,9 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
                 textView.setText(result);
                 if (result.contentEquals(NFCTag.START)) {
                     evalCode(CodeGenerator.START_SYNTH);
-                } else if (result.contentEquals(NFCTag.PART)) {
-                    evalCode(CodeGenerator.START_PART);
                 } else if (result.contentEquals(NFCTag.LOOP)) {
                     inLoop = !inLoop;
                     evalCode(CodeGenerator.START_LOOP);
-                } else if (result.contentEquals(NFCTag.CLEAR_ALL)) {
-                    evalCode(CodeGenerator.CLEAR_ALL);
-                } else if (result.contentEquals(NFCTag.LOW_FREQ)) {
-                    evalCode(CodeGenerator.CHANGE_FREQ_BASS);
-                } else if (result.contentEquals(NFCTag.HIGH_FREQ)) {
-                    evalCode(CodeGenerator.CHANGE_FREQ_TREBLE);
-                } else if (result.contentEquals(NFCTag.PIANO_SOUND)) {
-                    evalCode(CodeGenerator.ADD_PIANO);
-                } else if (result.contentEquals(NFCTag.GUITAR_SOUND)) {
-                    evalCode(CodeGenerator.ADD_GUITAR);
-                } else if (result.contentEquals(NFCTag.SINE_WAVE)) {
-                    evalCode(CodeGenerator.ADD_SINE);
-                } else if (result.contentEquals(NFCTag.SQUARE_WAVE)) {
-                    evalCode(CodeGenerator.ADD_SQUARE);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_A)) {
                     evalCode(CodeGenerator.ADD_NOTE_A);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_B)) {
@@ -254,9 +242,24 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
                     evalCode(CodeGenerator.ADD_NOTE_G);
                 } else if (result.contentEquals(NFCTag.ADD_NOTE_NULL)) {
                     evalCode(CodeGenerator.ADD_NOTE_N);
-                } else if (result.contentEquals(NFCTag.BEAT_MED)) {
+                } else if (result.contentEquals(NFCTag.LOW_FREQ)) {
+                    evalCode(CodeGenerator.CHANGE_FREQ_BASS);
+                } else if (result.contentEquals(NFCTag.HIGH_FREQ)) {
+                    evalCode(CodeGenerator.CHANGE_FREQ_TREBLE);
+                } else if (result.contentEquals(NFCTag.PIANO_SOUND)) {
+                    evalCode(CodeGenerator.ADD_PIANO);
+                } else if (result.contentEquals(NFCTag.GUITAR_SOUND)) {
+                    evalCode(CodeGenerator.ADD_GUITAR);
+                } else if (result.contentEquals(NFCTag.SINE_WAVE)) {
+                    evalCode(CodeGenerator.ADD_SINE);
+                } else if (result.contentEquals(NFCTag.SQUARE_WAVE)) {
+                    evalCode(CodeGenerator.ADD_SQUARE);
+                } else if (result.contentEquals(NFCTag.BPM)) {
                     inBPM = !inBPM;
-                    evalCode(CodeGenerator.CHANGE_TEMPO_MED);
+                    evalCode(CodeGenerator.CHANGE_BPM);
+                } else if (result.contentEquals(NFCTag.MEASURE)) {
+                    inMeasure = !inMeasure;
+                    evalCode(CodeGenerator.CHANGE_MEASURE);
                 } else if (result.contentEquals(NFCTag.KICK)) {
                     evalCode(CodeGenerator.KICK);
                 } else if (result.contentEquals(NFCTag.SAVE)) {
@@ -328,7 +331,7 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
         } else {
             beatsPerMinute += 5;
         }
-        bpmText.setText(String.valueOf(beatsPerMinute));
+        loopText.setText(String.format(getString(R.string.bpm_times), String.valueOf(beatsPerMinute)));
         textToSpeech.speak(String.valueOf(beatsPerMinute), TextToSpeech.QUEUE_ADD, null);
     }
 
@@ -338,7 +341,7 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
         } else {
             beatsPerMinute -= 5;
         }
-        bpmText.setText(String.valueOf(beatsPerMinute));
+        loopText.setText(String.format(getString(R.string.bpm_times), String.valueOf(beatsPerMinute)));
         textToSpeech.speak(String.valueOf(beatsPerMinute), TextToSpeech.QUEUE_ADD, null);
     }
 
@@ -348,7 +351,7 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
         } else {
             loopTimes++;
         }
-        loopText.setText(String.valueOf(loopTimes));
+        loopText.setText(String.format(getString(R.string.loop_times), String.valueOf(loopTimes)));
         textToSpeech.speak(String.valueOf(loopTimes), TextToSpeech.QUEUE_ADD, null);
     }
 
@@ -358,15 +361,30 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
         } else {
             loopTimes--;
         }
-        loopText.setText(String.valueOf(loopTimes));
+        loopText.setText(String.format(getString(R.string.loop_times), String.valueOf(loopTimes)));
         textToSpeech.speak(String.valueOf(loopTimes), TextToSpeech.QUEUE_ADD, null);
+    }
+
+    protected void increaseMeasure() {
+        if (measure == 1.0) measure = 0.5;
+        if (measure == 2.0) measure = 1.0;
+        if (measure == 4.0) measure = 2.0;
+        measureText.setText(String.format(getString(R.string.measure_times), String.valueOf(measure)));
+        textToSpeech.speak(String.valueOf(measure), TextToSpeech.QUEUE_ADD, null);
+    }
+
+    protected void decreaseMeasure() {
+        if (measure == 2.0) measure = 4.0;
+        if (measure == 1.0) measure = 2.0;
+        if (measure == 0.5) measure = 1.0;
+        measureText.setText(String.format(getString(R.string.measure_times), String.valueOf(measure)));
+        textToSpeech.speak(String.valueOf(measure), TextToSpeech.QUEUE_ADD, null);
     }
 
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
                            float velocityY) {
         try {
-            // right to left swipe
             if (inLoop) {
                 if (e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE
                         && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
@@ -390,6 +408,19 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
                         && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
                     evalCode(CodeGenerator.BPM_DOWN);
                     decreaseBPM();
+                }
+            }
+
+            if (inMeasure) {
+                if (e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE
+                        && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
+                    evalCode(CodeGenerator.MEASURE_UP);
+                    increaseMeasure();
+                }
+                if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE
+                        && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
+                    evalCode(CodeGenerator.MEASURE_DOWN);
+                    decreaseMeasure();
                 }
             }
 

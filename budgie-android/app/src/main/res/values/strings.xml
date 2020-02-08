@@ -5,10 +5,15 @@
 
     <!-- error messages -->
     <string name="connectivity_error_message">You need an active internet connection</string>
-    <string name="nfc_wrong_mime_error">I feel like, there is an error about the object</string>
+    <string name="nfc_wrong_mime_error">I guess something is wrong about the object</string>
 
     <!-- warning messages -->
-    <string name="no_nfc_warning">Unfortunately, your device does not support NFC, we will skip this activity.</string>
+    <string name="no_nfc_warning">Unfortunately, your device does not support NFC, I am redirecting you to web demo.</string>
     <string name="nfc_disabled_warning">You need to enable NFC to start this activity.</string>
+
+    <!-- activity text -->
+    <string name="loop_times">Loop Occurance: %s</string>
+    <string name="measure_times">Measure: %s</string>
+    <string name="bpm_times">BPM: %s</string>
 
 </resources>

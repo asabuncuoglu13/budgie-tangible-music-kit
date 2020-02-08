@@ -1,6 +1,5 @@
 package com.alpay.twinmusic;
 
-import android.app.DownloadManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +7,6 @@ import android.content.IntentFilter;
 import android.hardware.SensorManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
@@ -17,18 +15,13 @@ import android.nfc.tech.Ndef;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.Settings;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.GestureDetector;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
-import android.webkit.CookieManager;
-import android.webkit.DownloadListener;
-import android.webkit.URLUtil;
 import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -331,7 +324,7 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
         } else {
             beatsPerMinute += 5;
         }
-        loopText.setText(String.format(getString(R.string.bpm_times), String.valueOf(beatsPerMinute)));
+        bpmText.setText(String.format(getString(R.string.bpm_times), String.valueOf(beatsPerMinute)));
         textToSpeech.speak(String.valueOf(beatsPerMinute), TextToSpeech.QUEUE_ADD, null);
     }
 
@@ -341,7 +334,7 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
         } else {
             beatsPerMinute -= 5;
         }
-        loopText.setText(String.format(getString(R.string.bpm_times), String.valueOf(beatsPerMinute)));
+        bpmText.setText(String.format(getString(R.string.bpm_times), String.valueOf(beatsPerMinute)));
         textToSpeech.speak(String.valueOf(beatsPerMinute), TextToSpeech.QUEUE_ADD, null);
     }
 

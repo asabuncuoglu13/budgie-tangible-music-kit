@@ -9,6 +9,7 @@ let synth;
 let eventIndex = 0;
 let beatsPerMinute = 120;
 let secondsPerBeat;
+let measure = 1;
 
 let trigger = 0;
 let autoplay = false;
@@ -70,8 +71,6 @@ function setup() {
     recorder = new p5.SoundRecorder();
     recorder.setInput();
     soundFile = new p5.SoundFile();
-
-    myPart = new p5.Part();
 }
 
 function noteToFreq(note) {
@@ -87,20 +86,20 @@ function noteToFreq(note) {
     } else {
         keyNumber = keyNumber + ((octave - 1) * 12) + 1;
     }
-    return 440 * Math.pow(2, (keyNumber- 49) / 12);
+    return 440 * Math.pow(2, (keyNumber - 49) / 12);
 }
 
 function soundLoop(cycleStartTime) {
     recorder.record(soundFile);
     let event = song[eventIndex];
     if (event.type === 1) {
-        if (event.soundType === "poly"){
+        if (event.soundType === "poly") {
             synth.noteAttack(event.pitch, event.velocity, cycleStartTime);
         } else {
             attackNote(event.pitch, event.timeSincePrevEvent, event.soundType);
         }
     } else {
-        if (event.soundType  === "poly") {
+        if (event.soundType === "poly") {
             synth.noteRelease(event.pitch, cycleStartTime);
         } else {
             releaseNote(event.pitch, event.timeSincePrevEvent, event.soundType);
@@ -147,6 +146,10 @@ function changeBPM() {
     currentBlock = "bpm";
 }
 
+function changeMeasure() {
+    currentBlock = "measure";
+}
+
 function startSynth() {
     clearCode();
 }
@@ -166,28 +169,84 @@ function releaseLoopedSong(num) {
     for (let i = 0; i < num; i++) {
         flattenedLoopedSong = flattenedLoopedSong.concat(loopedSong);
     }
-    for (let i= 0; i < flattenedLoopedSong.length; i++){
+    for (let i = 0; i < flattenedLoopedSong.length; i++) {
         song.push(flattenedLoopedSong[i]);
     }
     loopedSong = [];
 }
 
 function addNote(note, dur) {
-    if (inLoop){
+    if (inLoop) {
         if (lowFreq) {
-            loopedSong.push({pitch: note + '3', velocity:1, timeSincePrevEvent:0, type:1, soundType: oscType, display: note+'3'});
-            loopedSong.push({pitch: note + '3', velocity:1, timeSincePrevEvent:dur, type:0, soundType: oscType, display: note+'3'});
+            loopedSong.push({
+                pitch: note + '3',
+                velocity: 1,
+                timeSincePrevEvent: 0,
+                type: 1,
+                soundType: oscType,
+                display: note + '3'
+            });
+            loopedSong.push({
+                pitch: note + '3',
+                velocity: 1,
+                timeSincePrevEvent: dur,
+                type: 0,
+                soundType: oscType,
+                display: note + '3'
+            });
         } else {
-            loopedSong.push({pitch: note + '4', velocity:1, timeSincePrevEvent:0, type:1, soundType: oscType, display: note+'4'});
-            loopedSong.push({pitch: note + '4', velocity:1, timeSincePrevEvent:dur, type:0, soundType: oscType, display: note+'4'});
+            loopedSong.push({
+                pitch: note + '4',
+                velocity: 1,
+                timeSincePrevEvent: 0,
+                type: 1,
+                soundType: oscType,
+                display: note + '4'
+            });
+            loopedSong.push({
+                pitch: note + '4',
+                velocity: 1,
+                timeSincePrevEvent: dur,
+                type: 0,
+                soundType: oscType,
+                display: note + '4'
+            });
         }
     } else {
         if (lowFreq) {
-            song.push({pitch: note + '3', velocity:1, timeSincePrevEvent:0, type:1, soundType: oscType, display: note+'3'});
-            song.push({pitch: note + '3', velocity:1, timeSincePrevEvent:dur, type:0, soundType: oscType, display: note+'3'});
+            song.push({
+                pitch: note + '3',
+                velocity: 1,
+                timeSincePrevEvent: 0,
+                type: 1,
+                soundType: oscType,
+                display: note + '3'
+            });
+            song.push({
+                pitch: note + '3',
+                velocity: 1,
+                timeSincePrevEvent: dur,
+                type: 0,
+                soundType: oscType,
+                display: note + '3'
+            });
         } else {
-            song.push({pitch: note + '4', velocity:1, timeSincePrevEvent:0, type:1, soundType: oscType, display: note+'4'});
-            song.push({pitch: note + '4', velocity:1, timeSincePrevEvent:dur, type:0, soundType: oscType, display: note+'4'});
+            song.push({
+                pitch: note + '4',
+                velocity: 1,
+                timeSincePrevEvent: 0,
+                type: 1,
+                soundType: oscType,
+                display: note + '4'
+            });
+            song.push({
+                pitch: note + '4',
+                velocity: 1,
+                timeSincePrevEvent: dur,
+                type: 0,
+                soundType: oscType,
+                display: note + '4'
+            });
         }
     }
 }
@@ -354,51 +413,51 @@ function attackNote(note, duration, soundType) {
 
 function releaseNote(note, duration, soundType) {
     if (drumPat) {
-        drum.stop(1);
+        drum.stop(measure);
     }
     if (soundType === "piano") {
         switch (note) {
             case "C3":
-                p_c3.stop(1);
+                p_c3.fade(measure, measure);
                 break;
             case "D3":
-                p_d3.stop(1);
+                p_d3.stop(measure);
                 break;
             case "E3":
-                p_e3.stop(1);
+                p_e3.stop(measure);
                 break;
             case "F3":
-                p_f3.stop(1);
+                p_f3.stop(measure);
                 break;
             case "G3":
-                p_g3.stop(1);
+                p_g3.stop(measure);
                 break;
             case "A3":
-                p_a3.stop(1);
+                p_a3.stop(measure);
                 break;
             case "B3":
-                p_b3.stop(1);
+                p_b3.stop(measure);
                 break;
             case "C4":
-                p_c4.stop(1);
+                p_c4.fade(measure, measure);
                 break;
             case "D4":
-                p_d4.stop(1);
+                p_d4.stop(measure);
                 break;
             case "E4":
-                p_e4.stop(1);
+                p_e4.stop(measure);
                 break;
             case "F4":
-                p_f4.stop(1);
+                p_f4.stop(measure);
                 break;
             case "G4":
-                p_g4.stop(1);
+                p_g4.stop(measure);
                 break;
             case "A4":
-                p_a4.stop(1);
+                p_a4.stop(measure);
                 break;
             case "B4":
-                p_b4.stop(1);
+                p_b4.stop(measure);
                 break;
             default:
                 break;
@@ -407,46 +466,46 @@ function releaseNote(note, duration, soundType) {
     if (soundType === "guitar") {
         switch (note) {
             case "C3":
-                g_c3.stop(1);
+                g_c3.stop(measure);
                 break;
             case "D3":
-                g_d3.stop(1);
+                g_d3.stop(measure);
                 break;
             case "E3":
-                g_e3.stop(1);
+                g_e3.stop(measure);
                 break;
             case "F3":
-                g_f3.stop(1);
+                g_f3.stop(measure);
                 break;
             case "G3":
-                g_g3.stop(1);
+                g_g3.stop(measure);
                 break;
             case "A3":
-                g_a3.stop(1);
+                g_a3.stop(measure);
                 break;
             case "B3":
-                g_b3.stop(1);
+                g_b3.stop(measure);
                 break;
             case "C4":
-                g_c4.stop(1);
+                g_c4.stop(measure);
                 break;
             case "D4":
-                g_d4.stop(1);
+                g_d4.stop(measure);
                 break;
             case "E4":
-                g_e4.stop(1);
+                g_e4.stop(measure);
                 break;
             case "F4":
-                g_f4.stop(1);
+                g_f4.stop(measure);
                 break;
             case "G4":
-                g_g4.stop(1);
+                g_g4.stop(measure);
                 break;
             case "A4":
-                g_a4.stop(1);
+                g_a4.stop(measure);
                 break;
             case "B4":
-                g_b4.stop(1);
+                g_b4.stop(measure);
                 break;
             default:
                 break;
@@ -476,28 +535,28 @@ function touchStarted() {
 function keyTyped() {
     switch (key) {
         case 'a' || 'A':
-            addNote('A', 1);
+            addNote('A', measure);
             break;
         case 'b' || 'B':
-            addNote('B', 1);
+            addNote('B', measure);
             break;
         case 'c' || 'C':
-            addNote('C', 1);
+            addNote('C', measure);
             break;
         case 'd' || 'D':
-            addNote('D', 1);
+            addNote('D', measure);
             break;
         case 'e' || 'E':
-            addNote('E', 1);
+            addNote('E', measure);
             break;
         case 'f' || 'F':
-            addNote('F', 1);
+            addNote('F', measure);
             break;
         case 'g' || 'G':
-            addNote('G', 1);
+            addNote('G', measure);
             break;
         case 'n' || 'N':
-            addNote('N', 1);
+            addNote('N', measure);
             break;
         case '1':
             startSynth();
@@ -541,12 +600,24 @@ function saveFile() {
     save(soundFile, 'myAlgorithmicMusic.wav');
 }
 
+function increaseMeasure() {
+    if (measure === 1) measure = 0.5;
+    if (measure === 2) measure = 1;
+    if (measure === 4) measure = 2;
+}
+
+function decreaseMeasure() {
+    if (measure === 2) measure = 4;
+    if (measure === 1) measure = 2;
+    if (measure === 0.5) measure = 1;
+}
+
 function increaseBPM() {
-    (beatsPerMinute > 180) ? beatsPerMinute = 180 : beatsPerMinute+=5;
+    (beatsPerMinute > 180) ? beatsPerMinute = 180 : beatsPerMinute += 5;
 }
 
 function decreaseBPM() {
-    (beatsPerMinute < 60) ? beatsPerMinute = 60 : beatsPerMinute-=5;
+    (beatsPerMinute < 60) ? beatsPerMinute = 60 : beatsPerMinute -= 5;
 }
 
 function increaseLoop() {
@@ -558,23 +629,41 @@ function decreaseLoop() {
 }
 
 function keyPressed() {
+    if (keyCode === UP_ARROW) {
+        increaseBlocks();
+    }
+    if (keyCode === DOWN_ARROW) {
+        decreaseBlocks();
+    }
+}
+
+function decreaseBlocks() {
     if (currentBlock === "loop") {
-        if (keyCode === UP_ARROW) {
-            increaseLoop();
-        }
-        if (keyCode === DOWN_ARROW) {
-            decreaseLoop();
-        }
+        decreaseLoop();
         document.getElementById("loopTimes").innerHTML = loopTimes;
     }
     if (currentBlock === "bpm") {
-        if (keyCode === UP_ARROW) {
-            increaseBPM();
-        }
-        if (keyCode === DOWN_ARROW) {
-            decreaseBPM();
-        }
+        decreaseBPM();
         document.getElementById("bpmTimes").innerHTML = beatsPerMinute;
+    }
+    if (currentBlock === "measure") {
+        decreaseMeasure();
+        document.getElementById("measureTimes").innerHTML = 4 / measure;
+    }
+}
+
+function increaseBlocks() {
+    if (currentBlock === "loop") {
+        increaseLoop();
+        document.getElementById("loopTimes").innerHTML = loopTimes;
+    }
+    if (currentBlock === "bpm") {
+        increaseBPM();
+        document.getElementById("bpmTimes").innerHTML = beatsPerMinute;
+    }
+    if (currentBlock === "measure") {
+        increaseMeasure();
+        document.getElementById("measureTimes").innerHTML = 4 / measure;
     }
 }
 

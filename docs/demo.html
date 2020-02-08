@@ -111,7 +111,7 @@
         }
 
         #bpm {
-            background: url("blocks/tempo_low.png") no-repeat center;
+            background: url("blocks/bpm.png") no-repeat center;
             background-size: contain;
         }
 
@@ -130,8 +130,8 @@
             background-size: contain;
         }
 
-        #drum {
-            background: url("blocks/parallelpart.png") no-repeat center;
+        #kick {
+            background: url("blocks/kick.png") no-repeat center;
             background-size: contain;
         }
 
@@ -141,7 +141,7 @@
         }
 
         #measure {
-            background: url("blocks/tempo_high.png") no-repeat center;
+            background: url("blocks/measure.png") no-repeat center;
             background-size: contain;
         }
 
@@ -155,10 +155,14 @@
 <body>
     <script src="js/sketch.js"></script>
     <h1><a href="index.html">Budgie</a></h1>
-    <p style="text-align: center; font-family: 'IBM Plex Mono',sans-serif">Let's click on Start, Loop, Note A, note B and Play grids.
-        Congratulations, you
-        built an algorithm.
-        <a href="tutorial.html">Visit our tutorials to learn about algorithms and music.</a></p>
+    <p style="text-align: center; font-family: 'IBM Plex Mono',sans-serif; font-size: 1.5vh">Let's click on Start, Loop,
+        Note A,
+        note B and Play grids.
+        Congratulations, created an algorithm.
+        <a href="tutorial.html">Visit our tutorials to learn about algorithms and music.</a>
+        You can press <a id="up" href="#">UP</a>, <a id="down" href="#">DOWN</a> to change the values of
+        BPM, Measure and Loop. Press <a id="s" href="#">S</a>  to save your piece.
+    </p>
     <div class="grid">
         <div id="start" onclick="startSynth()" class="item">start music</div>
         <div id="loop" onclick="startLoop()" class="item">loop : <p id="loopTimes">2</p> times</div>
@@ -172,13 +176,13 @@
         <div id="noteN" onclick="addNote('N', measure)" class="item">rest</div>
         <div id="lowfreq" onclick="changeFreq('bass')" class="item">bass</div>
         <div id="highfreq" onclick="changeFreq('treble')" class="item">treble</div>
+        <div id="measure" onclick="changeMeasure()" class="item">measure n : <p id="measureTimes">1</p></div>
         <div id="bpm" onclick="changeBPM()" class="item">bpm : <p id="bpmTimes">120</p></div>
-        <div id="measure" onclick="changeMeasure()" class="item">n : <p id="measureTimes">1</p></div>
+        <div id="kick" onclick="kick()" class="item">add kick</div>
+        <div id="piano" onclick="addPiano()" class="item">piano</div>
         <div id="guitar" onclick="addGuitar()" class="item">guitar</div>
         <div id="sine" onclick="addSine()" class="item">sine wave</div>
         <div id="square" onclick="addSquare()" class="item">square wave</div>
-        <div id="drum" onclick="kick()" class="item">add beat</div>
-        <div id="piano" onclick="addPiano()" class="item">piano</div>
         <div id="run" onclick="playSong()" class="item">play</div>
     </div>
     <script>
@@ -193,6 +197,9 @@
                 });
             };
         }
+        document.getElementById('up').addEventListener('click', increaseBlocks);
+        document.getElementById('down').addEventListener('click', decreaseBlocks);
+        document.getElementById('s').addEventListener('click', saveFile);
     </script>
 
 </body>

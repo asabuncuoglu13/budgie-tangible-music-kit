@@ -86,20 +86,20 @@ function noteToFreq(note) {
     } else {
         keyNumber = keyNumber + ((octave - 1) * 12) + 1;
     }
-    return 440 * Math.pow(2, (keyNumber- 49) / 12);
+    return 440 * Math.pow(2, (keyNumber - 49) / 12);
 }
 
 function soundLoop(cycleStartTime) {
     recorder.record(soundFile);
     let event = song[eventIndex];
     if (event.type === 1) {
-        if (event.soundType === "poly"){
+        if (event.soundType === "poly") {
             synth.noteAttack(event.pitch, event.velocity, cycleStartTime);
         } else {
             attackNote(event.pitch, event.timeSincePrevEvent, event.soundType);
         }
     } else {
-        if (event.soundType  === "poly") {
+        if (event.soundType === "poly") {
             synth.noteRelease(event.pitch, cycleStartTime);
         } else {
             releaseNote(event.pitch, event.timeSincePrevEvent, event.soundType);
@@ -169,28 +169,84 @@ function releaseLoopedSong(num) {
     for (let i = 0; i < num; i++) {
         flattenedLoopedSong = flattenedLoopedSong.concat(loopedSong);
     }
-    for (let i= 0; i < flattenedLoopedSong.length; i++){
+    for (let i = 0; i < flattenedLoopedSong.length; i++) {
         song.push(flattenedLoopedSong[i]);
     }
     loopedSong = [];
 }
 
 function addNote(note, dur) {
-    if (inLoop){
+    if (inLoop) {
         if (lowFreq) {
-            loopedSong.push({pitch: note + '3', velocity:1, timeSincePrevEvent:0, type:1, soundType: oscType, display: note+'3'});
-            loopedSong.push({pitch: note + '3', velocity:1, timeSincePrevEvent:dur, type:0, soundType: oscType, display: note+'3'});
+            loopedSong.push({
+                pitch: note + '3',
+                velocity: 1,
+                timeSincePrevEvent: 0,
+                type: 1,
+                soundType: oscType,
+                display: note + '3'
+            });
+            loopedSong.push({
+                pitch: note + '3',
+                velocity: 1,
+                timeSincePrevEvent: dur,
+                type: 0,
+                soundType: oscType,
+                display: note + '3'
+            });
         } else {
-            loopedSong.push({pitch: note + '4', velocity:1, timeSincePrevEvent:0, type:1, soundType: oscType, display: note+'4'});
-            loopedSong.push({pitch: note + '4', velocity:1, timeSincePrevEvent:dur, type:0, soundType: oscType, display: note+'4'});
+            loopedSong.push({
+                pitch: note + '4',
+                velocity: 1,
+                timeSincePrevEvent: 0,
+                type: 1,
+                soundType: oscType,
+                display: note + '4'
+            });
+            loopedSong.push({
+                pitch: note + '4',
+                velocity: 1,
+                timeSincePrevEvent: dur,
+                type: 0,
+                soundType: oscType,
+                display: note + '4'
+            });
         }
     } else {
         if (lowFreq) {
-            song.push({pitch: note + '3', velocity:1, timeSincePrevEvent:0, type:1, soundType: oscType, display: note+'3'});
-            song.push({pitch: note + '3', velocity:1, timeSincePrevEvent:dur, type:0, soundType: oscType, display: note+'3'});
+            song.push({
+                pitch: note + '3',
+                velocity: 1,
+                timeSincePrevEvent: 0,
+                type: 1,
+                soundType: oscType,
+                display: note + '3'
+            });
+            song.push({
+                pitch: note + '3',
+                velocity: 1,
+                timeSincePrevEvent: dur,
+                type: 0,
+                soundType: oscType,
+                display: note + '3'
+            });
         } else {
-            song.push({pitch: note + '4', velocity:1, timeSincePrevEvent:0, type:1, soundType: oscType, display: note+'4'});
-            song.push({pitch: note + '4', velocity:1, timeSincePrevEvent:dur, type:0, soundType: oscType, display: note+'4'});
+            song.push({
+                pitch: note + '4',
+                velocity: 1,
+                timeSincePrevEvent: 0,
+                type: 1,
+                soundType: oscType,
+                display: note + '4'
+            });
+            song.push({
+                pitch: note + '4',
+                velocity: 1,
+                timeSincePrevEvent: dur,
+                type: 0,
+                soundType: oscType,
+                display: note + '4'
+            });
         }
     }
 }
@@ -557,11 +613,11 @@ function decreaseMeasure() {
 }
 
 function increaseBPM() {
-    (beatsPerMinute > 180) ? beatsPerMinute = 180 : beatsPerMinute+=5;
+    (beatsPerMinute > 180) ? beatsPerMinute = 180 : beatsPerMinute += 5;
 }
 
 function decreaseBPM() {
-    (beatsPerMinute < 60) ? beatsPerMinute = 60 : beatsPerMinute-=5;
+    (beatsPerMinute < 60) ? beatsPerMinute = 60 : beatsPerMinute -= 5;
 }
 
 function increaseLoop() {
@@ -573,32 +629,41 @@ function decreaseLoop() {
 }
 
 function keyPressed() {
+    if (keyCode === UP_ARROW) {
+        increaseBlocks();
+    }
+    if (keyCode === DOWN_ARROW) {
+        decreaseBlocks();
+    }
+}
+
+function decreaseBlocks() {
     if (currentBlock === "loop") {
-        if (keyCode === UP_ARROW) {
-            increaseLoop();
-        }
-        if (keyCode === DOWN_ARROW) {
-            decreaseLoop();
-        }
+        decreaseLoop();
         document.getElementById("loopTimes").innerHTML = loopTimes;
     }
     if (currentBlock === "bpm") {
-        if (keyCode === UP_ARROW) {
-            increaseBPM();
-        }
-        if (keyCode === DOWN_ARROW) {
-            decreaseBPM();
-        }
+        decreaseBPM();
         document.getElementById("bpmTimes").innerHTML = beatsPerMinute;
     }
     if (currentBlock === "measure") {
-        if (keyCode === UP_ARROW) {
-            increaseMeasure();
-        }
-        if (keyCode === DOWN_ARROW) {
-            decreaseMeasure();
-        }
-        document.getElementById("measureTimes").innerHTML = 4/measure;
+        decreaseMeasure();
+        document.getElementById("measureTimes").innerHTML = 4 / measure;
+    }
+}
+
+function increaseBlocks() {
+    if (currentBlock === "loop") {
+        increaseLoop();
+        document.getElementById("loopTimes").innerHTML = loopTimes;
+    }
+    if (currentBlock === "bpm") {
+        increaseBPM();
+        document.getElementById("bpmTimes").innerHTML = beatsPerMinute;
+    }
+    if (currentBlock === "measure") {
+        increaseMeasure();
+        document.getElementById("measureTimes").innerHTML = 4 / measure;
     }
 }
 

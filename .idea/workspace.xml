@@ -7,20 +7,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4332da44-fc07-4348-a83f-210b0fc4c60d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/blocks/bpm.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/blocks/cello.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/blocks/clear_all.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/blocks/freq_high.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/blocks/freq_low.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/blocks/freq_med.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/blocks/guitar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/blocks/info.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/blocks/kick.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/blocks/loop.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/blocks/measure.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/blocks/note_A.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/blocks/note_B.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/blocks/note_C.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/blocks/note_D.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/blocks/note_E.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/blocks/note_F.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/blocks/note_G.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/blocks/note_N.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/blocks/piano.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/blocks/play.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/blocks/save.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/blocks/start.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/blocks/wave_sine.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/blocks/wave_square.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/demo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/tutorial.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/budgie-android/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/budgie-android/app/src/main/java/com/alpay/twinmusic/CodeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/src/main/java/com/alpay/twinmusic/CodeActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/budgie-android/app/src/main/java/com/alpay/twinmusic/CodeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/src/main/java/com/alpay/twinmusic/CodeGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/budgie-android/app/src/main/java/com/alpay/twinmusic/NFCTag.java" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/src/main/java/com/alpay/twinmusic/NFCTag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/budgie-android/app/src/main/res/layout/activity_code.xml" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/src/main/res/layout/activity_code.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/budgie-android/app/src/main/res/values-tr/strings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/budgie-android/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/blocks/parallelpart.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/blocks/tempo_high.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/blocks/tempo_low.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/blocks/tempo_med.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/demo.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/demo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/js/sketch.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/js/sketch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budgie-android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budgie-android/app/release/app-release.apk" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/release/app-release.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budgie-android/app/src/main/assets/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/src/main/assets/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budgie-android/app/src/main/java/com/alpay/twinmusic/DemoActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/app/src/main/java/com/alpay/twinmusic/DemoActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/device.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/device.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +81,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../explorable-ai" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/budgie-android/app/src/main/assets" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -71,15 +93,16 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\asabuncuoglu13\Desktop\education-repo\budgie-tangible-music-kit\budgie-android\app\src\main\assets" />
+      <recent name="C:\Users\asabuncuoglu13\Desktop\education-repo\budgie-tangible-music-kit\docs" />
+      <recent name="C:\Users\asabuncuoglu13\Desktop\education-repo\budgie-tangible-music-kit\blocks" />
+      <recent name="C:\Users\asabuncuoglu13\Desktop\education-repo\budgie-tangible-music-kit\libraries\tone" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\asabuncuoglu13\Desktop\education-repo\budgie-tangible-music-kit\docs\js\p5sound" />
       <recent name="C:\Users\asabuncuoglu13\Desktop\education-repo\budgie-tangible-music-kit\docs\js" />
       <recent name="C:\Users\asabuncuoglu13\Desktop\education-repo\budgie-tangible-music-kit\docs" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\asabuncuoglu13\Desktop\education-repo\budgie-tangible-music-kit\docs" />
-      <recent name="C:\Users\asabuncuoglu13\Desktop\education-repo\budgie-tangible-music-kit\blocks" />
-      <recent name="C:\Users\asabuncuoglu13\Desktop\education-repo\budgie-tangible-music-kit\libraries\tone" />
     </key>
   </component>
   <component name="RunManager">
@@ -166,6 +189,7 @@
       <workItem from="1580651551015" duration="20914000" />
       <workItem from="1580751965393" duration="4226000" />
       <workItem from="1581122158248" duration="4829000" />
+      <workItem from="1581229907406" duration="1436000" />
     </task>
     <servers />
   </component>

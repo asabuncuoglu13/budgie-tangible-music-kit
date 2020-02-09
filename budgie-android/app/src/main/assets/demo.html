@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Budgie Demo</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Budgie Music Programming Kit Demo, Curriculum and Resources">
+    <meta name="keywords" content="Budgie, Music, Programming, Kit, Children">
+    <meta name="author" content="Budgie">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+    <link href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono&display=optional" rel="stylesheet">
+    <script src="js/p5/p5.js"></script>
+    <script src="js/p5/p5.sound.js"></script>
+    <script src="js/p5/p5.speech.js"></script>
+    <style>
+        body {
+            font-family: 'Abril Fatface', cursive;
+            color: black;
+            font-size: calc(12px + 0.2vw);
+            margin-left: 1vw;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .grid {
+            display: grid;
+            font-family: 'IBM Plex Mono', monospace;
+            grid-template-columns: repeat(5, 18vw);
+            grid-template-rows: repeat(4, 18vh);
+            grid-row-gap: 1vh;
+            grid-column-gap: 2vw;
+            margin-top: 4vh;
+        }
+
+        .grid .item {
+            border: #f8bbd0 2px solid;
+            border-radius: 0.5vh;
+            cursor: pointer;
+            background-size: contain;
+        }
+
+        .grid .item:active {
+            border: #f8bbd0 4px solid;
+            border-radius: 0.5vh;
+            cursor: pointer;
+        }
+
+        #start {
+            background: url("blocks/start.png") no-repeat center;
+            background-size: contain;
+        }
+
+        #loop {
+            background: url("blocks/loop.png") no-repeat center;
+            background-size: contain;
+        }
+
+        #noteA {
+            background: url("blocks/note_A.png") no-repeat center;
+            background-size: contain;
+        }
+
+        #noteB {
+            background: url("blocks/note_B.png") no-repeat center;
+            background-size: contain;
+        }
+
+        #noteC {
+            background: url("blocks/note_C.png") no-repeat center;
+            background-size: contain;
+        }
+
+        #noteD {
+            background: url("blocks/note_D.png") no-repeat center;
+            background-size: contain;
+        }
+
+        #noteE {
+            background: url("blocks/note_E.png") no-repeat center;
+            background-size: contain;
+        }
+
+        #noteF {
+            background: url("blocks/note_F.png") no-repeat center;
+            background-size: contain;
+        }
+
+        #noteG {
+            background: url("blocks/note_G.png") no-repeat center;
+            background-size: contain;
+        }
+
+        #noteN {
+            background: url("blocks/note_N.png") no-repeat center;
+            background-size: contain;
+        }
+
+        #lowfreq {
+            background: url("blocks/freq_low.png") no-repeat center;
+            background-size: contain;
+        }
+
+        #highfreq {
+            background: url("blocks/freq_high.png") no-repeat center;
+            background-size: contain;
+        }
+
+        #bpm {
+            background: url("blocks/bpm.png") no-repeat center;
+            background-size: contain;
+        }
+
+        #guitar {
+            background: url("blocks/guitar.png") no-repeat center;
+            background-size: contain;
+        }
+
+        #sine {
+            background: url("blocks/wave_sine.png") no-repeat center;
+            background-size: contain;
+        }
+
+        #square {
+            background: url("blocks/wave_square.png") no-repeat center;
+            background-size: contain;
+        }
+
+        #kick {
+            background: url("blocks/kick.png") no-repeat center;
+            background-size: contain;
+        }
+
+        #piano {
+            background: url("blocks/piano.png") no-repeat center;
+            background-size: contain;
+        }
+
+        #measure {
+            background: url("blocks/measure.png") no-repeat center;
+            background-size: contain;
+        }
+
+        #run {
+            background: url("blocks/play.png") no-repeat center;
+            background-size: contain;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="js/sketch.js"></script>
+    <h1><a href="index.html">Budgie</a></h1>
+    <p style="text-align: center; font-family: 'IBM Plex Mono',sans-serif; font-size: 1.5vh">Let's click on Start, Loop,
+        Note A,
+        note B and Play grids.
+        Congratulations, created an algorithm.
+        <a href="tutorial.html">Visit our tutorials to learn about algorithms and music.</a>
+        You can press <a id="up" href="#">UP</a>, <a id="down" href="#">DOWN</a> to change the values of
+        BPM, Measure and Loop. Press <a id="s" href="#">S</a>  to save your piece.
+    </p>
+    <div class="grid">
+        <div id="start" onclick="startSynth()" class="item">start music</div>
+        <div id="loop" onclick="startLoop()" class="item">loop : <p id="loopTimes">2</p> times</div>
+        <div id="noteA" onclick="addNote('A', measure)" class="item">note A</div>
+        <div id="noteB" onclick="addNote('B', measure)" class="item">note B</div>
+        <div id="noteC" onclick="addNote('C', measure)" class="item">note C</div>
+        <div id="noteD" onclick="addNote('D', measure)" class="item">note D</div>
+        <div id="noteE" onclick="addNote('E', measure)" class="item">note E</div>
+        <div id="noteF" onclick="addNote('F', measure)" class="item">note F</div>
+        <div id="noteG" onclick="addNote('G', measure)" class="item">note G</div>
+        <div id="noteN" onclick="addNote('N', measure)" class="item">rest</div>
+        <div id="lowfreq" onclick="changeFreq('bass')" class="item">bass</div>
+        <div id="highfreq" onclick="changeFreq('treble')" class="item">treble</div>
+        <div id="measure" onclick="changeMeasure()" class="item">measure n : <p id="measureTimes">1</p></div>
+        <div id="bpm" onclick="changeBPM()" class="item">bpm : <p id="bpmTimes">120</p></div>
+        <div id="kick" onclick="kick()" class="item">add kick</div>
+        <div id="piano" onclick="addPiano()" class="item">piano</div>
+        <div id="guitar" onclick="addGuitar()" class="item">guitar</div>
+        <div id="sine" onclick="addSine()" class="item">sine wave</div>
+        <div id="square" onclick="addSquare()" class="item">square wave</div>
+        <div id="run" onclick="playSong()" class="item">play</div>
+    </div>
+    <script>
+        if (!String.prototype.format) {
+            String.prototype.format = function () {
+                var args = arguments;
+                return this.replace(/{(\d+)}/g, function (match, number) {
+                    return typeof args[number] != 'undefined'
+                        ? args[number]
+                        : match
+                        ;
+                });
+            };
+        }
+        document.getElementById('up').addEventListener('click', increaseBlocks);
+        document.getElementById('down').addEventListener('click', decreaseBlocks);
+        document.getElementById('s').addEventListener('click', saveFile);
+    </script>
+
+</body>
+
+</html>

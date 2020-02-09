@@ -78,7 +78,7 @@ public class DemoActivity extends AppCompatActivity implements ShakeDetector.Lis
         if (isNetworkAvailable()) {
             webView.loadUrl("https://budgi.es/demo.html");
         } else {
-            Toast.makeText(this, "You need an active internet connection.", Toast.LENGTH_LONG).show();
+            webView.loadUrl("file:///android_asset/demo.html");
         }
     }
 

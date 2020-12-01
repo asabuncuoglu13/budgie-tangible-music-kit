@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Budgie Tutorial</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Budgie Music Programming Kit Demo, Curriculum and Resources">
+    <meta name="keywords" content="Budgie, Music, Programming, Kit, Children">
+    <meta name="author" content="Budgie">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700&display=optional" rel="stylesheet">
+    <script src="js/p5/p5.js"></script>
+    <script src="js/p5/p5.speech.js"></script>
+</head>
+
+<body>
+<div class="full yellow" id="mainScreen">
+    <div class="content">
+        <h1><span id="modeText"><a href="index.html">Budgie</a></span></h1>
+        <section id="section_1">
+            <div class="index" id="one">1</div>
+            <h2>Hello Budgie</h2>
+            <div id="section1Content">
+                Programming is the design process of a program to execute some functions in a computational device. This device might be a computer, a phone, a speaker or a car. Nowadays, computational devices appears in various forms. From our watches to elevators, many devices communicate with each other and use electric signals to make some computations. Budgie kit is one of them. Every block you hold, carries a bit of data. The data can only be understood by NFC-supported devices, such as your mobile phone. We will explain what is NFC in the next tutorials.
+                <br><br>
+                Now, it is time to create our first program:
+                <ul>
+                    <li>To start a new program in Budgie, you need to use
+                        <b>"start"</b> block. Start block starts a new program.
+                    </li>
+                    <li>This new program holds all the code to create a new composition.</li>
+                    <li>Budgie Kit contains three types of blocks: interface, attribute and notes. Attribute blocks define the properties of note blocks.
+                    </li>
+                    <li>You can change the octave, tempo or sound type with these blocks.</li>
+                    <li>In our first program let's define the sound type to <b>piano</b>.</li>
+                    <li>Then, read the note blocks: <b>A, E, C, E, A, C.</b> Finally, read the
+                        <b>"play"</b> block with your phone to play the song.
+                    </li>
+                </ul>
+            </div>
+            <button id="readSection1" class="button">📝 Read the Text</button>
+        </section>
+        <section id="section_2">
+            <div class="index" id="two">2</div>
+            <h2>Looping</h2>
+            <div id="section2Content">
+                Loop is one of the common structure in coding. If you want a code to repeat multiple times, you would define a loop. You can create loops in Budgie kit.
+                <ul>
+                    <li>Read the loop block. It will automatically create a loop that runs for two times.
+                    <li>To increase the number of loop cycles, swipe up the screen. Each swipe up increase the number of loop cycles one.
+                    </li>
+                    <li>To decrease the number of loop cycles, swipe down the screen. Each swipe down decrease the number of loop cycles one.
+                    </li>
+                    <li>
+                        <b>Now, let's create a new song with 3 loop cycles that repeats the A,B,C blocks.</b>
+                    </li>
+                </ul>
+            </div>
+            <button id="readSection2" class="button">📝 Read the Text</button>
+        </section>
+        <section id="section_3">
+            <div class="index" id="three">3</div>
+            <h2>Sound Types</h2>
+            <p id="section3Content"></p>
+            <button id="readSection3" class="button">📝 Read the Text</button>
+        </section>
+        <section id="section_4">
+            <div class="index" id="four">4</div>
+            <h2>Sound Types</h2>
+            <p id="section4Content"></p>
+            <button id="readSection4" class="button">📝 Read the Text</button>
+        </section>
+    </div>
+</div>
+<script>
+    let s = new p5.Speech();
+
+    document.getElementById("readSection1").addEventListener('click', function () {
+        s.speak(document.getElementById("section1Content").textContent);
+    });
+
+    document.getElementById("readSection2").addEventListener('click', function () {
+        s.speak(document.getElementById("section2Content").textContent);
+    });
+
+    document.getElementById("readSection3").addEventListener('click', function () {
+        s.speak(document.getElementById("section3Content").textContent);
+    });
+</script>
+</body>
+</html>

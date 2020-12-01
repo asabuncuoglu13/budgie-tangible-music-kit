@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> Budgie </title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
+    <script defer src="https://use.fontawesome.com/releases/v5.11.0/js/all.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <section>
+        <a href="Home.html">
+            <img class="icon" src="img/icon.png">
+
+        </a>  
+        
+    </section>
+    <header>
+       <h1> <strong>BUDGIE </strong></h1>
+       
+    </header>
+
+    <div class="full" id="mainScreen">
+        <div class="content">
+            
+            <section id="section_1">
+                <div class="index" id="one">1</div>
+                <h2>How to use Budgie?</h2>
+                <p>Budgie is an open-source music programming kit. We provide the app, resources and curriculum to increase the access to programming education. You can start using Budgie in two steps:</p>
+                <p><b>1. </b>Download the Budgie Music Programming app from:
+                     <button class="button"><a target="_blank" href="https://github.com/asabuncuoglu13/budgie-tangible-music-kit"> <i class="fab fa-google-play"></i>   Google Play Store </a></button>
+                <p><b>2. </b>Prepare the 3D blocks with a material of your choice, and use NFC stickers to define the models.</p>
+                <p>You can access the model files, code and guidelines from our</p>
+                <button class="button"><a href="https://github.com/asabuncuoglu13/budgie-tangible-music-kit/block_models/"> <i class="fab fa-github"></i>   Github page </a></button>
+                <p><b>3.</b> Start using Budgie with our tutorials!</p>
+                <button id="buyButton" class="button"><a href="Tutorials.html">📚 See All Tutorials</a></button>
+            </section>
+            <section id="section_2">
+                <div class="index" id="two">2</div>
+                <h2>Curriculum </h2>
+                <p>We prepared a curriculum to introduce technology to young minds and develop their computational thinking skills.</p>
+                <p>The curriculum is intended to 9-12 age group, educators can adapt the curriculum for lower and upper age groups.</p>
+                <p>The curriculum includes activities from Ableton to teach about music and synth, and many other resources to teach the foundations making and coding.</p>
+                <button id="curriculumButton" class="button" ><a href="https://www.notion.so/6f695bcf80e84f88a0694afdb3da29e8?v=bc15d1b5ccc24b09b39c0d54fac248de" > 📚See the Lesson Plan</a></button> 
+               
+            </section>
+            <section id="section_3">
+                <div class="index" id="three">3</div>
+                <h2>Research and Development</h2>
+                <p>Budgie is a tangible and low-cost programming kit for an inclusive programming education.</p>
+                <p>It is designed with the Tangible User Interface Design Guidelines.</p>
+                <p>We presented our work at TEI 2020 and awarded with the "Honorable Mention"!</p>
+
+
+                <button id="researchButton" class="button"><a href="https://budgi.es/pdf/preprint.pdf" >📝 Read the Research</a></button>
+                <br>
+                <br>
+            </section>
+        </div>
+    </div>
+    <script>
+        document.getElementById("researchButton").addEventListener('click', function () {
+            location.href = './pdf/preprint.pdf';
+        });
+
+        document.getElementById("curriculumButton").addEventListener('click', function () {
+            location.href = 'https://www.notion.so/tangiblemusic/6f695bcf80e84f88a0694afdb3da29e8?v=bc15d1b5ccc24b09b39c0d54fac248de';
+        });
+        document.getElementById("tutorialButton").addEventListener('click', function () {
+            location.href = './tutorial.html';
+        });
+    </script>
+</body>
+
+</html>

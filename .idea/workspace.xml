@@ -6,7 +6,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4332da44-fc07-4348-a83f-210b0fc4c60d" name="Default Changelist" comment="" />
+    <list default="true" id="4332da44-fc07-4348-a83f-210b0fc4c60d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budgie-android/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/.idea/caches/gradle_models.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budgie-android/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/budgie-android/.idea/gradle.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -160,6 +164,7 @@
       <workItem from="1581381946610" duration="221000" />
       <workItem from="1581469517500" duration="711000" />
       <workItem from="1581687699088" duration="606000" />
+      <workItem from="1584977017949" duration="973000" />
     </task>
     <servers />
   </component>

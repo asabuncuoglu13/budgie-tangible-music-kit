@@ -9,8 +9,8 @@
     <meta name="author" content="Budgie">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
-    <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700&display=optional" rel="stylesheet">
@@ -19,78 +19,121 @@
 </head>
 
 <body>
-<div class="full yellow" id="mainScreen">
-    <div class="content">
-        <h1><span id="modeText"><a href="index.html">Budgie</a></span></h1>
-        <section id="section_1">
-            <div class="index" id="one">1</div>
-            <h2>Hello Budgie</h2>
-            <div id="section1Content">
-                Programming is the design process of a program to execute some functions in a computational device. This device might be a computer, a phone, a speaker or a car. Nowadays, computational devices appears in various forms. From our watches to elevators, many devices communicate with each other and use electric signals to make some computations. Budgie kit is one of them. Every block you hold, carries a bit of data. The data can only be understood by NFC-supported devices, such as your mobile phone. We will explain what is NFC in the next tutorials.
-                <br><br>
-                Now, it is time to create our first program:
-                <ul>
-                    <li>To start a new program in Budgie, you need to use
-                        <b>"start"</b> block. Start block starts a new program.
-                    </li>
-                    <li>This new program holds all the code to create a new composition.</li>
-                    <li>Budgie Kit contains three types of blocks: interface, attribute and notes. Attribute blocks define the properties of note blocks.
-                    </li>
-                    <li>You can change the octave, tempo or sound type with these blocks.</li>
-                    <li>In our first program let's define the sound type to <b>piano</b>.</li>
-                    <li>Then, read the note blocks: <b>A, E, C, E, A, C.</b> Finally, read the
-                        <b>"play"</b> block with your phone to play the song.
-                    </li>
-                </ul>
-            </div>
-            <button id="readSection1" class="button">📝 Read the Text</button>
-        </section>
-        <section id="section_2">
-            <div class="index" id="two">2</div>
-            <h2>Looping</h2>
-            <div id="section2Content">
-                Loop is one of the common structure in coding. If you want a code to repeat multiple times, you would define a loop. You can create loops in Budgie kit.
-                <ul>
-                    <li>Read the loop block. It will automatically create a loop that runs for two times.
-                    <li>To increase the number of loop cycles, swipe up the screen. Each swipe up increase the number of loop cycles one.
-                    </li>
-                    <li>To decrease the number of loop cycles, swipe down the screen. Each swipe down decrease the number of loop cycles one.
-                    </li>
-                    <li>
-                        <b>Now, let's create a new song with 3 loop cycles that repeats the A,B,C blocks.</b>
-                    </li>
-                </ul>
-            </div>
-            <button id="readSection2" class="button">📝 Read the Text</button>
-        </section>
-        <section id="section_3">
-            <div class="index" id="three">3</div>
-            <h2>Sound Types</h2>
-            <p id="section3Content"></p>
-            <button id="readSection3" class="button">📝 Read the Text</button>
-        </section>
-        <section id="section_4">
-            <div class="index" id="four">4</div>
-            <h2>Sound Types</h2>
-            <p id="section4Content"></p>
-            <button id="readSection4" class="button">📝 Read the Text</button>
-        </section>
+    <div class="full yellow" id="mainScreen">
+        <div class="content">
+            <h1><span id="modeText"><a href="index.html">Budgie</a></span></h1>
+            <section id="section_1">
+                <div class="index" id="one">1</div>
+                <h2>Hello Budgie</h2>
+                <div id="section1Content">
+                    Programming is the design process of a program to execute some functions in a computational device.
+                    This device might be a computer, a phone, a speaker or a car. Nowadays, computational devices
+                    appears in various forms. From our watches to elevators, many devices communicate with each other
+                    and use electric signals to make some computations. Budgie kit is one of them. Every block you hold,
+                    carries a bit of data. The data can only be understood by NFC-supported devices, such as your mobile
+                    phone. We will explain what is NFC in the next tutorials.
+                    <br><br>
+                    Now, it is time to create our first program:
+                    <ul>
+                        <li>To start a new program in Budgie, you need to use
+                            <b>"start"</b> block. Start block starts a new program.
+                        </li>
+                        <li>This new program holds all the code to create a new composition.</li>
+                        <li>Budgie Kit contains three types of blocks: interface, attribute and notes. Attribute blocks
+                            define the properties of note blocks.
+                        </li>
+                        <li>You can change the octave, tempo or sound type with these blocks.</li>
+                        <li>In our first program let's define the sound type to <b>piano</b>.</li>
+                        <li>Then, read the note blocks: <b>A, E, C, E, A, C.</b> Finally, read the
+                            <b>"play"</b> block with your phone to play the song.
+                        </li>
+                    </ul>
+                </div>
+                <button id="readSection1" class="button">📝 Read the Text</button>
+            </section>
+            <section id="section_2">
+                <div class="index" id="two">2</div>
+                <h2>Looping</h2>
+                <div id="section2Content">
+                    Loop is one of the common structure in coding. If you want a code to repeat multiple times, you
+                    would define a loop. You can create loops in Budgie kit.
+                    <ul>
+                        <li>Read the loop block. It will automatically create a loop that runs for two times.
+                        <li>To increase the number of loop cycles, swipe up the screen. Each swipe up increase the
+                            number of loop cycles one.
+                        </li>
+                        <li>To decrease the number of loop cycles, swipe down the screen. Each swipe down decrease the
+                            number of loop cycles one.
+                        </li>
+                        <li>
+                            <b>Now, let's create a new song with 3 loop cycles that repeats the A,B,C blocks.</b>
+                        </li>
+                    </ul>
+                </div>
+                <button id="readSection2" class="button">📝 Read the Text</button>
+            </section>
+            <section id="section_3">
+                <div class="index" id="three">3</div>
+                <h2>Sound Types</h2>
+                <p id="section3Content">
+                    Musical sounds are vibrations which are strongly regular. When you hear a regular vibration, your
+                    ear detects the frequency, and you perceive this as the pitch of a musical tone. Non-musical sounds
+                    are a complex mix of different (and changing) frequencies. Your ear still follows these vibrations,
+                    but there is no strong regularity from which you can pick up a musical tone. Most sounds have some
+                    regularity in them (even a door slamming) but not enough for your ear to detect a specific pitch.
+                    <br><br>
+                    A violin makes musical sounds when its strings vibrate. If you pluck a violin string and watch it
+                    closely, you can see it vibrating very quickly. The vibrations begin with the strings, but quickly
+                    make the large wooden body of the instrument vibrate as well. Hitting the two metal prongs of a
+                    tuning fork causes them to vibrate at a precise frequency. As they vibrate, they make the air around
+                    them vibrate, too. When you play any form of pipe instrument, such as a flute, the air inside
+                    vibrates in complex patterns. Sound waves come out and you hear them as musical notes. By blocking
+                    holes in a pipe with your fingers or by pressing keys, you can play notes of different pitch. When
+                    you crash two cymbals together, the metal discs vibrate and make the air around them move.
+                </p>
+                <button id="readSection3" class="button">📝 Read the Text</button>
+            </section>
+            <section id="section_4">
+                <div class="index" id="four">4</div>
+                <h2>Beat and Tempo</h2>
+                <p id="section4Content">
+                    Did you know that your heart beats about 120 times in one minute? Similarly in music, there is a
+                    regular and repeating pulse which we call “beat”. In fact, the beat is obvious in one of Queen’s
+                    songs: “We Will Rock You”. People in the song tap their feet and clap with a certain beat
+                    repetitively.
+                    <br><br>
+                    The speed of the beats in a measured time is called “tempo”. For example, if a song is 120 BPM,
+                    there
+                    will be 120 beats in one minute. Tempo is a key element of a musical performance. Within a piece of
+                    music, tempo can be just as important as melody, harmony, rhythm, lyrics, and dynamics.
+                </p>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/-tJYN-eG1zk" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+                <br>
+                <button id="readSection4" class="button">📝 Read the Text</button>
+            </section>
+        </div>
     </div>
-</div>
-<script>
-    let s = new p5.Speech();
+    <script>
+        let s = new p5.Speech();
 
-    document.getElementById("readSection1").addEventListener('click', function () {
-        s.speak(document.getElementById("section1Content").textContent);
-    });
+        document.getElementById("readSection1").addEventListener('click', function () {
+            s.speak(document.getElementById("section1Content").textContent);
+        });
 
-    document.getElementById("readSection2").addEventListener('click', function () {
-        s.speak(document.getElementById("section2Content").textContent);
-    });
+        document.getElementById("readSection2").addEventListener('click', function () {
+            s.speak(document.getElementById("section2Content").textContent);
+        });
 
-    document.getElementById("readSection3").addEventListener('click', function () {
-        s.speak(document.getElementById("section3Content").textContent);
-    });
-</script>
+        document.getElementById("readSection3").addEventListener('click', function () {
+            s.speak(document.getElementById("section3Content").textContent);
+        });
+        
+        document.getElementById("readSection4").addEventListener('click', function () {
+            s.speak(document.getElementById("section4Content").textContent);
+        });
+    </script>
 </body>
+
 </html>

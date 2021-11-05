@@ -1,11 +1,11 @@
 # Budgie Tangible Music Blocks
 
-We developed **Budgie Programming Kit** to teach basics of composing music and programming for children. We developed the system for the students with mixed visual abilities. Visit our [**demo page**](https://budgi.es/demo.html) to quickly see the system capabilities.
+We developed **Budgie Programming Kit** to teach basics of composing music and programming for children. We developed the system for the students with mixed visual abilities. Visit our [**demo page**](https://asabuncuoglu13.github.io/budgie-tangible-music-kit/demo.html) to quickly see the system capabilities.
 
 ## Using Music Blocks
 It includes physical blocks to code music with your smartphone. Physical blocks include NFC stickers to be recognized by smartphone. We decided on some pre-defined shapes, you can 3D print, laser cut or use cardbards to replicate these shapes. You can follow the [**print and play**](./notes/print_and_play.md) guide to prepare the tangible blocks.
 
-After preparing the tangible blocks, you can use smartphone application to compose music. To take a detailed look on coding and composing you can use our [**tutorials**](https://budgi.es/tutorial.html) to learn about coding and basics of music theory.
+After preparing the tangible blocks, you can use smartphone application to compose music. To take a detailed look on coding and composing you can use our [**tutorials**](https://asabuncuoglu13.github.io/budgie-tangible-music-kit/tutorial.html) to learn about coding and basics of music theory.
 
 You can find 3D Design Files from link: [Tangible Kit - 3D Design Files](https://drive.google.com/drive/folders/1QtAqzIGH1LJofvgtrSxLd6jc1V5ipldE?usp=sharing) 
 

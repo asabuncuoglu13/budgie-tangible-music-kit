@@ -136,7 +136,7 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
         webSettings.setAllowFileAccessFromFileURLs(true);
         webSettings.setAllowUniversalAccessFromFileURLs(true);
         if (isNetworkAvailable()) {
-            webView.loadUrl("https://budgi.es/device.html");
+            webView.loadUrl("https://asabuncuoglu13.github.io/budgie-tangible-music-kit/device.html");
         } else {
             webView.loadUrl("file:///android_asset/index.html");
         }

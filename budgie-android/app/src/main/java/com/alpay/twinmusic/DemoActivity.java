@@ -76,7 +76,7 @@ public class DemoActivity extends AppCompatActivity implements ShakeDetector.Lis
         webSettings.setAllowFileAccessFromFileURLs(true);
         webSettings.setAllowUniversalAccessFromFileURLs(true);
         if (isNetworkAvailable()) {
-            webView.loadUrl("https://budgi.es/demo.html");
+            webView.loadUrl("https://asabuncuoglu13.github.io/budgie-tangible-music-kit/demo.html");
         } else {
             webView.loadUrl("file:///android_asset/demo.html");
         }

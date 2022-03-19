@@ -3,13 +3,23 @@
 <head>
     <script src="./js/p5/p5.js"></script>
     <script src="./js/p5/p5.sound.js"></script>
-    <meta charset="utf-8" />
-
+    <meta charset="utf-8"/>
+    <style>
+        body {
+            background-color: lavender;
+            font-size: xx-large;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0 auto;
+            max-width: 480px;
+        }
+    </style>
 </head>
 <body>
-<p style="text-align: center" id="loopTimes" >Loop:</p>
-<p style="text-align: center" id="bpmTimes">BPM:</p>
-<p style="text-align: center" id="measureTimes">Measure:</p>
+<p style="text-align: center">Loop: <span id="loopTimes"></span></p>
+<p style="text-align: center">BPM: <span id="bpmTimes"></span></p>
+<p style="text-align: center">Measure: <span id="measureTimes"></span></p>
 <script src="./js/sketch.js"></script>
+<p style="text-align: center">Code: </p>
+<p style="text-align: center" id="code"></p>
 </body>
 </html>

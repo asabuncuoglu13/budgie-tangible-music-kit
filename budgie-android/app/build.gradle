@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 android {
-    compileSdkVersion 28
+    compileSdkVersion 30
     defaultConfig {
         applicationId "com.alpay.twinmusic"
         minSdkVersion 19
-        targetSdkVersion 28
-        versionCode 3
-        versionName "1.0.2"
+        targetSdkVersion 30
+        versionCode 4
+        versionName "1.0.3"
     }
     buildTypes {
         release {
@@ -14,9 +14,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation "androidx.appcompat:appcompat:1.1.0-rc01"
     implementation 'com.squareup:seismic:1.0.2'
 }

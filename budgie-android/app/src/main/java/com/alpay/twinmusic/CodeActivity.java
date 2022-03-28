@@ -1,12 +1,9 @@
 package com.alpay.twinmusic;
 
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.hardware.SensorManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
@@ -17,8 +14,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.speech.tts.TextToSpeech;
-import android.support.v4.view.GestureDetectorCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -28,8 +23,12 @@ import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GestureDetectorCompat;
+
 import com.squareup.seismic.ShakeDetector;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Locale;
@@ -64,7 +63,7 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_code);
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
-        prepareViews();
+
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         ShakeDetector sd = new ShakeDetector(this);
         sd.start(sensorManager);
@@ -96,6 +95,14 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
             }
         });
 
+        try {
+            prepareViews();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         handleIntent(getIntent());
     }
 
@@ -124,7 +131,7 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
         handleIntent(intent);
     }
 
-    private void prepareViews() {
+    private void prepareViews() throws IOException, InterruptedException {
         webView = findViewById(R.id.webview);
         textView = findViewById(R.id.code_blocks);
         loopText = findViewById(R.id.loop_text);
@@ -136,7 +143,7 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
         webSettings.setAllowFileAccessFromFileURLs(true);
         webSettings.setAllowUniversalAccessFromFileURLs(true);
         if (isNetworkAvailable()) {
-            webView.loadUrl("https://budgi.es/device.html");
+            webView.loadUrl("https://asabuncuoglu13.github.io/budgie-tangible-music-kit/device.html");
         } else {
             webView.loadUrl("file:///android_asset/index.html");
         }
@@ -297,11 +304,9 @@ public class CodeActivity extends AppCompatActivity implements ShakeDetector.Lis
         startActivity(intent);
     }
 
-    private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager
-                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    private boolean isNetworkAvailable() throws InterruptedException, IOException {
+        String command = "ping -c 1 google.com";
+        return Runtime.getRuntime().exec(command).waitFor() == 0;
     }
 
     @Override

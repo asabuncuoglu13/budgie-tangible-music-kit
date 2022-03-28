@@ -1,13 +1,8 @@
 package com.alpay.twinmusic;
 
-import android.content.Context;
 import android.hardware.SensorManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
-import android.support.v4.view.GestureDetectorCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -16,8 +11,12 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GestureDetectorCompat;
+
 import com.squareup.seismic.ShakeDetector;
 
+import java.io.IOException;
 import java.util.Locale;
 
 
@@ -41,7 +40,13 @@ public class DemoActivity extends AppCompatActivity implements ShakeDetector.Lis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo);
-        prepareViews();
+        try {
+            prepareViews();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         ShakeDetector sd = new ShakeDetector(this);
         sd.start(sensorManager);
@@ -68,7 +73,7 @@ public class DemoActivity extends AppCompatActivity implements ShakeDetector.Lis
         super.onPause();
     }
 
-    private void prepareViews() {
+    private void prepareViews() throws IOException, InterruptedException {
         webView = findViewById(R.id.webview);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -76,7 +81,7 @@ public class DemoActivity extends AppCompatActivity implements ShakeDetector.Lis
         webSettings.setAllowFileAccessFromFileURLs(true);
         webSettings.setAllowUniversalAccessFromFileURLs(true);
         if (isNetworkAvailable()) {
-            webView.loadUrl("https://budgi.es/demo.html");
+            webView.loadUrl("https://asabuncuoglu13.github.io/budgie-tangible-music-kit/demo.html");
         } else {
             webView.loadUrl("file:///android_asset/demo.html");
         }
@@ -90,11 +95,9 @@ public class DemoActivity extends AppCompatActivity implements ShakeDetector.Lis
         });
     }
 
-    private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager
-                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    private boolean isNetworkAvailable() throws InterruptedException, IOException {
+        String command = "ping -c 1 google.com";
+        return Runtime.getRuntime().exec(command).waitFor() == 0;
     }
 
     @Override

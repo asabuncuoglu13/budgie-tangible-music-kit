@@ -533,6 +533,7 @@ function touchStarted() {
 
 // TODO: Change it to save block
 function keyTyped() {
+    document.getElementById("code").append(key + " - ");
     switch (key) {
         case 'a' || 'A':
             addNote('A', measure);
@@ -648,7 +649,7 @@ function decreaseBlocks() {
     }
     if (currentBlock === "measure") {
         decreaseMeasure();
-        document.getElementById("measureTimes").innerHTML = 4 / measure;
+        document.getElementById("measureTimes").innerHTML = (4 / measure);
     }
 }
 
@@ -663,7 +664,7 @@ function increaseBlocks() {
     }
     if (currentBlock === "measure") {
         increaseMeasure();
-        document.getElementById("measureTimes").innerHTML = 4 / measure;
+        document.getElementById("measureTimes").innerHTML = (4 / measure);
     }
 }
 
